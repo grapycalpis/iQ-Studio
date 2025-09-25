@@ -11,14 +11,20 @@ Please refer to the `tutorial/applications/iqs-streampipe`to learn how to run [i
 
 In this section, we describe how to use custom models and video inputs with iqs-streampipe. 
 
-## How to modify the content displayed, please refer to the `config.json` file in the current directory.
+# What you need？
 
+1. At least one UVC camera
+    - 1080p/30fps (1920x1080 pixels)
+    - MJPEG compression format
+    > Due to limited bandwidth, do not use more than 3 UVC cameras at once.
+2. At least one MP4 video uses the H.264 codec.
+
+## How to modify the content displayed, please refer to the `config.json` file in the current directory.
 
 1. Navigate to the iqs-streampipe directory.and check the file in your current directory.
     
     ```bash
-    cd tutorials/integrations/iqs-streampipe/
-    ls
+    cd tutorials/sdks/iqs-streampipe/
     ```
     
     ![image.png](./fig/image1.png)
@@ -36,7 +42,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     
 3. Modify `config.json`. We have changed the video under `id: 1` to `coco_detect.mp4`.You may replace coco_detect.mp4 with your own video file if desired.
    
-    ⚠ NOTE : This config is not the default config in the Docker container.
+    NOTE : This config is not the default config in the Docker container.
 
     Enter the Relativate Path into the config file.
 
@@ -54,7 +60,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     
 5. Run the iqs-launcher 
 
-    ⚠ NOTE : You must add the `--other "-c config.json"` option to change the videos..
+    NOTE : You must add the `--other "-c config.json"` option to change the videos..
     
     ```bash
     iqs-launcher --autotag iqs-streampipe --other "-c config.json"

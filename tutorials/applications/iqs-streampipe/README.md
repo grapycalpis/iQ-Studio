@@ -22,15 +22,13 @@ The set IDs are ordered on the screen from left to right, then from top to botto
 
 The demo can be run at following platform and BSP version
 
-**[Future] BSP vs platform table**
+The demo can be run at following BSP version.
+| BSP version | Docker image | Docker image tag |
+| :--- | :---- | :--- |
+| 0.0.2 | iqs-streampipe | v0.0.2 |
 
 1. At least 1 GB of free disk space
 2. A monitor
-3. At least one UVC camera
-    - 1080p/30fps (1920x1080 pixels)
-    - MJPEG compression format
-    > Due to limited bandwidth, do not use more than 3 UVC cameras at once.
-4. At least one MP4 video uses the H.264 codec.
 
 # How to start?
     
@@ -49,3 +47,7 @@ cd iQ-Studio
 2. You will see in the screen.
     
     ![Recording 2025-08-13 at 15.22.58.gif](./fig/gif1.gif)
+
+# iQS-VLM SDK
+
+For advanced features and usage examples, visit this [page](../../sdks/iqs-streampipe/README.md) to learn more.
