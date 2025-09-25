@@ -69,6 +69,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     ```
     
 6. Change the display of ID 1 to the specified view.
+    >Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
 
     <br />
     <div align="center"><img width="80%" height="80%" src="./fig/gif2.gif"></div>

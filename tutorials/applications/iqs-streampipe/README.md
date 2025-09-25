@@ -9,6 +9,7 @@
 Streampipe is a C++ GStreamer and OpenCV-based multi-stream video processing pipeline. It supports real-time video input from UVC cameras or video files, and displays composite video output using a GStreamer compositor.
 
 The set IDs are ordered on the screen from left to right, then from top to bottom
+>Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
 
 <br />
 <div align="center"><img width="80%" height="80%" src="./fig/image0.png"></div>
@@ -45,9 +46,10 @@ cd iQ-Studio
     ```
     
 2. You will see in the screen.
+    >Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
     
     ![Recording 2025-08-13 at 15.22.58.gif](./fig/gif1.gif)
 
-# iQS-VLM SDK
+# iQS-Streampipe SDK
 
 For advanced features and usage examples, visit this [page](../../sdks/iqs-streampipe/README.md) to learn more.
