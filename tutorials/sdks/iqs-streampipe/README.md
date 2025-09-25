@@ -27,7 +27,9 @@ In this section, we describe how to use custom models and video inputs with iqs-
     cd tutorials/sdks/iqs-streampipe/
     ```
     
-    ![image.png](./fig/image1.png)
+    <br />
+    <div align="center"><img width="60%" height="60%" src="./fig/image1.png"></div>
+    <br />
     
 2. Open the `config.json` file in the current directory
     
@@ -73,6 +75,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     <br />
 
 ## How to use a UVC camera to capture video frames for real-time prediction.
+>Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
 
 - When a UVC camera's USB plug is connected to the platform's USB port, the video prediction will automatically switch to and display the real-time prediction results from the UVC camera feed.
 - When multiple cameras are plugged in, the results will be replaced based on channels, starting with channel 0, then channel 1, and so on.
