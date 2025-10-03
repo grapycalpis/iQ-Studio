@@ -43,6 +43,13 @@ We are using the [Ultralytics](https://docs.ultralytics.com/models/yolov10/) fra
 - RAM: 36GB
 - Qnn SDK Version: 2.29
 
+The demo can be run at following platform and BSP version.
+| APP version | Docker image | BSP version |
+| :--- | :---- | :--- |
+| 1.0.0 | iqs-yolov10n | v0.0.2 |
+
+>Note: Our BSP version is the same as the docker tag.
+
 ### How to demo the model?
 
 Use the iqs-launcher to start the application.
