@@ -27,7 +27,7 @@ GMSL is widely used in autonomous driving, industrial mobile equipment, 360° su
 
 ![911-adb.png](./fig/911-adb.png)
 
-Connect the EXMP-Q911 to the EB022-2M4F GMSL adapter board, follow the steps below:
+Connect the GMSL Camera to EXMP-Q911 and EB022-2M4F GMSL adapter board, follow the steps below:
 
 1. Use a 22-pin to 22-pin MIPI cable (A-B style). Connect CN_CSIx to the corresponding FPC1 header. The cable type is required for proper CSI lane alignment.
 2. Use Link A to connect the GMSL camera. Only Link A is supported, and the adapter board can operate with one MIPI sensor at a time.
@@ -42,7 +42,7 @@ Connect the EXMP-Q911 to the EB022-2M4F GMSL adapter board, follow the steps bel
 
 ![evk-adb.png](./fig/evk-adb.png)
 
-Connect the iQ-9075 EVK to the EB022-2M4F GMSL adapter board, follow the steps below:
+Connect the camera to the iQ-9075 EVK and EB022-2M4F GMSL adapter board, follow the steps below:
 
 1. Use the 22-30 pin Adapter to connect the 22-pin to 22-pin MIPI cable (A-A style). 
 2. Connect CN_CSIx to the corresponding FPC1 header. This cable type is required for proper CSI lane alignment.
@@ -62,9 +62,11 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
 1. Connect the Mezzanine board on iQ9-9075 EVK
 2. Use Link C to connect the GMSL Camera.Only Link C  is supported, and the adapter board can operate with one MIPI sensor at a time.
 
-    ![evk-mzb-c.png](./fig/evk-mzb-c.png)
+    <div align="left"><img width="50%" height="50%" src="./fig/evk-mzb-c.png"></div>
+
 3. Set the DIP switch according to the configuration shown in the image below. Please refer to [here](https://docs.qualcomm.com/bundle/resource/topics/80-70020-17A/connect-camera-sensor-hardware.html) for more DIP switch detail.
-    ![dip-switch.png](./fig/dip-switch.png)
+    
+    <div align="left"><img width="50%" height="50%" src="./fig/dip-switch.png"></div>
     
 4. Power on  iQ9-9075 EVK.
 
@@ -100,7 +102,7 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
             
             ```
             $ sudo dpkg -i ../ev2m_oom3.deb
-            $ sudo cp -ar /usr/lib/qcs9100/aarch64-linux-gnu/libcommonchiutils.so* /usr/lib/ # Known Issue
+            $ sudo cp -ar /usr/lib/qcs9100/aarch64-linux-gnu/libcommonchiutils.so* /usr/lib/
             $ sudo reboot
             ```
             
@@ -109,9 +111,16 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
 
 If the camera is properly connected to the platform and the required drivers are correctly installed, you can use the following GStreamer command to run the camera.
 
-```bash
-    $ gst-launch-1.0 -e qtiqmmfsrc name=camsrc camera=0 ! \
-    'video/x-raw,width=1920,height=1080,framerate=30/1' ! \
-    videoconvert ! v4l2h264enc !  h264parse ! mp4mux ! filesink location=test.mp4
-```
-![gmsl.gif](./fig/gmsl.gif)
+1. If you don’t have the file `/var/cache/camera/camxoverridesettings.txt`, please create one and add the following line inside it:
+    
+    ```bash
+    HMSMaxDelayedJobCount=8
+    ```
+2. Run the following command
+    ```bash
+        $ gst-launch-1.0 -e qtiqmmfsrc name=camsrc camera=0 ! \
+        'video/x-raw,width=1920,height=1080,framerate=30/1' ! \
+        videoconvert ! v4l2h264enc !  h264parse ! mp4mux ! filesink location=test.mp4
+    ```
+
+    ![gmsl.gif](./fig/gmsl.gif)
