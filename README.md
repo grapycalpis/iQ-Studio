@@ -98,7 +98,8 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>
         <ul>
           <li><a href="./tutorials/avl/README.md">Approved vendor list</a></li>
-          <li><a href="./tutorials/avl/gmsl-camera/README.md">GMSL camera</a></li>
+          <li><a href="./tutorials/avl/gmsl-camera/README.md">GMSL Camera</a></li>
+          <li><a href="./tutorials/avl/mipi-camera/README.md">MIPI Camera</a></li>
         </ul>
       </td>
     </tr>
