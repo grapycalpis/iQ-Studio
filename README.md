@@ -88,7 +88,6 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>
         <ul>
           <li><a href="./tutorials/starting-guides/q911/README.md">Q911 quick start guide</a></li>
-          <li><a href="./tutorials/starting-guides/iqs-launcher/README.md">iqs-launcher guide</a></li>
         </ul>
       </td>
     </tr>
@@ -97,7 +96,9 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>Provides guidance on verifying that the driver starts correctly on the system and quickly demonstrating the validated results.</td>
       <td>
         <ul>
-          <li><a href="./tutorials/avl/avl/README.md">Approved vendor list</a></li>
+          <li><a href="./tutorials/avl/README.md">Approved vendor list</a></li>
+          <li><a href="./tutorials/avl/gmsl-camera/README.md">GMSL Camera</a></li>
+          <li><a href="./tutorials/avl/mipi-camera/README.md">MIPI Camera</a></li>
         </ul>
       </td>
     </tr>
@@ -119,6 +120,7 @@ iQ Studio applications are grouped into categories based on functionality:
         <ul>
           <li><a href="./tutorials/sdks/iqs-vlm/README.md">iQS-VLM SDK</a></li>
           <li><a href="./tutorials/sdks/iqs-streampipe/README.md">iQS-Streampipe SDK</a></li>
+          <li><a href="./tutorials/sdks/iqs-ogenie/README.md">iQS-OGenie SDK</a></li>
         </ul>
       </td>
     </tr>

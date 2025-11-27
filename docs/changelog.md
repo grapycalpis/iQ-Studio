@@ -1,6 +1,12 @@
 # Changelogs
 
-### v0.0.3
+## v0.0.4
+### Feat
+- Add documentation for OGenie SDK
+- Add documentation for GMSL camera
+- Add documentation for MIPI camera
+
+## v0.0.3
 ### Feat
 - Add YOLOv10n inference integration
 - Add streampipe for mutil inference
