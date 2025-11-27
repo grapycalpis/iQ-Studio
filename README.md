@@ -88,7 +88,6 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>
         <ul>
           <li><a href="./tutorials/starting-guides/q911/README.md">Q911 quick start guide</a></li>
-          <li><a href="./tutorials/starting-guides/iqs-launcher/README.md">iqs-launcher guide</a></li>
         </ul>
       </td>
     </tr>
