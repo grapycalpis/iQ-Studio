@@ -87,7 +87,7 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>Quick-start guides for evertthing, include booting up guides and iqs-launcher guides.</td>
       <td>
         <ul>
-          <li><a href="./tutorials/starting-guides/q911/README.md">Q911 quick start guide</a></li>
+          <li><a href="./tutorials/starting-guides/q911/README.md">Q911 Quick Start Guide</a></li>
         </ul>
       </td>
     </tr>
@@ -96,7 +96,7 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>Provides guidance on verifying that the driver starts correctly on the system and quickly demonstrating the validated results.</td>
       <td>
         <ul>
-          <li><a href="./tutorials/avl/README.md">Approved vendor list</a></li>
+          <li><a href="./tutorials/avl/README.md">Approved Vendor List</a></li>
           <li><a href="./tutorials/avl/gmsl-camera/README.md">GMSL Camera</a></li>
           <li><a href="./tutorials/avl/mipi-camera/README.md">MIPI Camera</a></li>
         </ul>
@@ -109,7 +109,7 @@ iQ Studio applications are grouped into categories based on functionality:
         <ul>
           <li><a href="./tutorials/applications/iqs-vlm/README.md">iQS-VLM</a></li>
           <li><a href="./tutorials/applications/iqs-streampipe/README.md">iQS-Streampipe</a></li>
-          <li><a href="./tutorials/applications/iqs-yolov10n/README.md">Yolov10n on EXMP-Q911</a></li>
+          <li><a href="./tutorials/applications/iqs-yolov10n/README.md">YOLOv10n INT8 Inference on GPU and NPU</a></li>
         </ul>
       </td>
     </tr>
@@ -118,9 +118,9 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>Documentation and examples on how to use the SDKs effectively.</td>
       <td>
         <ul>
-          <li><a href="./tutorials/sdks/iqs-vlm/README.md">iQS-VLM SDK</a></li>
-          <li><a href="./tutorials/sdks/iqs-streampipe/README.md">iQS-Streampipe SDK</a></li>
-          <li><a href="./tutorials/sdks/iqs-ogenie/README.md">iQS-OGenie SDK</a></li>
+          <li><a href="./tutorials/sdks/iqs-vlm/README.md">iQS-VLM: How to Interact with the OGenie Server through Open WebUI</a></li>
+          <li><a href="./tutorials/sdks/iqs-streampipe/README.md">iQS-Streampipe: How to Change the Custom Model and Video Source</a></li>
+          <li><a href="./tutorials/sdks/iqs-ogenie/README.md">iQS-OGenie: Run Your Own Demo with OGenie Server</a></li>
         </ul>
       </td>
     </tr>
@@ -129,7 +129,7 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>Performance tests and comparisons across platforms.</td>
       <td>
         <ul>
-          <li><a href="./benchmarks/innoppe/README.md">InnoPPE Benchmark between Jetson AGX and Qualcomm QCS9075</a></li>
+          <li><a href="./benchmarks/innoppe/README.md">InnoPPE Benchmark Between Jetson AGX and Qualcomm QCS9075</a></li>
         </ul>
       </td>
     </tr>
