@@ -19,10 +19,8 @@ echo "Executing docker run on image: $IMAGE_TO_RUN with args: $@"
 
 VOLUME_RUN=""
 if grep -qi "ubuntu" /etc/os-release; then
-    VOLUME_RUN="-v /run:/run -v /usr/lib:/usr/lib"
+    VOLUME_RUN="-v /run:/run"
     OS_TYPE="ubuntu"
-else
-    VOLUME_RUN="-v /usr/lib:/host_lib"
 fi
 
 docker run --rm -it \
@@ -31,6 +29,7 @@ docker run --rm -it \
     --shm-size=3g \
     -e OS_TYPE="$OS_TYPE" \
     -v /dev/:/dev \
+    -v /usr/lib:/host_lib \
     $VOLUME_RUN \
     -v "$PWD":/workspace \
     "$IMAGE_TO_RUN" \
