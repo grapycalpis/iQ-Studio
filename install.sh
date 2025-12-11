@@ -9,6 +9,12 @@
 # Exit on error and print commands.
 set -ex
 
+# --- Ensure root ---
+if [[ $EUID -ne 0 ]]; then
+    echo "[INFO] Re-running installer with sudo..."
+    exec sudo bash "$0" "$@"
+fi
+
 # --- Variables ---
 # Project root directory.
 ROOT="$(dirname "$(readlink -f "$0")")"
@@ -16,6 +22,15 @@ ROOT="$(dirname "$(readlink -f "$0")")"
 INSTALL_PATH="/usr/local/bin"
 # Path for the Python virtual environment.
 PYTHON_VENV="$ROOT/iqs-venv"
+
+# --- Detect OS ---
+if grep -qi "ubuntu" /etc/os-release; then
+    sudo apt update && apt install -y \
+        qcom-fastrpc-dev qcom-fastrpc1 \
+        python3.12-venv \
+        docker.io 
+    sudo usermod -aG docker $USER
+fi
 
 # --- Setup ---
 # Create and activate Python virtual environment.
