@@ -128,7 +128,7 @@ Below is an overview of how we conduct platform benchmark testing.
        --warmup_time 180 \
        --output ./logs/qcom_chX.txt
    ```
-   ![output.png](./fig/output.png)
+   ![output.png](./fig/output_quaclomm.png)
 
 
 ### NVIDIA Jetson AGX Orin 64GB procedure
@@ -173,4 +173,4 @@ please refer [here]([https://www.nvidia.com/content/dam/en-zz/Solutions/gtcf21/j
        --warmup_time 180 \
        --output ./logs/nv_chX.txt
    ```
-   ![output.png](./fig/output.png)
+   ![output.png](./fig/output_nvidia.png)
