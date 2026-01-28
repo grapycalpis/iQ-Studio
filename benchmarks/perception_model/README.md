@@ -5,8 +5,6 @@ We conducted a benchmark comparison between two AI computing platforms with simi
 
 # Benchmark Results
 
-AI inference performance comparison between NPU and GPU.
-
 ![image.png](./fig/results.png)
 
 # Conclusion
@@ -15,22 +13,18 @@ NPUs specialize in converting neural networks into hardware pipelines, optimizin
 
 # Platforms Information
 
-| **Platform** | **AIB-MX13-1-A1** | **EXMP-Q911** | **RB3 Gen2 vision kit** |
-| --- | --- | --- | --- |
-| **SoM / SoC** | Jetson AGX Orin 32GB - Jetpack 5.1.2 [L4T 35.4.1] | Qualcomm QCS9075 | Qualcomm QCS6490 |
-| **Power plan** | 30 W | 30 W (High Performance mode) |  |
-| **AI Accelerator** | GPU | Single DSP | Single DSP |
-| **AI Runtime** | TensorRT | TensorFlow Lite | TensorFlow Lite |
-| **AI Performance** | 200 TOPS (Sparse) | 100 TOPS (Dense) | 12 TOPS (Dense) |
-| **Linux Kernel** | 5.10.120-tegra | 6.6.90-qli-1.5-ver.1.1-04509-gc4b8666c9a55 | 6.6.90-qli-1.5-ver.1.1-04509-gc4b8666c9a55
- |
+| **Platform** | **AIB-MX13-1-A1** | **EXMP-Q911** |
+| --- | --- | --- |
+| **SoM / SoC** | Jetson AGX Orin 32GB - Jetpack 5.1.2 [L4T 35.4.1] | Qualcomm QCS9075 |
+| **Power plan** | 30 W | 30 W (High Performance mode) |
+| **AI Accelerator** | GPU | NPU (Hexagon HTP) |
+| **AI Runtime** | TensorRT | TensorFlow Lite |
+| **AI Performance** | 200 TOPS (Sparse) | 100 TOPS (Dense) |
+| **Linux Kernel** | 5.10.120-tegra | 6.6.90-qli-1.5-ver.1.1-04509-gc4b8666c9a55 |
 
-# Testing Specifications
+# Testing Specifications and Benchmark Commands
 
-We executed benchmarks on the following AI models using both platforms. The table summarizes the model names, input sizes, and corresponding QNN / TensorRT models:
-
-## **Benchmark Execution Commands (applied to all models):**
-The following commands are used to benchmark the models across various platforms. FPS is derived from the mean inference time reported by each runtime.
+We executed benchmarks on the following AI models using both platforms. For each platform below, we describe **how to obtain the models** and the **benchmark procedure/commands**.
 
 ### EXMP-Q911 (Qualcomm QNN):
 1. Get the int8 tflite model from the iQ-Studio.
@@ -39,7 +33,7 @@ The following commands are used to benchmark the models across various platforms
     | :--- | :--- |
     | [**YOLOv7-Tiny**](./tflite_model/yolov7.tflite) | 640×640 |
     | [**YOLOv8n**](./tflite_model/yolov8_det.tflite) | 640×640 |
-    | [**YOLOv10n**](./tflite_model/yolov10_det.tflitesearchTerm=yolo) | 640×640 |
+    | [**YOLOv10n**](./tflite_model/yolov10_det.tflite) | 640×640 |
     | [**YOLOv11n**](./tflite_model/yolov11_det.tflite) | 640×640 |
     | [**ResNet-50**](./tflite_model/resnet50-resnet50-w8a8.tflite) | 224×224 |
     | [**U-Net**](./tflite_model/unet_segmentation-unet-segmentation-w8a8.tflite) | 640×1280 |
@@ -77,11 +71,11 @@ The following commands are used to benchmark the models across various platforms
 
     Note: If the ONNX model is exported with separate weights and network structure files, it is highly recommended to merge them into a single serialized ONNX file.
     
-    ```jsx
+    ```bash
     /usr/src/tensorrt/bin/trtexec --onnx=<onnx_model_path> --saveEngine=<trt_model_path> --int8
     ```
 3. Execute the performance test using the generated Engine.
-    ```python
+    ```bash
     /usr/src/tensorrt/bin/trtexec \
       --loadEngine=<trt_model_path> \
       --useSpinWait \
