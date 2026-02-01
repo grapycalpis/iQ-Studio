@@ -28,14 +28,14 @@ ranking. For live multi-stream inference on the recording platform, please check
 
 The benchmark uses two edge AI platforms with the configurations shown below.
 
-| **Platform**        | NVIDIA Jetson AGX Orin 64GB                         | EXMP-Q911 (IQ-9075)                         |
+| **Platform**        | NVIDIA Jetson AGX Orin 32GB                        | EXMP-Q911 (IQ-9075)                         |
 |:--------------------|:----------------------------------------------------|:--------------------------------------------|
-| **SoM / SoC**       | NVIDIA Jetson AGX Orin 64GB                         | Qualcomm IQ-9075                            |
+| **SoM / SoC**       | NVIDIA Jetson AGX Orin 32GB                        | Qualcomm IQ-9075                            |
 | **Power plan**      | MAXN                                                | Normal                                      |
-| **Processor cores** | 12 (8 CPU cores enabled for this benchmark)        | 8                                           |
+| **Processor cores** | 8                                                   | 8                                           |
 | **AI accelerator**  | GPU                                                 | NPU                                         |
 | **AI runtime**      | TensorRT 10.3.0.30                                  | TFLite (QNN 2.32)                           |
-| **AI performance**  | 275 TOPS                                            | 100 TOPS                                    |
+| **AI performance**  | 200 TOPS                                            | 100 TOPS                                    |
 | **Linux kernel**    | 5.15.148-rt-tegra (PREEMPT_RT)                      | 6.6.97-qli-1.6-ver.1.2.1-05029-g53c11c30e98d (PREEMPT) |
 
 
