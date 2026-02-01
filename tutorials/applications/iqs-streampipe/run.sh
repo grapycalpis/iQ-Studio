@@ -23,7 +23,7 @@ if grep -qi "ubuntu" /etc/os-release; then
     OS_TYPE="ubuntu"
 fi
 
-docker run --rm -it \
+docker run --rm -i \
     --net host \
     --privileged \
     --shm-size=3g \
