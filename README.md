@@ -132,6 +132,7 @@ iQ Studio applications are grouped into categories based on functionality:
       <td>
         <ul>
           <li><a href="./benchmarks/innoppe/README.md">InnoPPE Benchmark Between Jetson AGX and Qualcomm QCS9075</a></li>
+          <li><a href="./benchmarks/iqs-streampipe/README.md">Multi-stream inference status on Jetson AGX and Qualcomm QCS9075</a></li>
         </ul>
       </td>
     </tr>
