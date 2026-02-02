@@ -1,5 +1,18 @@
 # Changelogs
 
+## v0.0.6
+### Feat
+
+- Added topic title to the entry page for improved navigation
+- Added benchmark for perception AI benchmark between QCS9075 and nvidia AGX 
+- Added benchmark for multi-stream inference on Jetson AGX and Qualcomm QCS9075
+- Update streampipe docker for benchmark testing
+
+### Fixes
+
+- Disabled TTY support for docker run command
+
+
 ## v0.0.5
 ### Feat
 - Support application can run both yocto and ubuntu
