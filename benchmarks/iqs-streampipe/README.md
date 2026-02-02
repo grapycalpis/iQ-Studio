@@ -8,7 +8,7 @@
 # Multi-stream inference status on Jetson AGX and Qualcomm QCS9075
 
 This topic describes a multi-stream inference benchmark for the iQS-Streampipe
-application on the NVIDIA Jetson AGX Orin 64GB and the EXMP-Q911 platform.
+application on the NVIDIA Jetson AGX Orin 32GB and the EXMP-Q911 platform.
 The purpose is to observe execution behavior as the number of channels
 increases. The results are not intended to be a general hardware performance
 ranking. For live multi-stream inference on the recording platform, please check [here](./fig/nv_qc_live.mp4).
@@ -16,7 +16,7 @@ ranking. For live multi-stream inference on the recording platform, please check
 - Application: [iQS-Streampipe](../../tutorials/applications/iqs-streampipe/README.md)
 - Task: object detection with an INT8 model
 - Input: 1080p, 30 FPS H.264 video streams
-- Platforms: Jetson AGX Orin 64GB, EXMP-Q911 (Qualcomm IQ-9075-based module)
+- Platforms: Jetson AGX Orin 32GB, EXMP-Q911 (Qualcomm IQ-9075-based module)
 - Metrics:
   - Output average end-to-end FPS per channel
   - Average CPU loading (%)
@@ -62,10 +62,10 @@ The benchmark uses two edge AI platforms with the configurations shown below.
 | **EXMP-Q911**                 |      4       |     8     |       180       | Normal         |        51.0          |            8.6              |               29.47                |       32.53        |       30.60        |       30.00        |       29.44        |
 | **EXMP-Q911**                 |      9       |     8     |       180       | Normal         |        93.6          |           12.0              |               28.41                |       59.88        |       37.55        |       29.55        |       24.25        |
 | **EXMP-Q911**                 |      16      |     8     |       180       | Normal         |        99.8          |           17.7              |               15.90                |       44.17        |       24.00        |       16.91        |       12.86        |
-| **NVIDIA Jetson AGX Orin 64GB** |    1       |     8     |       180       | MAXN           |        28.8          |           25.2              |               29.81                |       39.04        |       31.42        |       29.89        |       28.40        |
-| **NVIDIA Jetson AGX Orin 64GB** |    4       |     8     |       180       | MAXN           |        73.4          |           26.2              |               21.34                |       52.27        |       30.44        |       22.52        |       17.15        |
-| **NVIDIA Jetson AGX Orin 64GB** |    9       |     8     |       180       | MAXN           |        91.9          |           27.9              |                8.00                |       19.83        |       11.40        |        8.55        |        6.54        |
-| **NVIDIA Jetson AGX Orin 64GB** |    16      |     8     |       180       | MAXN           |        91.6          |           29.6              |                4.41                |        9.79        |        6.02        |        4.61        |        3.59        |
+| **NVIDIA Jetson AGX Orin 32GB** |    1       |     8     |       180       | MAXN           |        25.3          |           18.8              |               29.78                |       39.78        |       31.28        |       29.82        |       28.55        |
+| **NVIDIA Jetson AGX Orin 32GB** |    4       |     8     |       180       | MAXN           |        72.3          |           20.3              |               21.26                |       52.68        |       30.59        |       22.23        |       17.13        |
+| **NVIDIA Jetson AGX Orin 32GB** |    9       |     8     |       180       | MAXN           |        91.5          |           21.9              |                7.58                |       18.09        |       10.46        |        7.88        |        6.11        |
+| **NVIDIA Jetson AGX Orin 32GB** |    16      |     8     |       180       | MAXN           |        91.7          |           20.1              |                4.29                |        8.86        |        5.75        |        4.46        |        3.54        |
 
 <p align="center">
   <img src="./fig/fps_per_channel.png" width="32%">
@@ -94,7 +94,7 @@ Under the aligned 8-core configuration, both systems show the same pattern:
 as channel count increases and CPU usage approaches saturation, per-channel
 FPS drops from near real-time to lower values. In this workload, near
 real-time FPS per channel is sustained up to 9 channels on EXMP-Q911, while
-on NVIDIA Jetson AGX Orin 64GB the per-channel FPS is already below
+on NVIDIA Jetson AGX Orin 32GB the per-channel FPS is already below
 real-time at higher channel counts as the load increases.
 
 ## Benchmark method
@@ -131,7 +131,7 @@ Below is an overview of how we conduct platform benchmark testing.
    ![output.png](./fig/output_quaclomm.png)
 
 
-### NVIDIA Jetson AGX Orin 64GB procedure
+### NVIDIA Jetson AGX Orin 32GB procedure
 
 1. Download the archive using the following command.
    ```
