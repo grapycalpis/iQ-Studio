@@ -15,7 +15,39 @@
   <h3 align="center">It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.</h3>
 
 
-# How to Use iQ Studio?
+# Core Software Stack & Architecture
+
+iQ-Studio is built upon a robust edge AI software stack, bridging the gap between hardware and high-level applications:
+
+<br />
+<div align="center"><img width="80%" height="80%" src="./docs/fig/ai_on_dragonwing_sw_stack.png"></div>
+<br />
+
+- **Hardware & Firmware**: Qualcomm Q911 SoC and low-level firmware.
+- **Kernel Space**: Powered by [Qualcomm Linux](https://www.qualcomm.com/developer/software/qualcomm-linux), integrated with our custom Inno DTB/drivers and Yocto environments.
+- **User Space**: Seamlessly supports 3rd-party LLM SDKs, device management (iCAP), and inno AVL. At the very top sits the **iQS-App layer** (VLM, Streampipe, YOLO, OGenie).
+
+### Qualcomm Linux (QLI) Version Mapping
+
+Our architecture evolves alongside the [Qualcomm Linux Roadmap](https://www.qualcomm.com/developer/software/qualcomm-linux), ensuring alignment with the latest kernel and Yocto Project releases:
+
+| Linux Kernel | Yocto Project | Qualcomm Linux (QLI) Release |
+| :--- | :--- | :--- |
+| **6.6 LTS** | 4.0 Kirkstone | QLI 1.x |
+| **6.6 LTS** | 5.0 Scarthgap | QLI 1.x |
+| **6.18 LTS** | Wrynose (Master) | QLI 2.x |
+
+<br />
+<div align="center"><img width="80%" height="80%" src="./docs/fig/qcl_roadmap.png"></div>
+<br />
+
+We ensure a continuous and stable pipeline—from upstream Linux/Yocto projects down to the optimized downstream drivers—unlocking peak performance for edge AI workloads.
+
+<br />
+<div align="center"><img width="80%" height="80%" src="./docs/fig/sw_development_pipeline.png"></div>
+<br />
+
+# How to Deploy iQ Studio?
 
 Before getting started, please refer to the [Starting Guides](./tutorials/starting-guides/) to boot up your platform. As with the Q911 series, please refer to the [EXMP-Q911 Starting Guide](./tutorials/starting-guides/q911/README.md).
 
