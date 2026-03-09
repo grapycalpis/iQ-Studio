@@ -4,7 +4,7 @@ This document serves as the supreme principle manual for iterating and developin
 
 ## 1. Core Philosophy
 
-- **Show Performance, Spark Imagination**: The primary goal of iQ-Studio is to help users quickly understand and explore AI capabilities on edge hardware (e.g., Jetson, Qualcomm QCS9075). All development should align with making this experience seamless and inspiring.
+- **Show Performance, Spark Imagination**: The primary goal of iQ-Studio is to help users quickly understand and explore AI capabilities on edge hardware (e.g., Jetson, Qualcomm Dragonwing QCS9075). All development should align with making this experience seamless and inspiring.
 - **Technical Context as a Bridge**: Provide clear documentation of the software stack (SW Stack). Bridging the gap between BSP/Firmware and high-level AI applications is essential for user trust and technical clarity.
 - **Simplicity & User Experience (UX)**: Ensure the execution commands remain as simple as `./install.sh` and `iqs-launcher --autotag ...` or `--ipk ...`. Hide complex environment setups (like BSP version checking) behind robust scripts.
 - **Documentation is a First-Class Citizen**: High-quality `README.md` files with clear instructions, tables, and images/GIFs are essential. Contributions without proper documentation are incomplete.
@@ -24,7 +24,7 @@ When adding new features or applications, strictly adhere to the existing direct
 - `mod/`: Python backend for `iqs-launcher`. Contains the logical modules for `autotag`, `run`, `ipk`, and `utils`.
 - **Root Scripts**: `iqs-launcher.sh` (entry point), `launcher.py` (main logic), `install.sh` (setup).
 
-**Rule**: Any new application or benchmark must be categorized, linked in the main `README.md` table, and have its own dedicated, detailed `README.md`.
+**Rule**: Any new application or benchmark must be categorized, linked in the main `README.md` resource table (under **Explore Documentation & Resources**), and have its own dedicated, detailed `README.md`.
 
 ## 3. Technical Standards
 
@@ -45,6 +45,7 @@ When adding new features or applications, strictly adhere to the existing direct
 - **Core README Structure**:
     - Every root or major component `README.md` must feature a **`Core Software Stack & Architecture`** section with layered diagrams (HW -> Kernel/QLI -> App).
     - Environment setup and repository installation must be titled **`How to Deploy`**.
+    - **`Explore Documentation & Resources`** is the central hub for tutorials, SDKs, benchmarks, and vertical scenario demos (replaces the narrower "Application" or "Tutorials" labels).
     - **`How to Use`** is reserved for high-level interaction, application execution, or future prompt/MCP features.
     - Version mapping tables (Linux Kernel vs Yocto vs QLI) are mandatory for major platform updates.
 
