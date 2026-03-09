@@ -5,8 +5,8 @@ The Q911 family is built around the Qualcomm® IQ-9075 SoC. The product line cur
 
 | **Model** | **P/N** | **Description** | **Packing List** |
 | --- | --- | --- | --- |
-| EXMP-Q911 | EXMP-Q911-00A1-W1 | COM-HPC Mini Module By Qualcomm IQ-9075 | 1x IQ9 COM-HPC Mini Module <br/> 1x Cooler with Fan (secured onto the module) |
-| EXEC-Q911 | EXEC-Q911-00A1-W1 | COM-HPC Mini EVK By Qualcomm IQ-9075| 1x IQ9 COM-HPC Mini Module <br/> 1x 3.5” COM-HPC Mini Carrier (secured with the module) <br/> 1x Cooler with Fan (secured onto the module) <br/> 1x 60W power adapter <br/> 1x US power cord <br/> 1x Speaker*2 cable <br/> 1x D-SUB(F) cable (GPIO) <br/> 1x D-SUB(M) cable (CAN FD) <br/> 1x USB 2.0 A-TYPE(F)*2 cable <br/> 1x D-SUB(M) cable (COM) |
+| [EXMP-Q911](https://www.innodisk.com/en/products/computing/qualcomm-solution/exmp-q911) | EXMP-Q911-00A1-W1 | COM-HPC Mini Module By Qualcomm IQ-9075 | 1x IQ9 COM-HPC Mini Module <br/> 1x Cooler with Fan (secured onto the module) |
+| [EXEC-Q911](https://www.innodisk.com/en/products/computing/qualcomm-solution/exec-q911) | EXEC-Q911-00A1-W1 | COM-HPC Mini EVK By Qualcomm IQ-9075| 1x IQ9 COM-HPC Mini Module <br/> 1x 3.5” COM-HPC Mini Carrier (secured with the module) <br/> 1x Cooler with Fan (secured onto the module) <br/> 1x 60W power adapter <br/> 1x US power cord <br/> 1x Speaker*2 cable <br/> 1x D-SUB(F) cable (GPIO) <br/> 1x D-SUB(M) cable (CAN FD) <br/> 1x USB 2.0 A-TYPE(F)*2 cable <br/> 1x D-SUB(M) cable (COM) |
 | APEX-A100 | EXOC-Q911-00A1-W1 | Edge AI System By Qualcomm IQ-9075| 1x Fanless Edge AI System based on EXMP-Q911 module <br/> 1x 60W power adapter <br/> 1x US power cord |
 
 This guide focuses on the EXEC-Q911 and APEX-A100 platforms, providing an overview of their hardware and helping you get the system up and running quickly.
@@ -224,7 +224,7 @@ If you are accessing the system using UART debug console to interact with the sy
 
 Depending on your needs:
 
-- [iQ-Studio](../../../README.md#application): It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.
+- [iQ-Studio](../../../README.md#explore-documentation--resources): It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.
 
 - [Application](../../applications/) — Reference ready-to-run demos illustrating how to build applications on the platform.
 

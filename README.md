@@ -14,6 +14,9 @@
 
   <h3 align="center">It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.</h3>
 
+> [!NOTE]
+> iQ-Studio is suitable for a range of products developed based on the [Innodisk Qualcomm Dragonwing SoC](https://www.innodisk.com/en/news/innodisk-unveils-ai-on-dragonwing-computing-series).
+
 
 # Core Software Stack & Architecture
 
@@ -23,9 +26,9 @@ iQ-Studio is built upon a robust edge AI software stack, bridging the gap betwee
 <div align="center"><img width="80%" height="80%" src="./docs/fig/ai_on_dragonwing_sw_stack.png"></div>
 <br />
 
-- **Hardware & Firmware**: Qualcomm Q911 SoC and low-level firmware.
-- **Kernel Space**: Powered by [Qualcomm Linux](https://www.qualcomm.com/developer/software/qualcomm-linux), integrated with our custom Inno DTB/drivers and Yocto environments.
-- **User Space**: Seamlessly supports 3rd-party LLM SDKs, device management (iCAP), and inno AVL. At the very top sits the **iQS-App layer** (VLM, Streampipe, YOLO, OGenie).
+- **Hardware & Firmware**: [Qualcomm Dragonwing QCS9075 SoC](https://www.innodisk.com/en/products/computing/qualcomm-solution/exmp-q911) and low-level firmware.
+- **Kernel Space**: Powered by [Qualcomm Linux](https://www.qualcomm.com/developer/software/qualcomm-linux), integrated with our custom Inno DTB/drivers and Yocto environments. 
+- **User Space**: Seamlessly supports 3rd-party LLM SDKs, device management ([iCAP](https://www.innodisk.com/en/products/software-icap)), and inno AVL. At the very top sits the **[iQS-App layer](./README.md#explore-documentation--resources)** (VLM, Streampipe, YOLO, OGenie).
 
 ### Qualcomm Linux (QLI) Version Mapping
 
@@ -45,7 +48,9 @@ We ensure a continuous and stable pipeline—from upstream Linux/Yocto projects 
 
 <br />
 <div align="center"><img width="80%" height="80%" src="./docs/fig/sw_development_pipeline.png"></div>
-<br />
+<br />  
+
+We also provide integrated and supplied [Ubuntu images](https://ubuntu.com/download/qualcomm-iot#evaluation-kit) for development.
 
 # How to Deploy iQ Studio?
 
@@ -82,7 +87,7 @@ cd iQ-Studio
 
 For example, If you want to run the [iQ-VLM](./tutorials/applications/iqs-vlm/README.md). You just need two command run the interative real-time demo.
 
-Launch OGenie API server.
+Launch the OGenie API server:
 ```bash
 $ iqs-launcher --autotag iqs-ogenie
 ```
@@ -96,11 +101,11 @@ This is provides a real-time display of VLM predictions, allowing you to quickly
 <div align="center"><img width="100%" height="100%" src="./tutorials/applications/iqs-vlm/fig/vlm-demo.gif"></div>
 <br />
 
-For other applications, please refer to the [application section below](#application).
+For other applications, please refer to the [documentation section below](#explore-documentation--resources).
 
-## Application
+## Explore Documentation & Resources
 
-iQ Studio applications are grouped into categories based on functionality:
+iQ Studio resources are grouped into categories based on functionality:
 
 
 <table>
