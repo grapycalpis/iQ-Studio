@@ -11,7 +11,7 @@ Please refer to the `tutorial/applications/iqs-streampipe`to learn how to run [i
 
 In this section, we describe how to use custom models and video inputs with iqs-streampipe. 
 
-# What you need？
+## How to Deploy
 
 1. At least one UVC camera
     - 1080p/30fps (1920x1080 pixels)
@@ -44,7 +44,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     
 3. Modify `config.json`. We have changed the video under `id: 1` to `coco_detect.mp4`.You may replace coco_detect.mp4 with your own video file if desired.
    
-    NOTE : This config is not the default config in the Docker container.
+    > NOTE : This config is not the default config in the Docker container.
 
     Enter the Relativate Path into the config file.
 
@@ -62,7 +62,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     
 5. Run the iqs-launcher 
 
-    NOTE : You must add the `--other "-c config.json"` option to change the videos..
+    > NOTE : You must add the `--other "-c config.json"` option to change the videos..
     
     ```bash
     $ iqs-launcher --autotag iqs-streampipe --other "-c config.json"
@@ -87,5 +87,5 @@ In this section, we describe how to use custom models and video inputs with iqs-
 
 > Notice: Due to limited bandwidth, using more than 3 UVC cameras will cause video lag.if you use more than 4 camera will cause the unexpected bug.
 
-# Known Issue
+## Known Issue
 The current Qualcomm codec driver may under certain conditions, cause the system to restart unexpectedly. If this occurs, re-run the process to continue.

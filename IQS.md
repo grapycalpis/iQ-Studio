@@ -39,15 +39,15 @@ When adding new features or applications, strictly adhere to the existing direct
 - **Virtual Environments**: Ensure Python scripts are executed within `iqs-venv` in a controlled manner.
 
 ### Markdown & Documentation
-- **Visuals**: Place images/GIFs inside a `fig/` or `img/` directory next to the corresponding `README.md` to keep the root directory of the tutorial clean.
-- **Formatting**: Use tables for comparisons. Use bash code blocks for all terminal commands. Highlight important notes/warnings using Markdown quotes (`> Note: ...`).
-- **Relative Links**: Always use relative links (e.g., `./README.md` or `../fig/img.png`) instead of absolute URLs to ensure they work seamlessly offline or in different repository forks.
-- **Core README Structure**:
-    - Every root or major component `README.md` must feature a **`Core Software Stack & Architecture`** section with layered diagrams (HW -> Kernel/QLI -> App).
-    - Environment setup and repository installation must be titled **`How to Deploy`**.
-    - **`Explore Documentation & Resources`** is the central hub for tutorials, SDKs, benchmarks, and vertical scenario demos (replaces the narrower "Application" or "Tutorials" labels).
-    - **`How to Use`** is reserved for high-level interaction, application execution, or future prompt/MCP features.
-    - Version mapping tables (Linux Kernel vs Yocto vs QLI) are mandatory for major platform updates.
+The quality of iQ-Studio documentation directly impacts the user experience. In addition to the principles below, strictly follow [IQS_FORMATTING.md](./IQS_FORMATTING.md) for specific content formatting details (image paths, note syntax, code labels, and link relativity).
+
+- **Core Architecture**:
+    - Every core README must feature a **`Core Software Stack & Architecture`** section with layered diagrams.
+    - Installation and setup sections must be titled **`How to Deploy`** (strictly for root README and `tutorials/applications/`).
+    - **`Explore Documentation & Resources`** serves as the central hub for all categories.
+    - **`How to Use`** is reserved for high-level interaction and execution commands.
+- **Contextual Strategy**: For `benchmarks/`, `sdks/`, and `avl/`, use the **Contextual Wording Strategy** as detailed in [IQS_FORMATTING.md](./IQS_FORMATTING.md#2-heading-strategy-headings).
+- **Version Transparency**: For major platform updates, providing a mapping table (Linux Kernel vs Yocto vs QLI) is mandatory.
 
 ## 4. AI Agent Workflow
 
@@ -65,18 +65,18 @@ When processing a user request in this repository, follow these strict steps:
 
 ### Phase 3: Verification & Polish
 1. Check that the main `README.md` requires an update (e.g., adding a new tutorial to the Categories table).
-2. Check if the `IQS.md` in `docs/` should be explicitly updated to reflect the new feature.
+2. Check if the `IQS.md` in the root directory should be explicitly updated to reflect the new feature.
 3. **Reflect & Distill**: Before finishing, ask: "Did I learn a new pattern or encounter a friction point that should be documented in `IQS.md`?" If yes, update this document immediately.
-4. Review your changes against this `IQS.md` to ensure absolute compliance.
+4. Review your changes against this `IQS.md` and `IQS_FORMATTING.md` to ensure absolute compliance.
 
 ## 5. Continuous Evolution (Living Principles)
 
 This document is not static. It survives through:
-- **Refinement**: As the project grows (more hardware support, new SDKs), update the "Project Architecture" and "Technical Standards".
-- **Resilience**: When a solution fails or a bug is found due to a missing guideline, add a preventative rule here.
+- **Refinement**: Regularly update "Project Architecture" and "Technical Standards" as the project grows.
+- **Resilience**: Add preventative rules when a solution fails or a bug is found due to missing guidelines.
 - **Freshness**: Regularly audit `tutorials/` to ensure the categories in `README.md` and this manual remain accurate.
 
-## 5. When Stuck or Blocked
+## 6. When Stuck or Blocked
 - Stop after 3 failed logical attempts or if a hardware dependency blocks progress.
 - Explain explicitly to the user what the error is and what approach failed.
-- Ask the user for clarification or guidance on hardware/environment-specific issues (e.g., Jetson/Qualcomm quirks) that the AI cannot test directly.
+- Ask the user for clarification or guidance on hardware/environment-specific issues that the AI cannot test directly.

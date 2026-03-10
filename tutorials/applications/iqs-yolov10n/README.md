@@ -19,7 +19,7 @@ Inference with the YOLOv10n model was conducted on both NVIDIA AGX ORIN and Qual
 - RAM: 32GB
 - TensorRT SDK Version: 8.5.2.2
 
-### How to demo the model?
+### How to Use
 
 We are using the [Ultralytics](https://docs.ultralytics.com/models/yolov10/) framework as a reference
 
@@ -43,7 +43,7 @@ We are using the [Ultralytics](https://docs.ultralytics.com/models/yolov10/) fra
 - RAM: 36GB
 - Qnn SDK Version: 2.38
 
-### How to demo the model?
+### How to Use
 
 Use the iqs-launcher to start the application.
 

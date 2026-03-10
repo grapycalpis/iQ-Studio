@@ -19,12 +19,14 @@ The set IDs are ordered on the screen from left to right, then from top to botto
 <div align="center"><img width="80%" height="80%" src="./fig/gif0.gif"></div>
 <br />
 
-# What You Need?
+# How to Deploy
+
+## What You Need?
 
 1. At least 3 GB of free disk space
 2. A monitor
 
-# How to Start?
+## How to Start?
     
 ```bash
 git clone https://github.com/InnoIPA/iQ-Studio.git
@@ -33,7 +35,7 @@ cd iQ-Studio
 ```
 >Note: If you are using Ubuntu, please log in again after installation.
 
-# Run the Demo    
+# How to Use
 1. Use iqs-launcher and autotag tools to automatically pull or build a compatible docker image.
     
     ```bash

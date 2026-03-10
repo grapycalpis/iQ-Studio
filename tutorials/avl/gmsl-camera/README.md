@@ -76,7 +76,7 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
     
 4. Power on  iQ9-9075 EVK.
 
-## How to Install the Driver for GMSL Camera
+## How to Deploy
 
 1. Copy the `.ipk`  or `.deb` to the target platform
     
@@ -113,7 +113,7 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
             ```
             
 
-## How to Open the GMSL Camera
+## How to Use
 
 If the camera is properly connected to the platform and the required drivers are correctly installed, you can use the following GStreamer command to run the camera.
 

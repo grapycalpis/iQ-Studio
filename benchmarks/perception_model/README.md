@@ -21,7 +21,7 @@ We conducted a benchmark comparison between two AI computing platforms with simi
 
 NPUs specialize in converting neural networks into hardware pipelines, optimizing the entire inference process for low latency and power efficiency. GPUs, on the other hand, are built for massive parallelism, executing the same computations across large batches of data, making them ideal for training deep neural networks. In practical applications, NPUs can achieve similar or even better inference efficiency than GPUs while consuming significantly less power.
 
-## Testing Specifications and Benchmark Commands
+## How to Deploy and Use
 
 We executed benchmarks on the following AI models using both platforms. For each platform below, we describe **how to obtain the models** and the **benchmark procedure/commands**.
 
@@ -73,7 +73,7 @@ We executed benchmarks on the following AI models using both platforms. For each
 
 2. Convert the ONNX model into a serialized TensorRT Engine. The --int8 flag is enabled to leverage the Orin Tensor Cores for maximum throughput.
 
-    Note: If the ONNX model is exported with separate weights and network structure files, it is highly recommended to merge them into a single serialized ONNX file.
+    > Note: If the ONNX model is exported with separate weights and network structure files, it is highly recommended to merge them into a single serialized ONNX file.
     
     ```bash
     $ /usr/src/tensorrt/bin/trtexec --onnx=<onnx_model_path> --saveEngine=<trt_model_path> --int8
