@@ -11,7 +11,7 @@ The Q911 family is built around the Qualcomm® IQ-9075 SoC. The product line cur
 
 This guide focuses on the EXEC-Q911 and APEX-A100 platforms, providing an overview of their hardware and helping you get the system up and running quickly.
 
-Each device ships with either Yocto Linux or Ubuntu pre-flashed on the UFS storage, allowing you to power on the system and log in immediately.If you need to re-flash or update the system image, please refer to the
+Each device ships with either Yocto Linux or Ubuntu pre-flashed on the UFS storage, allowing you to power on the system and log in immediately. If you need to re-flash or update the system image, please refer to the
 [Q911 Image Flashing Guide](../flash-image/README.md).
 
 
@@ -157,7 +157,7 @@ If you are accessing the system using a DP display, please follow the steps belo
 
 ### Interact with the System Using SSH over Ethernet
 
-If you are accessing the system using SSH to intract with system, please follow the steps below to set it up. If the Ubuntu does not have network connectivity, refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) on configuring the network.
+If you are accessing the system using SSH to interact with the system, please follow the steps below to set it up. If Ubuntu does not have network connectivity, refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) on configuring the network.
 
 1. Please connect an Ethernet cable and ensure that the device is reachable over the network. Then, connect the power cable and press the power button to boot the system.
 

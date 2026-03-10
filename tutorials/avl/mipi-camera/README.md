@@ -21,7 +21,7 @@ With its mature ecosystem and broad sensor compatibility, MIPI CSI-2 is commonly
 | EV2M-OOM3 | EXMP-Q911 | Yocto linux 1.5, Ubuntu 24.04 | ☑️ | ✅ | 1920x1080, 30 FPS |
 | EVDM-OOM1 | EXMP-Q911 | Yocto linux 1.5, Ubuntu 24.04 | ☑️ | ✅ | 1920x1080, 30 FPS |
 
-☑️ Comming soon ✅ Support ❌ Not support
+☑️ Coming soon ✅ Supported ❌ Not supported
 
 ![911-mipi.png](./fig/911-mipi.png)
 
@@ -41,7 +41,7 @@ Connect the Camera to the EXMP-Q911, follow the steps below:
 | EV2M-OOM3 | iQ-9075 EVK | Yocto linux 1.5 | ☑️ | ☑️ | ✅ | ✅ | 1920x1080, 30 FPS |
 | EV2M-OOM3 | iQ-9075 EVK | Ubuntu 24.04 | ✅ | ✅ | ✅ | ✅ | 1920x1080, 30 FPS |
 
-☑️ Comming soon ✅ Support ❌ Not support
+☑️ Coming soon ✅ Supported ❌ Not supported
 
 ![evk-mipi.png](./fig/evk-mipi.png)
 
@@ -52,7 +52,7 @@ Connect the Camera to the iQ-9075 EVK, follow the steps below:
 3. Only **one MIPI sensor** can be used at a time.
 4. Power on the iQ-9075 EVK.
 
-## How to Install the Driver for MIPI Camera
+## How to Deploy
 
 1. Copy the `.ipk`  or `.deb` to the target platform
     
@@ -89,7 +89,7 @@ Connect the Camera to the iQ-9075 EVK, follow the steps below:
             ```
             
 
-### How to Open the MIPI Camera
+## How to Use
 
 If the camera is properly connected to the platform and the required drivers are correctly installed, you can use the following GStreamer command to run the camera.
 

@@ -23,10 +23,10 @@ inference**.
          <div align="left"><img width="50%" height="50%" src="./fig/innoppe.png"></div>
          <br />   
 
-  - InnoPPE was configured to process 10 video streams simultaneous(1 live UVC
+  - InnoPPE was configured to process 10 video streams simultaneously (1 live UVC
   camera and 9 locally stored video files).
 
-  - Multiple AI inference were executed concurrently to perform simultaneous
+  - Multiple AI inferences were executed concurrently to perform simultaneous
   recognition tasks.
 
 ## Hardware
@@ -74,14 +74,14 @@ Under the 10 channel(single UVC Cam, 9 Videos), the **IQ-9075-EVK** achieves per
 
 # Appendix: How do I execute the benchmark?
 
-## What do you need?
+## How to Deploy
 
 1. Three python
    [scripts](./scripts): `system_monitor.py`, `draw_csv.py` and `print_mean.py`
 
 2. `requirements.txt` for creating python virtual environment.
 
-### Start the benchmark
+## How to Use
 
 1. Run `system_monitor.py` to start monitoring system metrics.
 

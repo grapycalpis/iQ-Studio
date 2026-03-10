@@ -10,16 +10,16 @@
 
 >Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
 
-Inference with the YOLOv10n model was conducted on both NVIDIA AGX ORIN and Qualcomm EXMP-Q911 platforms, utilizing their respective GPU and NPU. A confidence threshold of 0.5 was applied, and the visual outputs were found to be highly comparable.
+Inference with the YOLOv10n model was conducted on both NVIDIA AGX Orin and Qualcomm EXMP-Q911 platforms, utilizing their respective GPU and NPU. A confidence threshold of 0.5 was applied, and the visual outputs were found to be highly comparable.
 
-# Jetson AGX ORIN
+# Jetson AGX Orin
 
 ## Platform information
 
 - RAM: 32GB
 - TensorRT SDK Version: 8.5.2.2
 
-### How to demo the model?
+### How to Use
 
 We are using the [Ultralytics](https://docs.ultralytics.com/models/yolov10/) framework as a reference
 
@@ -43,7 +43,7 @@ We are using the [Ultralytics](https://docs.ultralytics.com/models/yolov10/) fra
 - RAM: 36GB
 - Qnn SDK Version: 2.38
 
-### How to demo the model?
+### How to Use
 
 Use the iqs-launcher to start the application.
 

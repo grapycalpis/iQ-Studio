@@ -16,7 +16,9 @@ results on a monitor.
 ![demo gif](./fig/vlm-demo.gif)
 
 
-# What do you need?
+# How to Deploy
+
+## What do you need?
 1. At least 10 GB of free disk space
 2. A monitor
 3. A UVC camera
@@ -27,8 +29,7 @@ results on a monitor.
 
 Please plug both devices—the UVC camera and the monitor—into the platform.
 
-
-# How to start?
+## How to start?
 
 ```bash
 git clone https://github.com/InnoIPA/iQ-Studio.git
@@ -37,7 +38,7 @@ cd iQ-Studio
 ```
 >Note: If you are using Ubuntu, please log in again after installation.
 
-# Run the demo
+# How to Use
 
 ## Launch `OGenie` API server
 

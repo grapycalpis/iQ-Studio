@@ -23,7 +23,7 @@ GMSL is widely used in autonomous driving, industrial mobile equipment, 360° su
 | --- | --- | --- | --- | --- | --- | --- |
 | EVDF-OOM1 | EXMP-Q911 | EB022-2M4F | Yocto linux 1.5, Ubuntu 24.04 | ☑️ | ✅ | 1920x1080, 30 FPS |
 
-☑️ Comming soon ✅ Support ❌ Not support
+☑️ Coming soon ✅ Supported ❌ Not supported
 
 ![911-adb.png](./fig/911-adb.png)
 
@@ -41,7 +41,7 @@ Connect the GMSL Camera to EXMP-Q911 and EB022-2M4F GMSL adapter board, follow t
 | EVDF-OOM1 | iQ-9075 EVK | EB022-2M4F | Yocto linux 1.5 | ❌ | ❌ | ✅ | ✅ | 1920x1080, 30 FPS |
 | EVDF-OOM1 | iQ-9075 EVK | EB022-2M4F | Ubuntu 24.04 | ✅ | ✅ | ✅ | ✅ | 1920x1080, 30 FPS |
 
-☑️ Comming soon ✅ Support ❌ Not support
+☑️ Coming soon ✅ Supported ❌ Not supported
 
 ![evk-adb.png](./fig/evk-adb.png)
 
@@ -59,14 +59,14 @@ Connect the camera to the iQ-9075 EVK and EB022-2M4F GMSL adapter board, follow 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | EVDF-OOM1 | Mezzanine Board  | `Yocto` `Ubuntu 24.04` | ❌ | ❌ | ✅ | ❌ | 1920x1080, 30 FPS |
 
-☑️ Comming soon ✅ Support ❌ Not support
+☑️ Coming soon ✅ Supported ❌ Not supported
 
 ![evk-mzb.png](./fig/evk-mzb.png)
 
 Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
 
 1. Connect the Mezzanine board on iQ9-9075 EVK
-2. Use Link C to connect the GMSL Camera.Only Link C  is supported, and the adapter board can operate with one MIPI sensor at a time.
+2. Use Link C to connect the GMSL Camera. Only Link C is supported, and the adapter board can operate with one MIPI sensor at a time.
 
     <div align="left"><img width="50%" height="50%" src="./fig/evk-mzb-c.png"></div>
 
@@ -76,7 +76,7 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
     
 4. Power on  iQ9-9075 EVK.
 
-## How to Install the Driver for GMSL Camera
+## How to Deploy
 
 1. Copy the `.ipk`  or `.deb` to the target platform
     
@@ -95,7 +95,7 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
             ```
             
     - Ubuntu 24.04
-        1. Please install the package before install the `.deb` 
+        1. Please install the package before installing the `.deb` 
             
             ```
             sudo apt update
@@ -113,7 +113,7 @@ Connect the iQ-9075 EVK to the mezzanine board, follow the steps below:
             ```
             
 
-## How to Open the GMSL Camera
+## How to Use
 
 If the camera is properly connected to the platform and the required drivers are correctly installed, you can use the following GStreamer command to run the camera.
 

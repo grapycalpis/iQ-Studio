@@ -97,7 +97,7 @@ real-time FPS per channel is sustained up to 9 channels on EXMP-Q911, while
 on NVIDIA Jetson AGX Orin 32GB the per-channel FPS is already below
 real-time at higher channel counts as the load increases.
 
-## Benchmark method
+## How to Use
 
 Below is an overview of how we conduct platform benchmark testing.
 
@@ -128,7 +128,7 @@ Below is an overview of how we conduct platform benchmark testing.
        --warmup_time 180 \
        --output ./logs/qcom_chX.txt
    ```
-   ![output.png](./fig/output_quaclomm.png)
+   ![output.png](./fig/output_qualcomm.png)
 
 
 ### NVIDIA Jetson AGX Orin 32GB procedure

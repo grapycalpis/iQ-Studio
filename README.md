@@ -52,7 +52,7 @@ We ensure a continuous and stable pipeline—from upstream Linux/Yocto projects 
 
 We also provide integrated and supplied [Ubuntu images](https://ubuntu.com/download/qualcomm-iot#evaluation-kit) for development.
 
-# How to Deploy iQ Studio?
+# How to Deploy
 
 Before getting started, please refer to the [Starting Guides](./tutorials/starting-guides/) to boot up your platform. As with the Q911 series, please refer to the [EXMP-Q911 Starting Guide](./tutorials/starting-guides/q911/README.md).
 
@@ -83,7 +83,7 @@ cd iQ-Studio
 ```
 >Note: If you are using Ubuntu, please log in again after installation.
 
-### Run Application
+## How to Use
 
 For example, If you want to run the [iQ-VLM](./tutorials/applications/iqs-vlm/README.md). You just need two command run the interative real-time demo.
 
@@ -122,7 +122,7 @@ iQ Studio resources are grouped into categories based on functionality:
   <tbody>
     <tr>
       <td>Starting Guides</td>
-      <td>Quick-start guides for evertthing.</td>
+      <td>Quick-start guides for everything.</td>
       <td>
         <ul>
           <li><a href="./tutorials/starting-guides/q911/README.md">Q911 Quick Start Guide</a></li>

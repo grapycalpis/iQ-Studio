@@ -23,7 +23,7 @@ Currently, the following [APIs](https://ollama.readthedocs.io/en/api/) are suppo
 - `/api/tags`
 - `/api/chat`
 
-### Start the OGenie Server on the Platform
+## How to Deploy
 
 1. Before getting started, make sure OGenie is running on the target platform. You can start it using the following command.
     
@@ -46,7 +46,7 @@ Currently, the following [APIs](https://ollama.readthedocs.io/en/api/) are suppo
     http://172.17.0.1:22434
     ```
 
-### Run the Example Code on the Host to Interact with OGenie
+## How to Use
 
 1. Prepare the Ollama environment on the host machine by installing Ollama with the following command: 
     
