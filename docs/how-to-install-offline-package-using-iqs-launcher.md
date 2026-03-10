@@ -9,11 +9,11 @@
 
 ## Introduction
 
-At this point, it is assumed that you have already downloaded the iQ Studio GitHub repository and installed it on the platform.For details about how iQ Studio GitHub please refer to the [Quick Start section](../../../README.md) in the entry page.
+At this point, it is assumed that you have already downloaded the iQ Studio GitHub repository and installed it on the platform. For details about how to use the iQ Studio GitHub repository, please refer to the [Quick Start section](../../../README.md) in the entry page.
 
 You can refer to this tutorial to learn how to execute a docker image or IPK packages in offline mode.
 
-Before entering an environment without internet access, you must pre-load the required packages (such as Docker images or IPK packages) onto the Qualcomm platform in order to perform offline installation."
+Before entering an environment without internet access, you must pre-load the required packages (such as Docker images or IPK packages) onto the Qualcomm platform in order to perform offline installation.
 
 
 ## Offline Installation
@@ -133,7 +133,7 @@ The following describes two offline installation methods.
         ```
 8. You must ensure that your Docker image or IPK package is placed in the following location.
 
-    - Docker image: must under the path `iQ_studio/binaries/docker-images/`
+    - Docker image: must be under the path `iQ_studio/binaries/docker-images/`
 
         ```
         iQ-Studio__confidential/

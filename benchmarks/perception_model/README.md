@@ -1,4 +1,4 @@
-# Perception AI benchmark between QCS9075-EVK and nvidia AGX orin
+# Perception AI benchmark between QCS9075-EVK and NVIDIA AGX Orin
 
 We conducted a benchmark comparison between two AI computing platforms with similar specifications, evaluating an NPU-based system and a GPU-based system. This benchmark aims to provide a reference for users who prioritize power efficiency and inference performance.
 

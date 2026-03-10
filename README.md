@@ -122,7 +122,7 @@ iQ Studio resources are grouped into categories based on functionality:
   <tbody>
     <tr>
       <td>Starting Guides</td>
-      <td>Quick-start guides for evertthing.</td>
+      <td>Quick-start guides for everything.</td>
       <td>
         <ul>
           <li><a href="./tutorials/starting-guides/q911/README.md">Q911 Quick Start Guide</a></li>

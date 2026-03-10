@@ -42,7 +42,7 @@ cd iQ-Studio
     $ iqs-launcher --autotag iqs-streampipe
     ```
     
-2. You will see in the screen.
+2. You will see it on the screen.
     >Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
     
     ![Recording 2025-08-13 at 15.22.58.gif](./fig/gif1.gif)
@@ -52,4 +52,4 @@ cd iQ-Studio
 For advanced features and usage examples, visit this [page](../../sdks/iqs-streampipe/README.md) to learn more.
 
 # Known Issue
-The current Qualcomm codec driver may under certain conditions, cause the system to restart unexpectedly. If this occurs, re-run the process to continue.
+The current Qualcomm codec driver may, under certain conditions, cause the system to restart unexpectedly. If this occurs, re-run the process to continue.

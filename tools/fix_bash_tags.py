@@ -1,3 +1,7 @@
+# Copyright (c) 2025 Innodisk Corp.
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
 import os
 import glob
 import re

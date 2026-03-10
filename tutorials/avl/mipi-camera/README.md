@@ -21,7 +21,7 @@ With its mature ecosystem and broad sensor compatibility, MIPI CSI-2 is commonly
 | EV2M-OOM3 | EXMP-Q911 | Yocto linux 1.5, Ubuntu 24.04 | ☑️ | ✅ | 1920x1080, 30 FPS |
 | EVDM-OOM1 | EXMP-Q911 | Yocto linux 1.5, Ubuntu 24.04 | ☑️ | ✅ | 1920x1080, 30 FPS |
 
-☑️ Comming soon ✅ Support ❌ Not support
+☑️ Coming soon ✅ Supported ❌ Not supported
 
 ![911-mipi.png](./fig/911-mipi.png)
 
@@ -41,7 +41,7 @@ Connect the Camera to the EXMP-Q911, follow the steps below:
 | EV2M-OOM3 | iQ-9075 EVK | Yocto linux 1.5 | ☑️ | ☑️ | ✅ | ✅ | 1920x1080, 30 FPS |
 | EV2M-OOM3 | iQ-9075 EVK | Ubuntu 24.04 | ✅ | ✅ | ✅ | ✅ | 1920x1080, 30 FPS |
 
-☑️ Comming soon ✅ Support ❌ Not support
+☑️ Coming soon ✅ Supported ❌ Not supported
 
 ![evk-mipi.png](./fig/evk-mipi.png)
 

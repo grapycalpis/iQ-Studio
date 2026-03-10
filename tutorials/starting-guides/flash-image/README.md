@@ -7,7 +7,7 @@ The steps below ensure that your flashing process completes successfully, as the
 
 ## Step 1: Prepare the Host Environment and Target Connection
 
-When you need to update the BSP, recover a corrupted system. You can directly refer to [Qualcomm’s instructions for prerequisites](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#prerequisites) to verify the prerequisites. 
+When you need to update the BSP or recover a corrupted system, you can directly refer to [Qualcomm’s instructions for prerequisites](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#prerequisites) to verify the prerequisites. 
 
 For the initial setup, if you are using Ubuntu as the host system, you must configure the USB-to-Type-C connection on the host according to Qualcomm’s official guide.
 Please follow Steps 1–2 in [Flash Dragonwing IQ-9075 EVK Integrated Image on an Ubuntu Host](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#panel-0-0-0tab$flash-dragonwing-iq-9075-evk-integrated-image-on-ubuntu-host).

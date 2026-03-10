@@ -1,3 +1,9 @@
+<!--
+ Copyright (c) 2025 Innodisk Corp.
+ 
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
 # iQ-Studio Contributor Tools
 
 This directory contains automation scripts designed to maintain the high quality and consistency of the iQ-Studio documentation. Contributors are encouraged to use these tools to ensure compliance with the [IQS_FORMATTING.md](../IQS_FORMATTING.md) standards before submitting a Pull Request.

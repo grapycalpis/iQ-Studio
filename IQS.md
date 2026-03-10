@@ -1,3 +1,9 @@
+<!--
+ Copyright (c) 2025 Innodisk Corp.
+ 
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
 # iQ-Studio Development & AI Agent Guidelines
 
 This document serves as the supreme principle manual for iterating and developing iQ-Studio. It outlines the core philosophy, project structure, technical standards, and the required process for both human developers and AI agents (like Claude/Antigravity) working on this repository.
@@ -39,9 +45,11 @@ When adding new features or applications, strictly adhere to the existing direct
 - **Virtual Environments**: Ensure Python scripts are executed within `iqs-venv` in a controlled manner.
 
 ### Markdown & Documentation
-The quality of iQ-Studio documentation directly impacts the user experience. In addition to the principles below, strictly follow [IQS_FORMATTING.md](./IQS_FORMATTING.md) for specific content formatting details (image paths, note syntax, code labels, and link relativity).
+The quality of iQ-Studio documentation directly impacts the user experience. 
 
-- **Core Architecture**:
+- **Formatting Standards**: Strictly follow [IQS_FORMATTING.md](./IQS_FORMATTING.md) for structural details (image paths, note syntax, code labels, and link relativity).
+- **Literacy Standards**: Strictly follow [IQS_LITERACY.md](./IQS_LITERACY.md) for linguistic quality, nomenclature consistency (e.g., NVIDIA/Qualcomm capitalization), and grammatical accuracy.
+- **Core README Structure**:
     - Every core README must feature a **`Core Software Stack & Architecture`** section with layered diagrams.
     - Installation and setup sections must be titled **`How to Deploy`** (strictly for root README and `tutorials/applications/`).
     - **`Explore Documentation & Resources`** serves as the central hub for all categories.
@@ -62,12 +70,13 @@ When processing a user request in this repository, follow these strict steps:
 1. Write/Modify the code or markdown incrementally. Ensure syntax correctness.
 2. If updating `mod/`, heavily consider how it might break `launcher.py` and existing applications.
 3. For documentation updates, painstakingly verify that relative paths to images and other markdowns are mathematically correct relative to the file location.
+4. **Apply Literacy & Formatting Standards**: Before committing, double-check for typos, capitalization, and grammar against the standards in [IQS_LITERACY.md](./IQS_LITERACY.md) and [IQS_FORMATTING.md](./IQS_FORMATTING.md).
 
 ### Phase 3: Verification & Polish
 1. Check that the main `README.md` requires an update (e.g., adding a new tutorial to the Categories table).
 2. Check if the `IQS.md` in the root directory should be explicitly updated to reflect the new feature.
 3. **Reflect & Distill**: Before finishing, ask: "Did I learn a new pattern or encounter a friction point that should be documented in `IQS.md`?" If yes, update this document immediately.
-4. Review your changes against this `IQS.md` and `IQS_FORMATTING.md` to ensure absolute compliance.
+4. Review your changes against this `IQS.md`, `IQS_FORMATTING.md`, and `IQS_LITERACY.md` to ensure absolute compliance.
 
 ## 5. Continuous Evolution (Living Principles)
 

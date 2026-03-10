@@ -40,7 +40,7 @@
 ## v0.0.3
 ### Feat
 - Add YOLOv10n inference integration
-- Add streampipe for mutil inference
+- Add streampipe for multi-stream inference
 
 ### Docs
 - Update VLM model demo GIF

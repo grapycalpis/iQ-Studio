@@ -128,7 +128,7 @@ Below is an overview of how we conduct platform benchmark testing.
        --warmup_time 180 \
        --output ./logs/qcom_chX.txt
    ```
-   ![output.png](./fig/output_quaclomm.png)
+   ![output.png](./fig/output_qualcomm.png)
 
 
 ### NVIDIA Jetson AGX Orin 32GB procedure

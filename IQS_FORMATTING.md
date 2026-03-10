@@ -1,3 +1,9 @@
+<!--
+ Copyright (c) 2025 Innodisk Corp.
+ 
+ This software is released under the MIT License.
+ https://opensource.org/licenses/MIT
+-->
 # iQ-Studio Content Formatting Standards
 
 This document is an extension of `IQS.md`, focusing on specific formatting details for Markdown content. It aims to ensure high consistency in structure, aesthetics, and indexability across all documentation.

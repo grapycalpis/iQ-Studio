@@ -23,10 +23,10 @@ inference**.
          <div align="left"><img width="50%" height="50%" src="./fig/innoppe.png"></div>
          <br />   
 
-  - InnoPPE was configured to process 10 video streams simultaneous(1 live UVC
+  - InnoPPE was configured to process 10 video streams simultaneously (1 live UVC
   camera and 9 locally stored video files).
 
-  - Multiple AI inference were executed concurrently to perform simultaneous
+  - Multiple AI inferences were executed concurrently to perform simultaneous
   recognition tasks.
 
 ## Hardware
