@@ -62,8 +62,6 @@ To connect the camera to the iQ-9075 EVK using the EB022-2M4F adapter board, fol
 
 1. Use a 22-to-30 pin adapter to connect the 22-pin to 22-pin MIPI cable (A-A style).
 2. Connect `CN_CSIx` to the corresponding `FPC1` header. This cable type is required for proper CSI lane alignment.
-3. Connect the GMSL camera to `Link A`. Note that only `Link A` is supported, and the adapter board can operate with one MIPI sensor at a time.
-4. Power on the EB022-2M4F first, followed by the iQ-9075 EVK.
 
 <br />
 <br />
