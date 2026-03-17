@@ -74,11 +74,30 @@ Please follow the steps below to boot the system.
 1. Please ensure that the jumper on the bottom side of the board is set to `Normal mode`.
 `EDL mode` should be used when flashing the system image.
 
+  <div align="center">
+    <table>
+      <tr>
+        <td align="center" width="50%" valign="bottom">
+          <img src="./fig/jumper_mode_normal.png" style="max-height: 100%; max-width: 100%;">
+        </td>
+        <td align="center" width="50%" valign="bottom">
+          <img src="./fig/jumper_mode_edl.png" style="max-height: 100%; max-width: 100%;">
+        </td>
+      </tr>
+      <tr>
+        <td align="center">Normal mode</td>
+        <td align="center">EDL mode</td>
+      </tr>
+    </table>
+  </div>
+
+2. Please ensure that all boot mode DIP switches are set to `ON`, so the system boots from `UFS`.
+
    <p align="center">
-    <img src="./fig/jumper_mode.png" style="width:50%;">
+    <img src="./fig/boot_mode_ufs.png" style="width:50%;">
   </p>
 
-2. Connect the power supply and press the power button to boot the system.
+3. Connect the power supply and press the power button to boot the system.
 
 
   <div align="center">
