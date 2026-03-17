@@ -16,8 +16,8 @@ Please follow Steps 1–2 in [Flash Dragonwing IQ-9075 EVK Integrated Image on a
 
 After completing the required preparations, please ensure that the jumper on the bottom side of the board is set to `EDL mode`.
 
-   <p align="center">
-    <img src="../q911/fig/jumper_mode.png" style="width:50%;">
+  <p align="center">
+    <img src="../q911/fig/jumper_mode_edl.png" style="width:50%;">
   </p>
 
 
@@ -81,8 +81,14 @@ If the flashing process completes successfully, you will see output similar to t
 
 Please ensure that the jumper on the bottom side of the board is set to `Normal mode`.
 
-   <p align="center">
-    <img src="../q911/fig/jumper_mode.png" style="width:50%;">
+  <p align="center">
+    <img src="../q911/fig/jumper_mode_normal.png" style="width:50%;">
+  </p>
+
+Please also ensure that all boot mode DIP switches are set to `ON`, so the system boots from `UFS`.
+
+  <p align="center">
+    <img src="../q911/fig/boot_mode_ufs.png" style="width:50%;">
   </p>
 
 ## Step 6: Boot into the System
