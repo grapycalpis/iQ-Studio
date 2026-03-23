@@ -76,6 +76,8 @@ This generates the converted YOLO `.tflite` model in the output directory.
 
 ![QC mode output](./fig/qc-mode-output.png)
 
+Output location: `out/model/yolov26/`
+
 ### mAP
 
 `mAP` compares the FP model and the INT8 model at mAP@0.5.
@@ -104,6 +106,8 @@ This produces the FP versus INT8 quality comparison report.
 
 ![mAP mode output](./fig/map-mode-output.png)
 
+Output location: `out/mAP_results/yolov26/`
+
 ### Test
 
 `test` runs ADB-based YOLO inference on Qualcomm Dragonwing IQ9 and saves the output artifacts.
@@ -126,13 +130,7 @@ This runs inference on the target and saves the generated result artifacts.
 
 ![Test mode output](./fig/test-mode-output.png)
 
-## Output
-
-Generated outputs are written to these directories:
-
-- `out/model/yolov26/`
-- `out/mAP_results/yolov26/`
-- `out/test/yolov26/`
+Output location: `out/test/yolov26/`
 
 > 💡 Tip: To review the currently saved mode paths, run `python3 cli.py --configure current`.
 
