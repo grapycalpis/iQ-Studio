@@ -138,7 +138,6 @@ Output location: `out/test/yolov26/`
 
 ## Additional Options
 
-This tutorial at `tutorials/model-deploy/cv/yolo` is a straightforward and simple YOLO26 guide.
 
 For other YOLO variants and advanced features, use [iQ-Foundry](https://github.com/InnoIPA/iQ-Foundry).
 
