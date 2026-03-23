@@ -52,7 +52,9 @@ $ qai-hub configure --api_token YOUR_API_TOKEN
 
 ## Step 4. Run the Modes
 
-### QC
+Follow the steps for each mode below to convert the model (qc), evaluate its quality (mAP), and deploy YOLO inference (test).
+
+### 1. QC
 
 `qc` quantizes the YOLO model to INT8 and converts it from `.pt` to `.tflite`.
 
@@ -78,7 +80,7 @@ This generates the converted YOLO `.tflite` model in the output directory.
 
 Output location: `out/model/yolov26/`
 
-### mAP
+### 2. mAP
 
 `mAP` compares the FP model and the INT8 model at mAP@0.5.
 
@@ -108,7 +110,7 @@ This produces the FP versus INT8 quality comparison report.
 
 Output location: `out/mAP_results/yolov26/`
 
-### Test
+### 3. Test
 
 `test` runs ADB-based YOLO inference on Qualcomm Dragonwing IQ9 and saves the output artifacts.
 
