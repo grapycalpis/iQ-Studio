@@ -2,7 +2,7 @@
 
 The iQ-Studio Model Deploy feature provides an end-to-end workflow for preparing AI models for deployment on the target platform. The flow covers model quantization, model conversion, quality assurance, and target inference so users can move from a training artifact to deployable outputs with a guided process.
 
-![Model Deploy flow](./cv/yolo/fig/model-deploy-flow.gif)
+![Model Deploy flow](./cv/yolo26/fig/model-deploy-flow.gif)
 
 ## Overview
 
@@ -15,4 +15,4 @@ The Model Deploy flow is organized around four stages:
 
 The computer vision tutorials for Model Deploy are available under `tutorials/model-deploy/cv`.
 
-To follow the current YOLO workflow, start with [cv/yolo/README.md](./cv/yolo/README.md).
+To follow the current YOLO workflow, start with [cv/yolo26/README.md](./cv/yolo26/README.md).

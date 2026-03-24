@@ -26,11 +26,11 @@ Connect the Qualcomm Dragonwing IQ9 target to the host with a USB-C cable.
 
 ## Step 2. Clone the Repository and Set Up the Environment
 
-Clone the iQ-Studio repository, go to the YOLO tutorial directory, and source the setup script:
+Clone the iQ-Studio repository, go to the YOLO26 tutorial directory, and source the setup script:
 
 ```bash
 $ git clone https://github.com/InnoIPA/iQ-Studio.git
-$ cd iQ-Studio/tutorials/model-deploy/cv/yolo
+$ cd iQ-Studio/tutorials/model-deploy/cv/yolo26
 $ source setup.sh
 ```
 
