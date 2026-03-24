@@ -13,6 +13,16 @@ The Model Deploy flow is organized around four stages:
 3. Validate model quality with accuracy checks.
 4. Deploy the model and run inference on the target.
 
-The computer vision tutorials for Model Deploy are available under `tutorials/model-deploy/cv`.
+The workflow supports model optimization and quantization paths, including INT8 deployment, while aiming to preserve model quality. The comparison below shows the FP32 result beside an INT8 result after model conversion.
 
-To follow the current YOLO workflow, start with [cv/yolo26/README.md](./cv/yolo26/README.md).
+| Before (FP32) | After (INT8) |
+| --- | --- |
+| <img src="./cv/yolo26/fig/yolo26-fp32.png" alt="YOLO26 FP32 output" width="420" /> | <img src="./cv/yolo26/fig/yolo26-int8.png" alt="YOLO26 INT8 output" width="420" /> |
+
+🔴 Prediction, 🟢 Ground truth
+
+## Get Started
+
+> The computer vision tutorials for Model Deploy are available under `tutorials/model-deploy/cv`.
+>
+> To follow the current YOLO workflow, start with [cv/yolo26/README.md](./cv/yolo26/README.md).

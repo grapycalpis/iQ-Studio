@@ -1,4 +1,4 @@
-# Model Deploy: How to Convert, Optimize, and Perform Inference with YOLO Models?
+# Model Deploy: How to Convert, Optimize, and Perform Inference with YOLO26 Models?
 
 This iQ-Studio tutorial shows a simple YOLO26 workflow for Qualcomm Dragonwing IQ9. It covers the default flow for INT8 quantization, conversion, quality assurance, and ADB-based inference.
 
@@ -14,9 +14,11 @@ This guide follows a straightforward end-to-end flow:
 
 ## Requirements
 
-- Ubuntu 22.04 host
-- Qualcomm Dragonwing IQ9 target
-- USB connection for ADB-based execution
+| Item | Requirement |
+| --- | --- |
+| Host OS | Ubuntu 22.04 |
+| Target | EXMP-Q911 (Qualcomm QCS9075) |
+| Connection | USB for ADB-based execution |
 
 ## Step 1. Connect Device
 
@@ -24,14 +26,16 @@ Connect the Qualcomm Dragonwing IQ9 target to the host with a USB-C cable.
 
 ![Host to target USB-C connection](./fig/iq9-usb-connection.png)
 
+ADB reference only: [ADB overview](https://developer.android.com/tools/adb). No steps are required from that page for this tutorial.
+
 ## Step 2. Clone the Repository and Set Up the Environment
 
 Clone the iQ-Studio repository, go to the YOLO26 tutorial directory, and source the setup script:
 
 ```bash
-$ git clone https://github.com/InnoIPA/iQ-Studio.git
-$ cd iQ-Studio/tutorials/model-deploy/cv/yolo26
-$ source setup.sh
+git clone https://github.com/InnoIPA/iQ-Studio.git
+cd iQ-Studio/tutorials/model-deploy/cv/yolo26
+source setup.sh
 ```
 
 This prepares the Python environment, installs the required host packages, and checks ADB access.
@@ -47,7 +51,7 @@ Navigate to `Account -> Settings -> API Token` to find your unique key.
 Configure the host with your API token:
 
 ```bash
-$ qai-hub configure --api_token YOUR_API_TOKEN
+qai-hub configure --api_token YOUR_API_TOKEN
 ```
 
 ## Step 4. Run the Modes
@@ -61,7 +65,7 @@ Follow the steps for each mode below to convert the model (qc), evaluate its qua
 Configure the required paths:
 
 ```bash
-$ python3 cli.py --configure qc
+python3 cli.py --configure qc
 ```
 
 When prompted, enter the requested model and calibration paths.
@@ -71,7 +75,7 @@ When prompted, enter the requested model and calibration paths.
 Run the mode:
 
 ```bash
-$ python3 cli.py --mode qc
+python3 cli.py --mode qc
 ```
 
 This generates the converted YOLO `.tflite` model in the output directory.
@@ -87,7 +91,7 @@ Output location: `out/model/yolov26/`
 Configure the required paths:
 
 ```bash
-$ python3 cli.py --configure mAP
+python3 cli.py --configure mAP
 ```
 
 When prompted, enter the requested annotation, image, FP model, and INT8 model paths.
@@ -95,13 +99,13 @@ When prompted, enter the requested annotation, image, FP model, and INT8 model p
 Run the mode:
 
 ```bash
-$ python3 cli.py --mode mAP
+python3 cli.py --mode mAP
 ```
 
 For a smaller validation run, you can limit the number of images:
 
 ```bash
-$ python3 cli.py --mode mAP --max-images 5
+python3 cli.py --mode mAP --max-images 5
 ```
 
 This produces the FP versus INT8 quality comparison report.
@@ -117,7 +121,7 @@ Output location: `out/mAP_results/yolov26/`
 Configure the required paths:
 
 ```bash
-$ python3 cli.py --configure test
+python3 cli.py --configure test
 ```
 
 When prompted, enter the requested model, YAML, and test image paths.
@@ -125,12 +129,15 @@ When prompted, enter the requested model, YAML, and test image paths.
 Run the mode:
 
 ```bash
-$ python3 cli.py --mode test
+python3 cli.py --mode test
 ```
 
 This runs inference on the target and saves the generated result artifacts.
 
 ![Test mode output](./fig/test-mode-output.png)
+<p align="center">
+  <img src="./fig/inference-output.png" alt="Inference output" width="640" />
+</p>
 
 Output location: `out/test/yolov26/`
 
