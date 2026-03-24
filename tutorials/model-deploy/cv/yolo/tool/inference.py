@@ -776,6 +776,19 @@ def _extract_box_channel_count(model_path: str) -> int:
     return _extract_box_layout(box_od["shape"])[0]
 
 
+def _extract_model_class_count(model_path: str) -> int:
+    interp = tf.lite.Interpreter(model_path=model_path)
+    interp.allocate_tensors()
+    box_od, cls_od = _resolve_raw_output_details(interp.get_output_details())
+    anchor_count = _extract_box_layout(box_od["shape"])[1]
+    class_count = _class_dim_for_anchor_count(cls_od["shape"], anchor_count)
+    if class_count is None or class_count <= 0:
+        raise RuntimeError(
+            f"Could not determine class count from model outputs: {cls_od['shape']}"
+        )
+    return int(class_count)
+
+
 def validate_yolov26_model_compatibility(model_path: str) -> None:
     _ensure_runtime_deps()
     expected = EXPECTED_YOLO26_BOX_CHANNELS
@@ -784,6 +797,18 @@ def validate_yolov26_model_compatibility(model_path: str) -> None:
         raise RuntimeError(
             f"Output shape mismatch: YOLO26 expects box channels={expected}, "
             f"but model outputs channels={actual}."
+        )
+
+
+def validate_model_yaml_class_count(model_path: str, yaml_path: str) -> None:
+    _ensure_runtime_deps()
+    model_class_count = _extract_model_class_count(model_path=model_path)
+    yaml_class_count = len(load_class_names(yaml_path))
+    if model_class_count != yaml_class_count:
+        raise RuntimeError(
+            "Class count mismatch: "
+            f"model outputs {model_class_count} classes but YAML defines "
+            f"{yaml_class_count}. Update --yaml to match the TFLite model."
         )
 
 
@@ -829,6 +854,7 @@ def run_inference(
         model_path=model_path, yaml_path=yaml_path, img_dir=img_dir
     )
     validate_yolov26_model_compatibility(model_path=model_path)
+    validate_model_yaml_class_count(model_path=model_path, yaml_path=yaml_path)
     final_output_dir = Path(output_dir).expanduser().resolve()
     staging_tmp = tempfile.TemporaryDirectory(prefix="yolo_local_output_")
     staging_output_dir = Path(staging_tmp.name) / "output"
@@ -903,7 +929,11 @@ def run_test_inference_adb(
     except ModuleNotFoundError:
         from adb_runtime_bootstrap import ensure_adb_runtime_venv
 
+    _validate_inference_inputs(
+        model_path=model_path, yaml_path=yaml_path, img_dir=image_dir
+    )
     validate_yolov26_model_compatibility(model_path=model_path)
+    validate_model_yaml_class_count(model_path=model_path, yaml_path=yaml_path)
     prepared_dir = _prepare_image_input(image_dir=image_dir)
     final_output_dir = Path(output_dir).expanduser().resolve()
     pull_tmp = tempfile.TemporaryDirectory(prefix="yolo_adb_pull_")

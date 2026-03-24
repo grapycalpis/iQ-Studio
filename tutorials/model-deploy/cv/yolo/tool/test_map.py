@@ -525,6 +525,49 @@ def _find_boxes_scores(
     return boxes, scores
 
 
+def _extract_tflite_raw_class_count_from_output_details(output_details: list[dict]) -> int:
+    box_candidates: list[tuple[dict, int]] = []
+    cls_candidates: list[tuple[dict, int]] = []
+    for det in output_details:
+        shp = tuple(int(v) for v in det["shape"])
+        if len(shp) != 3 or shp[0] != 1:
+            continue
+
+        if shp[1] in (4, 64):
+            box_candidates.append((det, 2))
+            continue
+        if shp[2] in (4, 64):
+            box_candidates.append((det, 1))
+            continue
+
+        if shp[1] == 8400:
+            cls_candidates.append((det, int(shp[2])))
+        elif shp[2] == 8400:
+            cls_candidates.append((det, int(shp[1])))
+
+    if len(box_candidates) != 1:
+        shapes = [tuple(int(v) for v in det["shape"]) for det in output_details]
+        raise RuntimeError(
+            "Could not uniquely identify raw box output while reading TFLite class "
+            f"count. Shapes={shapes}"
+        )
+
+    box_det, anchor_axis = box_candidates[0]
+    anchor_count = int(box_det["shape"][anchor_axis])
+    matching_cls = [
+        class_dim
+        for det, class_dim in cls_candidates
+        if int(det["shape"][1]) == anchor_count or int(det["shape"][2]) == anchor_count
+    ]
+    if not matching_cls:
+        shapes = [tuple(int(v) for v in det["shape"]) for det in output_details]
+        raise RuntimeError(
+            "Could not identify raw class output while reading TFLite class count. "
+            f"Shapes={shapes}"
+        )
+    return int(max(matching_cls))
+
+
 def normalize_raw_pair(
     boxes: np.ndarray, scores: np.ndarray
 ) -> tuple[np.ndarray, np.ndarray]:
@@ -1177,6 +1220,52 @@ def _load_tflite_input_detail(int_model_path: Path) -> dict:
     return interp.get_input_details()[0]
 
 
+def _load_tflite_class_count(int_model_path: Path) -> int:
+    try:
+        from tflite_runtime.interpreter import Interpreter
+    except Exception:
+        from tensorflow.lite.python.interpreter import Interpreter
+
+    interp = Interpreter(model_path=str(int_model_path))
+    interp.allocate_tensors()
+    return _extract_tflite_raw_class_count_from_output_details(interp.get_output_details())
+
+
+def _load_coco_category_count(ann_path: Path) -> int:
+    data = json.loads(ann_path.read_text())
+    categories = data.get("categories")
+    if not isinstance(categories, list):
+        raise ValueError(
+            f"COCO annotations must contain a 'categories' list: {ann_path}"
+        )
+    return len(categories)
+
+
+def _validate_map_class_counts(
+    fp_model_path: Path, int_model_path: Path, resolved_annotations: ResolvedAnnotations
+) -> tuple[int, int]:
+    fp_class_count = len(load_fp_model_class_names(fp_model_path))
+    int_class_count = _load_tflite_class_count(int_model_path)
+    if fp_class_count != int_class_count:
+        raise RuntimeError(
+            "Class count mismatch between FP and INT models: "
+            f"FP model has {fp_class_count} classes, INT model has "
+            f"{int_class_count}. Re-export the INT model from the matching "
+            "custom-trained YOLO26 FP model."
+        )
+
+    if resolved_annotations.format_name == "coco":
+        ann_class_count = _load_coco_category_count(resolved_annotations.eval_ann_path)
+        if ann_class_count != fp_class_count:
+            raise RuntimeError(
+                "Class count mismatch between annotations and models: "
+                f"annotations define {ann_class_count} categories, FP model has "
+                f"{fp_class_count}, and INT model has {int_class_count}. "
+                "Use annotations that match the custom-trained YOLO26 model."
+            )
+    return fp_class_count, int_class_count
+
+
 def _compute_delta_summary(
     fp_map50: float, int_map50: float
 ) -> tuple[float, float | None, str]:
@@ -1220,38 +1309,44 @@ def run_fp_int_pair_map_eval(
         remote_runner_local_path=remote_runner_local_path,
     )
 
-    local_target_requirements = str(
-        Path(__file__).resolve().parent.parent / "requirements" / "target.txt"
-    )
-    remote_python = ensure_adb_runtime_venv(
-        adb_serial=adb_serial,
-        local_requirements_path=local_target_requirements,
-    )
-    remote_layout = make_map_remote_run_layout(
-        remote_workdir=DEFAULT_REMOTE_WORKDIR,
-        int_model_path=int_model_path,
-        remote_runner_remote=DEFAULT_REMOTE_RUNNER_REMOTE,
-    )
-
-    runtime_args = make_runtime_args(
-        adb_serial=adb_serial,
-        remote_workdir=remote_layout["remote_run_dir"],
-        remote_runner_remote=remote_layout["remote_runner"],
-        remote_python=remote_python,
-        qnn_lib=qnn_lib,
-    )
-
-    adb_shell(adb_serial, f"mkdir -p {shlex.quote(remote_layout['remote_run_dir'])}")
-    adb_push(
-        adb_serial,
-        str(remote_runner_local_path),
-        remote_layout["remote_runner"],
-    )
-
     resolved_annotations = resolve_annotations_for_map(
         ann_path, img_dir, fp_model_path
     )
     try:
+        _validate_map_class_counts(
+            fp_model_path=fp_model_path,
+            int_model_path=int_model_path,
+            resolved_annotations=resolved_annotations,
+        )
+
+        local_target_requirements = str(
+            Path(__file__).resolve().parent.parent / "requirements" / "target.txt"
+        )
+        remote_python = ensure_adb_runtime_venv(
+            adb_serial=adb_serial,
+            local_requirements_path=local_target_requirements,
+        )
+        remote_layout = make_map_remote_run_layout(
+            remote_workdir=DEFAULT_REMOTE_WORKDIR,
+            int_model_path=int_model_path,
+            remote_runner_remote=DEFAULT_REMOTE_RUNNER_REMOTE,
+        )
+
+        runtime_args = make_runtime_args(
+            adb_serial=adb_serial,
+            remote_workdir=remote_layout["remote_run_dir"],
+            remote_runner_remote=remote_layout["remote_runner"],
+            remote_python=remote_python,
+            qnn_lib=qnn_lib,
+        )
+
+        adb_shell(adb_serial, f"mkdir -p {shlex.quote(remote_layout['remote_run_dir'])}")
+        adb_push(
+            adb_serial,
+            str(remote_runner_local_path),
+            remote_layout["remote_runner"],
+        )
+
         eval_ann_path = resolved_annotations.eval_ann_path
         imgs = load_coco_images(eval_ann_path, img_dir)
         if max_images is not None:
@@ -1313,10 +1408,14 @@ def run_fp_int_pair_map_eval(
             shared_inputs_obj.cleanup()
     finally:
         resolved_annotations.cleanup()
-        try:
-            adb_shell(adb_serial, f"rm -rf {shlex.quote(remote_layout['remote_run_dir'])}")
-        except subprocess.CalledProcessError as cleanup_exc:
-            print(f"[warn] remote cleanup failed: {cleanup_exc}")
+        if "remote_layout" in locals():
+            try:
+                adb_shell(
+                    adb_serial,
+                    f"rm -rf {shlex.quote(remote_layout['remote_run_dir'])}",
+                )
+            except subprocess.CalledProcessError as cleanup_exc:
+                print(f"[warn] remote cleanup failed: {cleanup_exc}")
 
     fp_map50 = float(fp_row["map50"])
     int_map50 = float(int_row["map50"])

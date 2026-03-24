@@ -65,7 +65,7 @@ _TORCH_BASE = torch.nn.Module if torch is not None else object
 
 
 # ----------------------------
-# RAW export wrapper (YOLO26 branch-selectable -> boxes[1,4,8400], cls[1,80,8400])
+# RAW export wrapper (YOLO26 branch-selectable -> boxes[1,4,8400], cls[1,C,8400])
 # ----------------------------
 class Yolo26RawBranch8400Wrapper(_TORCH_BASE):
     """
@@ -73,7 +73,7 @@ class Yolo26RawBranch8400Wrapper(_TORCH_BASE):
       NHWC float32 [1,H,W,3] in [0,1]
     Output:
       boxes [1,4,8400]
-      cls   [1,80,8400]
+      cls   [1,C,8400]
 
     Notes:
       Ultralytics YOLO26 core returns `(tensor, dict)` where the dict has
@@ -105,6 +105,54 @@ class Yolo26RawBranch8400Wrapper(_TORCH_BASE):
             for v in obj.values():
                 Yolo26RawBranch8400Wrapper._collect_tensors(v, out_list)
 
+    @staticmethod
+    def _select_boxes_tensor(
+        tensors: list[torch.Tensor], batch_size: int
+    ) -> torch.Tensor | None:
+        boxes = [
+            t
+            for t in tensors
+            if t.ndim == 3
+            and int(t.shape[0]) == batch_size
+            and int(t.shape[1]) == 4
+            and int(t.shape[2]) == 8400
+        ]
+        if len(boxes) > 1:
+            raise RuntimeError(
+                "YOLO26 branch is ambiguous: found multiple candidate box tensors "
+                "with shape [B,4,8400]."
+            )
+        return boxes[0] if boxes else None
+
+    @staticmethod
+    def _select_class_tensor(
+        tensors: list[torch.Tensor], batch_size: int
+    ) -> torch.Tensor | None:
+        class_candidates = [
+            t
+            for t in tensors
+            if t.ndim == 3
+            and int(t.shape[0]) == batch_size
+            and int(t.shape[2]) == 8400
+            and int(t.shape[1]) > 4
+        ]
+        if not class_candidates:
+            return None
+
+        sorted_candidates = sorted(
+            class_candidates, key=lambda t: int(t.shape[1]), reverse=True
+        )
+        top = sorted_candidates[0]
+        tied = [t for t in sorted_candidates if int(t.shape[1]) == int(top.shape[1])]
+        if len(tied) > 1:
+            raise RuntimeError(
+                "YOLO26 branch is ambiguous: found multiple candidate class tensors "
+                f"with shape [B,C,8400] and C={int(top.shape[1])}. "
+                "Custom-trained YOLO26 models with arbitrary class counts are "
+                "supported, but alternate internal head structures are not."
+            )
+        return top
+
     def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         # NHWC -> NCHW
         x_nchw = x.permute(0, 3, 1, 2).contiguous()
@@ -126,22 +174,17 @@ class Yolo26RawBranch8400Wrapper(_TORCH_BASE):
         ts: list[torch.Tensor] = []
         self._collect_tensors(branch, ts)
 
-        boxes = None
-        cls = None
-
-        # Select tensors by exact shape
-        for t in ts:
-            if t.ndim == 3 and int(t.shape[0]) == int(x.shape[0]):
-                if int(t.shape[1]) == 4 and int(t.shape[2]) == 8400:
-                    boxes = t
-                elif int(t.shape[1]) == 80 and int(t.shape[2]) == 8400:
-                    cls = t
+        boxes = self._select_boxes_tensor(ts, batch_size=int(x.shape[0]))
+        cls = self._select_class_tensor(ts, batch_size=int(x.shape[0]))
 
         if boxes is None or cls is None:
             shapes = [tuple(t.shape) for t in ts]
             raise RuntimeError(
                 f"{self.branch_key} branch: could not find boxes [1,4,8400] "
-                f"and cls [1,80,8400]. Shapes={shapes}"
+                "and cls [1,C,8400]. "
+                "Custom-trained YOLO26 models with arbitrary class counts are "
+                "supported, but alternate internal head structures are not. "
+                f"Shapes={shapes}"
             )
 
         return boxes, cls
@@ -200,7 +243,7 @@ class YoloV26Pipeline:
         -> compile TFLite -> download
 
         Notes:
-          - wrapper exports RAW selected branch tensors: boxes[1,4,8400], cls[1,80,8400]
+          - wrapper exports RAW selected branch tensors: boxes[1,4,8400], cls[1,C,8400]
           - keeps --quantize_io
         """
         if qc_head not in ("one2many", "one2one"):
