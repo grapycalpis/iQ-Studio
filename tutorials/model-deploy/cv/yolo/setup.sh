@@ -9,6 +9,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 fi
 
 IQ_CV_QAI_HUB_STATUS="Not checked"
+IQ_CV_ADB_STATUS="Not checked"
 
 _iq_cv_setup_info() {
     printf '[setup] %s\n' "$*"
@@ -100,13 +101,21 @@ _iq_cv_setup_adb_device_count() {
 _iq_cv_setup_verify_adb_target() {
     local adb_device_count=0
 
+    if ! command -v adb >/dev/null 2>&1; then
+        IQ_CV_ADB_STATUS="Not available"
+        _iq_cv_setup_info "ADB is not installed or not on PATH."
+        return 0
+    fi
+
     adb start-server >/dev/null 2>&1 || true
     adb_device_count="$(_iq_cv_setup_adb_device_count)"
     if [[ "${adb_device_count}" -eq 0 ]]; then
-        _iq_cv_setup_error \
-            "No ADB target detected. Connect the IQ9 over USB-C, enable USB debugging, accept the host key, and re-source setup.sh."
-        return 1
+        IQ_CV_ADB_STATUS="Not detected"
+        _iq_cv_setup_info \
+            "No ADB target detected. Connect the IQ9 over USB-C, enable USB debugging, accept the host key, and re-source setup.sh if you want to use mAP or test mode."
+        return 0
     fi
+    IQ_CV_ADB_STATUS="OK"
     _iq_cv_setup_info "ADB target detected and authorized."
 }
 
@@ -155,7 +164,70 @@ _iq_cv_setup_print_summary() {
     _iq_cv_setup_info "Virtual environment: ${VIRTUAL_ENV:-<not active>}"
     _iq_cv_setup_info "QAI Hub authentication: ${IQ_CV_QAI_HUB_STATUS}"
     _iq_cv_setup_info "ADB devices:"
-    adb devices
+    if command -v adb >/dev/null 2>&1; then
+        adb devices
+    else
+        printf 'adb not available\n'
+    fi
+}
+
+_iq_cv_setup_qai_hub_reason() {
+    case "${IQ_CV_QAI_HUB_STATUS}" in
+        "OK")
+            return 1
+            ;;
+        "Check failed")
+            printf 'qai-hub auth check failed'
+            ;;
+        *)
+            printf 'qai-hub auth not configured'
+            ;;
+    esac
+}
+
+_iq_cv_setup_adb_reason() {
+    if [[ "${IQ_CV_ADB_STATUS}" == "OK" ]]; then
+        return 1
+    fi
+    printf 'adb not detected'
+}
+
+_iq_cv_setup_print_mode_status() {
+    local mode_name="$1"
+    shift
+    local reasons=("$@")
+    local reason_text=""
+    local reason
+
+    for reason in "${reasons[@]}"; do
+        if [[ -z "${reason}" ]]; then
+            continue
+        fi
+        if [[ -n "${reason_text}" ]]; then
+            reason_text="${reason_text}; "
+        fi
+        reason_text="${reason_text}${reason}"
+    done
+
+    if [[ -z "${reason_text}" ]]; then
+        printf '%s %s\n' "${mode_name}" "✅"
+        return 0
+    fi
+
+    printf '%s %s - %s\n' "${mode_name}" "❌" "${reason_text}"
+}
+
+_iq_cv_setup_print_supported_modes() {
+    local qc_reason=""
+    local adb_reason=""
+
+    qc_reason="$(_iq_cv_setup_qai_hub_reason || true)"
+    adb_reason="$(_iq_cv_setup_adb_reason || true)"
+
+    printf 'Supported modes\n'
+    _iq_cv_setup_print_mode_status "qc" "${qc_reason}"
+    _iq_cv_setup_print_mode_status "mAP" "${adb_reason}"
+    _iq_cv_setup_print_mode_status "test" "${adb_reason}"
 }
 
 _iq_cv_setup_main() {
@@ -170,6 +242,7 @@ _iq_cv_setup_main() {
     _iq_cv_setup_install_host_packages || return 1
     _iq_cv_setup_verify_adb_target || return 1
     _iq_cv_setup_print_summary || return 1
+    _iq_cv_setup_print_supported_modes || return 1
 }
 
 _iq_cv_setup_main
