@@ -26,7 +26,9 @@ Connect the Qualcomm Dragonwing IQ9 target to the host with a USB-C cable.
 
 ![Host to target USB-C connection](./fig/iq9-usb-connection.png)
 
-ADB reference only: [ADB overview](https://developer.android.com/tools/adb). No steps are required from that page for this tutorial.
+adb reference: [adb overview](https://developer.android.com/tools/adb). No steps are required from that page for this tutorial.
+
+For more about ADB interaction, see [Interact with the system using adb](../../../starting-guides/q911/README.md#interact-with-the-system-using-adb).
 
 ## Step 2. Clone the Repository and Set Up the Environment
 
