@@ -12,6 +12,25 @@ When you need to update the BSP or recover a corrupted system, you can directly 
 For the initial setup, if you are using Ubuntu as the host system, you must configure the USB-to-Type-C connection on the host according to Qualcomm’s official guide.
 Please follow Steps 1–2 in [Flash Dragonwing IQ-9075 EVK Integrated Image on an Ubuntu Host](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#panel-0-0-0tab$flash-dragonwing-iq-9075-evk-integrated-image-on-ubuntu-host).
 
+Please connect the USB Type-C cable to the port labeled `Flash / ADB` on the target device.
+
+  <div align="center">
+    <table>
+      <tr>
+        <td align="center"  width="50%" valign="bottom">
+          <img src="./fig/connect_adb_boot_flash.png" style="max-height: 100%; max-width: 100%;">
+        </td>
+        <td align="center"  width="50%" valign="bottom">
+          <img src="./fig/connect_adb_boot_flash_a100.png" style="max-height: 100%; max-width: 100%;">
+        </td>
+      </tr>
+      <tr>
+        <td align="center">EXEC-Q911</td>
+        <td align="center">APEX-A100</td>
+      </tr>
+    </table>
+  </div>
+
 ## Step 2: Set the Board to EDL Mode
 
 After completing the required preparations, please ensure that the jumper on the bottom side of the board is set to `EDL mode`.

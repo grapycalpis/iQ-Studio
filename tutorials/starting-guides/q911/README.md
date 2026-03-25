@@ -64,6 +64,7 @@ Before you get started, please make sure you have the following items:
 - DisplayPort (DP) monitor  
 - USB keyboard & mouse  
 - Ethernet cable 
+- USB Type-C cable
 - USB-to-TTL serial adapter  
 - 60W power adapter
 
@@ -126,6 +127,8 @@ After the system boots, you can access the platform using one of the following m
 - DisplayPort monitor
 
 - SSH over Ethernet
+
+- ADB over USB Type-C
 
 - UART Debug Console
 
@@ -216,6 +219,47 @@ If you are accessing the system using SSH to interact with the system, please fo
     ```
      <p align="center">
       <img src="./fig/ubuntu_teminal.png" style="width:50%;">
+    </p>
+
+### Interact with the System Using ADB over USB Type-C
+
+If you are accessing the system using `adb` to interact with the system, please follow the steps below to set it up. The USB Type-C port on both platforms supports `Flash / ADB`.
+
+1. Connect the USB Type-C cable between the host and the device. Then, connect the power cable and press the power button to boot the system.
+
+  <div align="center">
+  <table>
+    <tr>
+      <td align="center"  width="50%" valign="bottom">
+        <img src="./fig/connect_adb_boot_flash.png" style="max-height: 100%; max-width: 100%;">
+      </td>
+      <td align="center"  width="50%" valign="bottom">
+        <img src="./fig/connect_adb_boot_flash_a100.png" style="max-height: 100%; max-width: 100%;">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">EXEC-Q911</td>
+      <td align="center">APEX-A100</td>
+    </tr>
+  </table>
+  </div>
+
+2. After the device boots up, use the following commands on the host to verify the device connection and open an interactive shell.
+
+    ```bash
+    $ adb devices
+    $ adb shell
+    ```
+
+3. You can run Linux commands from the `adb` shell. The example below checks the BSP version.
+
+    ```bash
+    $ adb shell
+    sh-5.2# cat /etc/innodisk/BSP-version
+    ```
+
+    <p align="center">
+      <img src="./fig/adb_usage_example.png" style="width:50%;">
     </p>
 
 ### Interact with the System Using UART Debug Console
