@@ -9,7 +9,7 @@
 
 ## Introduction
 
-At this point, it is assumed that you have already downloaded the iQ Studio GitHub repository and installed it on the platform. For details about how to use the iQ Studio GitHub repository, please refer to the [Quick Start section](../../../README.md) in the entry page.
+At this point, it is assumed that you have already downloaded the iQ Studio GitHub repository and installed it on the platform. For details about how to use the iQ Studio GitHub repository, please refer to the [Quick Start section](../README.md#quick-start) in the entry page.
 
 You can refer to this tutorial to learn how to execute a docker image or IPK packages in offline mode.
 
@@ -42,7 +42,7 @@ The following describes two offline installation methods.
 
 2. Use the `skopeo copy` command to download an image from Docker hub and save it as a `.tar`.
     
-    For example: if you need to download [iqs-vlm-demo](../../integrations/iqs-vlm/iqs-vlm.md) for BSP version `0.0.1`.
+    For example: if you need to download [iqs-vlm-demo](../tutorials/applications/iqs-streampipe/README.md) for BSP version `0.0.1`.
 
     1. You can search for the docker image for iQ-Studio in docker hub. Enter innodiskorg/<application name> at position 1 in the figure. Then, search the docker image version you want to download, as shown at position 2 in the figure.
 

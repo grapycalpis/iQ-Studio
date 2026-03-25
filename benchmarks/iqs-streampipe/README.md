@@ -147,24 +147,13 @@ Below is an overview of how we conduct platform benchmark testing.
    This provides `config_nv.json`, the `videos/` directory, and the
    `nvidia/streampipe_nv` binary with its engine file.
 
-2. Limit Jetson AGX Orin to eight active CPU cores:
-
-   ```bash
-   $ echo 0 | sudo tee /sys/devices/system/cpu/cpu0/online
-   $ echo 0 | sudo tee /sys/devices/system/cpu/cpu1/online
-   $ echo 0 | sudo tee /sys/devices/system/cpu/cpu2/online
-   $ echo 0 | sudo tee /sys/devices/system/cpu/cpu3/online
-   ```
-   >💡 **Tip:** For details about the NVIDIA Jetson AGX Orin CPU core structure,
-please refer [here]([https://www.nvidia.com/content/dam/en-zz/Solutions/gtcf21/jetson-orin/nvidia-jetson-agx-orin-technical-brief.pdf](https://www.nvidia.com/content/dam/en-zz/Solutions/gtcf21/jetson-orin/nvidia-jetson-agx-orin-technical-brief.pdf))
-
-3. Set the power mode to MAXN:
+2. Set the power mode to MAXN:
 
    ```bash
    $ sudo nvpmodel -m 0
    ```
 
-4. Run the benchmark script with the NVIDIA platform selected:
+3. Run the benchmark script with the NVIDIA platform selected:
 
    ```bash
    $ ./scripts/auto_benchmark.sh \

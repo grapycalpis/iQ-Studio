@@ -81,11 +81,11 @@ git clone https://github.com/InnoIPA/iQ-Studio.git
 cd iQ-Studio
 ./install.sh
 ```
->Note: If you are using Ubuntu, please log in again after installation.
+> Note: If you are using Ubuntu, please log in again after installation.
 
 ## How to Use
 
-For example, If you want to run the [iQ-VLM](./tutorials/applications/iqs-vlm/README.md). You just need two command run the interative real-time demo.
+For example, If you want to run the [iQ-VLM](./tutorials/applications/iqs-vlm/README.md). You only need two command run the interative real-time demo.
 
 Launch the OGenie API server:
 ```bash
@@ -95,7 +95,7 @@ Real-Time Display of VLM Predictions on the Monitor.
 ```bash
 $ iqs-launcher --autotag iqs-vlm-demo
 ```
-This is provides a real-time display of VLM predictions, allowing you to quickly verify inference results.
+This provides a real-time display of VLM predictions, allowing you to quickly verify the inference results.
 
 <br />
 <div align="center"><img width="100%" height="100%" src="./tutorials/applications/iqs-vlm/fig/vlm-demo.gif"></div>
@@ -149,6 +149,15 @@ iQ Studio resources are grouped into categories based on functionality:
           <li><a href="./tutorials/applications/iqs-vlm/README.md">iQS-VLM</a></li>
           <li><a href="./tutorials/applications/iqs-streampipe/README.md">iQS-Streampipe</a></li>
           <li><a href="./tutorials/applications/iqs-yolov10n/README.md">YOLOv10n INT8 Inference on GPU and NPU</a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Model Deploy</td>
+      <td>End-to-end guides for turning trained AI models into target-ready artifacts, covering quantization, conversion, quality validation, and on-device inference.</td>
+      <td>
+        <ul>
+          <li><a href="./tutorials/model-deploy/cv/yolo26/README.md">Model Deploy: How to Convert, Optimize, and Perform Inference with YOLO26 Models</a></li>
         </ul>
       </td>
     </tr>

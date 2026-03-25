@@ -24,6 +24,7 @@ When adding new features or applications, strictly adhere to the existing direct
   - `starting-guides/`: Boot up and flashing guides (e.g., Q911).
   - `avl/`: Approved Vendor List validations (Cameras, etc.).
   - `applications/`: Vertical scenario demos (e.g., `iqs-vlm`, `iqs-streampipe`).
+  - `model-deploy/`: End-to-end deployment workflows for converting, optimizing, validating, and running AI models on target platforms.
   - `sdks/`: Advanced developer usage for the applications.
 - `benchmarks/`: Performance benchmarks and comparisons.
 - `docs/`: Core project documentation, topology figures, `changelog.md`, and offline package guides.

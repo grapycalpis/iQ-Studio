@@ -1,4 +1,4 @@
-# Model Deploy: How to Convert, Optimize, and Perform Inference with YOLO26 Models?
+# Model Deploy: How to Convert, Optimize, and Perform Inference with YOLO26 Models ?
 
 This iQ-Studio tutorial shows a simple YOLO26 workflow for Qualcomm Dragonwing IQ9. It covers the default flow for INT8 quantization, conversion, quality assurance, and ADB-based inference.
 
@@ -28,7 +28,7 @@ Connect the Qualcomm Dragonwing IQ9 target to the host with a USB-C cable.
 
 adb reference: [adb overview](https://developer.android.com/tools/adb). No steps are required from that page for this tutorial.
 
-For more about ADB interaction, see [Interact with the system using adb](../../../starting-guides/q911/README.md#interact-with-the-system-using-adb).
+For more about ADB interaction, see [Interact with the system using adb](../../../starting-guides/q911/README.md#interact-with-the-system-using-adb-over-usb-type-c).
 
 ## Step 2. Clone the Repository and Set Up the Environment
 

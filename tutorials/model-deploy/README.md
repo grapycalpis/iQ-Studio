@@ -13,7 +13,7 @@ The Model Deploy flow is organized around four stages:
 3. Validate model quality with accuracy checks.
 4. Deploy the model and run inference on the target.
 
-The workflow supports model optimization and quantization paths, including INT8 deployment, while aiming to preserve model quality. The comparison below shows the FP32 result beside an INT8 result after model conversion (coco validation dataset).
+The workflow supports model optimization and quantization paths, including INT8 deployment, while aiming to preserve model quality. The comparison below shows the FP32 result beside an INT8 result after model conversion (COCO validation dataset).
 
 | Before (FP32) | After (INT8) |
 | --- | --- |
