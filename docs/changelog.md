@@ -1,5 +1,22 @@
 # Changelogs
 
+## v0.0.7
+### Feat
+
+- Added Model Deploy as a new iQ-Studio feature
+- Updated AVL camera support for 8-channel validation, broader interface coverage, and newer system compatibility
+- Added Q911 getting-started and platform guidance
+- Added Model Deploy navigation to the entry README
+- Update the Q911 HW image
+
+### Fixes
+
+- Fixed documentation paths and internal links
+- Refined documentation content, wording, and structure
+
+### Chore
+- Remove all "$" for user easy to copy command
+
 ## v0.0.6
 ### Feat
 
