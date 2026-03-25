@@ -31,7 +31,7 @@ We executed benchmarks on the following AI models using both platforms. For each
    Then, you can extract the `tflite_model.tar` file using the following command to obtain the models:
 
     ```bash
-    $ tar -xvf tflite_model.tar
+    tar -xvf tflite_model.tar
     ```
 
     | Model Name | Input Size |
@@ -46,7 +46,7 @@ We executed benchmarks on the following AI models using both platforms. For each
 2. Run the benchmark using the following command to ensure full delegation to the HTP backend
 
     ```bash
-    $ benchmark_model --graph=<model_path> \
+    benchmark_model --graph=<model_path> \
       --external_delegate_path=/usr/lib/libQnnTFLiteDelegate.so \
       --external_delegate_options='backend_type:htp;library_path:/usr/lib/libQnnHtp.so;skel_library_dir:/usr/lib/rfsa/adsp;htp_performance_mode=2' \
       --enable_op_profiling=true \
@@ -76,11 +76,11 @@ We executed benchmarks on the following AI models using both platforms. For each
     > Note: If the ONNX model is exported with separate weights and network structure files, it is highly recommended to merge them into a single serialized ONNX file.
     
     ```bash
-    $ /usr/src/tensorrt/bin/trtexec --onnx=<onnx_model_path> --saveEngine=<trt_model_path> --int8
+    /usr/src/tensorrt/bin/trtexec --onnx=<onnx_model_path> --saveEngine=<trt_model_path> --int8
     ```
 3. Execute the performance test using the generated Engine.
     ```bash
-    $ /usr/src/tensorrt/bin/trtexec \
+    /usr/src/tensorrt/bin/trtexec \
       --loadEngine=<trt_model_path> \
       --useSpinWait \
       --warmUp=10 \

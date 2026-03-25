@@ -43,7 +43,7 @@ cd iQ-Studio
 ## Launch `OGenie` API server
 
 ```bash
-$ iqs-launcher --autotag iqs-ogenie
+iqs-launcher --autotag iqs-ogenie
 ```
 
 After starting `OGenie` server,  its URLs will be printed. 
@@ -58,7 +58,7 @@ http://172.17.0.1:22434
 ## Real-Time Display of VLM Predictions on the Monitor
 
 ```bash
-$ iqs-launcher --autotag iqs-vlm-demo
+iqs-launcher --autotag iqs-vlm-demo
 ```
 
 Running this command will open a window showing live video from the UVC camera,

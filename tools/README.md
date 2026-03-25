@@ -63,13 +63,13 @@ python tools/get_headings.py
     *   **Example Input**:
         ```markdown
         ```
-        $ git clone ...
+        git clone ...
         ```
         ```
     *   **Example Output**:
         ```markdown
         ```bash
-        $ git clone ...
+        git clone ...
         ```
         ```
 

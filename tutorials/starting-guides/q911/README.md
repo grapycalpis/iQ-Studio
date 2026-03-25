@@ -205,7 +205,7 @@ If you are accessing the system using SSH to interact with the system, please fo
   - Use the following command to connect the Yocto Linux
 
     ```bash
-    $ ssh root@<target device ip address>
+    ssh root@<target device ip address>
     ```
 
      <p align="center">
@@ -215,7 +215,7 @@ If you are accessing the system using SSH to interact with the system, please fo
   - Use the following command to connect the ubuntu
 
     ```bash
-    $ ssh ubuntu@<target device ip address>
+    ssh ubuntu@<target device ip address>
     ```
      <p align="center">
       <img src="./fig/ubuntu_teminal.png" style="width:50%;">
@@ -247,14 +247,14 @@ If you are accessing the system using `adb` to interact with the system, please 
 2. After the device boots up, use the following commands on the host to verify the device connection and open an interactive shell.
 
     ```bash
-    $ adb devices
-    $ adb shell
+    adb devices
+    adb shell
     ```
 
 3. You can run Linux commands from the `adb` shell. The example below checks the BSP version.
 
     ```bash
-    $ adb shell
+    adb shell
     sh-5.2# cat /etc/innodisk/BSP-version
     ```
 

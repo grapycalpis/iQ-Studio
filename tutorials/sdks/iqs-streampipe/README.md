@@ -24,7 +24,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
 1. Navigate to the iqs-streampipe directory and check the file in your current directory.
     
     ```bash
-    $ cd tutorials/sdks/iqs-streampipe/
+    cd tutorials/sdks/iqs-streampipe/
     ```
     
     <br />
@@ -36,7 +36,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     To open and edit the `config.json` file. (default parameter)
     
     ```bash
-    $ vim config.json
+    vim config.json
     ```
     <br />
     <div align="center"><img width="80%" height="80%" src="./fig/image2.png"></div>
@@ -57,7 +57,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     save and close the `config.json`.
     
     ```bash
-    $ :wq
+    :wq
     ```
     
 5. Run the iqs-launcher 
@@ -65,7 +65,7 @@ In this section, we describe how to use custom models and video inputs with iqs-
     > NOTE : You must add the `--other "-c config.json"` option to change the videos.
     
     ```bash
-    $ iqs-launcher --autotag iqs-streampipe --other "-c config.json"
+    iqs-launcher --autotag iqs-streampipe --other "-c config.json"
     ```
     
 6. Change the display of ID 1 to the specified view.

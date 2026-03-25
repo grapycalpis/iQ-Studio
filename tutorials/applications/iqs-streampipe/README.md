@@ -39,7 +39,7 @@ cd iQ-Studio
 1. Use iqs-launcher and autotag tools to automatically pull or build a compatible docker image.
     
     ```bash
-    $ iqs-launcher --autotag iqs-streampipe
+    iqs-launcher --autotag iqs-streampipe
     ```
     
 2. You will see it on the screen.

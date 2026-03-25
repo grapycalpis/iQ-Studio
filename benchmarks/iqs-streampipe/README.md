@@ -113,7 +113,7 @@ Below is an overview of how we conduct platform benchmark testing.
 2. From the repository root on EXMP-Q911, change to the benchmark directory:
 
    ```bash
-   $ cd benchmarks/iqs-streampipe
+   cd benchmarks/iqs-streampipe
    ```
 
 3. Edit `config.json` so that the `streams` array contains 1, 4, 9, or 16
@@ -122,7 +122,7 @@ Below is an overview of how we conduct platform benchmark testing.
 4. Run the benchmark script with the Qualcomm platform selected:
 
    ```bash
-   $ ./scripts/auto_benchmark.sh \
+   ./scripts/auto_benchmark.sh \
        --platform qcom \
        --test_time 300 \
        --warmup_time 180 \
@@ -135,13 +135,13 @@ Below is an overview of how we conduct platform benchmark testing.
 
 1. Download the archive using the following command.
    ```
-   $ wget https://github.com/InnoIPA/iQ-Studio/releases/download/v0.0.6/benchmark_nvidia_sources.tar.gz
+   wget https://github.com/InnoIPA/iQ-Studio/releases/download/v0.0.6/benchmark_nvidia_sources.tar.gz
    ```
 
 1. Under `benchmarks/iqs-streampipe`, extract the NVIDIA benchmark archive:
 
    ```bash
-   $ tar xzf benchmark_nvidia_sources.tar.gz
+   tar xzf benchmark_nvidia_sources.tar.gz
    ```
 
    This provides `config_nv.json`, the `videos/` directory, and the
@@ -150,13 +150,13 @@ Below is an overview of how we conduct platform benchmark testing.
 2. Set the power mode to MAXN:
 
    ```bash
-   $ sudo nvpmodel -m 0
+   sudo nvpmodel -m 0
    ```
 
 3. Run the benchmark script with the NVIDIA platform selected:
 
    ```bash
-   $ ./scripts/auto_benchmark.sh \
+   ./scripts/auto_benchmark.sh \
        --platform nv \
        --test_time 300 \
        --warmup_time 180 \

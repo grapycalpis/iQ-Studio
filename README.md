@@ -89,11 +89,11 @@ For example, If you want to run the [iQ-VLM](./tutorials/applications/iqs-vlm/RE
 
 Launch the OGenie API server:
 ```bash
-$ iqs-launcher --autotag iqs-ogenie
+iqs-launcher --autotag iqs-ogenie
 ```
 Real-Time Display of VLM Predictions on the Monitor.
 ```bash
-$ iqs-launcher --autotag iqs-vlm-demo
+iqs-launcher --autotag iqs-vlm-demo
 ```
 This provides a real-time display of VLM predictions, allowing you to quickly verify the inference results.
 
