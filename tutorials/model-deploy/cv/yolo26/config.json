@@ -1,0 +1,18 @@
+{
+  "mAP": {
+    "annotations": "",
+    "fp_model": "",
+    "images": "",
+    "int_model": ""
+  },
+  "qc": {
+    "calib_dir": "",
+    "model": ""
+  },
+  "shared": {},
+  "test": {
+    "images": "",
+    "model": "",
+    "yaml": ""
+  }
+}
