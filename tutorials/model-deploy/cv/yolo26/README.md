@@ -1,6 +1,6 @@
 # Model Deploy: How to Convert, Optimize, and Perform Inference with YOLO26 Models ?
 
-This iQ-Studio tutorial shows a simple YOLO26 workflow for Qualcomm Dragonwing IQ9. It covers the default flow for INT8 quantization, conversion, quality assurance, and ADB-based inference.
+This iQ-Studio tutorial follows the [iQ-Foundry](https://github.com/InnoIPA/iQ-Foundry) YOLO26 workflow for EXMP-Q911 (Qualcomm QCS9075). It covers the default flow for INT8 quantization, conversion, quality assurance, and ADB-based inference.
 
 ![YOLO model deploy overview](./fig/yolo-model-deploy-overview.png)
 
@@ -11,6 +11,8 @@ This guide follows a straightforward end-to-end flow:
 1. Quantize and convert the FP32 YOLO model to INT8 `.tflite` model with Qualcomm AI Hub.
 2. Compare FP and INT8 model quality with mAP.
 3. Run inference on Qualcomm Dragonwing IQ9 through ADB.
+
+If you need pretrained YOLO weights (.pt), download the official models from [Ultralytics](https://docs.ultralytics.com/).
 
 ## Requirements
 
@@ -32,11 +34,11 @@ For more about ADB interaction, see [Interact with the system using adb](../../.
 
 ## Step 2. Clone the Repository and Set Up the Environment
 
-Clone the iQ-Studio repository, go to the YOLO26 tutorial directory, and source the setup script:
+Clone the iQ-Foundry repository, go to the repository directory, and source the setup script:
 
 ```bash
-git clone https://github.com/InnoIPA/iQ-Studio.git
-cd iQ-Studio/tutorials/model-deploy/cv/yolo26
+git clone https://github.com/InnoIPA/iQ-Foundry.git
+cd iQ-Foundry
 source setup.sh
 ```
 
@@ -58,6 +60,8 @@ qai-hub configure --api_token YOUR_API_TOKEN
 
 ## Step 4. Run the Modes
 
+> Note: The `--type` option supports `yolov10`, `yolov11`, and `yolov26`.
+
 Follow the steps for each mode below to convert the model (qc), evaluate its quality (mAP), and deploy YOLO inference (test).
 
 ### 1. QC
@@ -67,7 +71,7 @@ Follow the steps for each mode below to convert the model (qc), evaluate its qua
 Configure the required paths:
 
 ```bash
-python3 cli.py --configure qc
+python3 cli.py --type yolov26 --configure qc
 ```
 
 When prompted, enter the requested model and calibration paths.
@@ -77,7 +81,7 @@ When prompted, enter the requested model and calibration paths.
 Run the mode:
 
 ```bash
-python3 cli.py --mode qc
+python3 cli.py --type yolov26 --mode qc
 ```
 
 This generates the converted YOLO `.tflite` model in the output directory.
@@ -93,7 +97,7 @@ Output location: `out/model/yolov26/`
 Configure the required paths:
 
 ```bash
-python3 cli.py --configure mAP
+python3 cli.py --type yolov26 --configure mAP
 ```
 
 When prompted, enter the requested annotation, image, FP model, and INT8 model paths.
@@ -101,13 +105,13 @@ When prompted, enter the requested annotation, image, FP model, and INT8 model p
 Run the mode:
 
 ```bash
-python3 cli.py --mode mAP
+python3 cli.py --type yolov26 --mode mAP
 ```
 
 For a smaller validation run, you can limit the number of images:
 
 ```bash
-python3 cli.py --mode mAP --max-images 5
+python3 cli.py --type yolov26 --mode mAP --max-images 5
 ```
 
 This produces the FP versus INT8 quality comparison report.
@@ -123,7 +127,7 @@ Output location: `out/mAP_results/yolov26/`
 Configure the required paths:
 
 ```bash
-python3 cli.py --configure test
+python3 cli.py --type yolov26 --configure test
 ```
 
 When prompted, enter the requested model, YAML, and test image paths.
@@ -131,7 +135,7 @@ When prompted, enter the requested model, YAML, and test image paths.
 Run the mode:
 
 ```bash
-python3 cli.py --mode test
+python3 cli.py --type yolov26 --mode test
 ```
 
 This runs inference on the target and saves the generated result artifacts.
@@ -141,9 +145,11 @@ This runs inference on the target and saves the generated result artifacts.
   <img src="./fig/inference-output.png" alt="Inference output" width="640" />
 </p>
 
+This inference example was generated using a pretrained [Ultralytics YOLO26 model](https://docs.ultralytics.com/models/yolo26/).
+
 Output location: `out/test/yolov26/`
 
-> 💡 Tip: To review the currently saved mode paths, run `python3 cli.py --configure current`.
+> 💡 Tip: To review the currently saved mode paths, run `python3 cli.py --configure`.
 
 ## Additional Options
 
