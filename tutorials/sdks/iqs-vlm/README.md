@@ -12,14 +12,14 @@
 # User prompt customization
 You can design your own prompt to customize how the VLM responds and presents information.
 
-1. Go to the `tutorials/sdks/iqs-vlm` directory. Plsase check your in the correct directory.
+1. Go to the `tutorials/sdks/iqs-vlm` directory. Please ensure you are in the correct directory.
    ```bash
-   $ cd tutorials/sdks/iqs-vlm
+   cd tutorials/sdks/iqs-vlm
    ```
 2. Run the following to start the vlm demo
 
    ```bash
-   $ iqs-launcher --autotag iqs-vlm-demo
+   iqs-launcher --autotag iqs-vlm-demo
    ```
 3. After running the command, create a file named `iqs_vlm_prompt.txt` under the `tutorials/sdks/iqs-vlm`.
 

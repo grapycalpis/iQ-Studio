@@ -23,7 +23,7 @@ Currently, the following [APIs](https://ollama.readthedocs.io/en/api/) are suppo
 - `/api/tags`
 - `/api/chat`
 
-### Start the OGenie Server on the Platform
+## How to Deploy
 
 1. Before getting started, make sure OGenie is running on the target platform. You can start it using the following command.
     
@@ -35,7 +35,7 @@ Currently, the following [APIs](https://ollama.readthedocs.io/en/api/) are suppo
     >Note: If you are using Ubuntu, please log in again after installation.
     
     ```bash
-    $ iqs-launcher --autotag iqs-ogenie
+    iqs-launcher --autotag iqs-ogenie
     ```
     
     After starting the OGenie server, its URLs will be printed.
@@ -46,7 +46,7 @@ Currently, the following [APIs](https://ollama.readthedocs.io/en/api/) are suppo
     http://172.17.0.1:22434
     ```
 
-### Run the Example Code on the Host to Interact with OGenie
+## How to Use
 
 1. Prepare the Ollama environment on the host machine by installing Ollama with the following command: 
     
@@ -59,16 +59,16 @@ Currently, the following [APIs](https://ollama.readthedocs.io/en/api/) are suppo
     ```bash
     # Set the environment variable for your OGenie server
     # Replace <OGenie-server-IP:port> with your actual server address
-    $ export OLLAMA_HOST=http://<OGenie-server-IP:port>
+    export OLLAMA_HOST=http://<OGenie-server-IP:port>
     
     # Example:
-    $ export OLLAMA_HOST=http://192.168.3.223:22434
+    export OLLAMA_HOST=http://192.168.3.223:22434
     ```
     
 3. (Optional) The following API returns all models currently available on the OGenie server.
     
     ```bash
-    $ python3 -c "import ollama; print(ollama.list())"
+    python3 -c "import ollama; print(ollama.list())"
     
     # The model name appears under the 'model' key, for example:
     # 'model': 'llava2-7b:latest'

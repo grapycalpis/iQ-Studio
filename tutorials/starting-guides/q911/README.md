@@ -5,13 +5,13 @@ The Q911 family is built around the Qualcomm® IQ-9075 SoC. The product line cur
 
 | **Model** | **P/N** | **Description** | **Packing List** |
 | --- | --- | --- | --- |
-| EXMP-Q911 | EXMP-Q911-00A1-W1 | COM-HPC Mini Module By Qualcomm IQ-9075 | 1x IQ9 COM-HPC Mini Module <br/> 1x Cooler with Fan (secured onto the module) |
-| EXEC-Q911 | EXEC-Q911-00A1-W1 | COM-HPC Mini EVK By Qualcomm IQ-9075| 1x IQ9 COM-HPC Mini Module <br/> 1x 3.5” COM-HPC Mini Carrier (secured with the module) <br/> 1x Cooler with Fan (secured onto the module) <br/> 1x 60W power adapter <br/> 1x US power cord <br/> 1x Speaker*2 cable <br/> 1x D-SUB(F) cable (GPIO) <br/> 1x D-SUB(M) cable (CAN FD) <br/> 1x USB 2.0 A-TYPE(F)*2 cable <br/> 1x D-SUB(M) cable (COM) |
+| [EXMP-Q911](https://www.innodisk.com/en/products/computing/qualcomm-solution/exmp-q911) | EXMP-Q911-00A1-W1 | COM-HPC Mini Module By Qualcomm IQ-9075 | 1x IQ9 COM-HPC Mini Module <br/> 1x Cooler with Fan (secured onto the module) |
+| [EXEC-Q911](https://www.innodisk.com/en/products/computing/qualcomm-solution/exec-q911) | EXEC-Q911-00A1-W1 | COM-HPC Mini EVK By Qualcomm IQ-9075| 1x IQ9 COM-HPC Mini Module <br/> 1x 3.5” COM-HPC Mini Carrier (secured with the module) <br/> 1x Cooler with Fan (secured onto the module) <br/> 1x 60W power adapter <br/> 1x US power cord <br/> 1x Speaker*2 cable <br/> 1x D-SUB(F) cable (GPIO) <br/> 1x D-SUB(M) cable (CAN FD) <br/> 1x USB 2.0 A-TYPE(F)*2 cable <br/> 1x D-SUB(M) cable (COM) |
 | APEX-A100 | EXOC-Q911-00A1-W1 | Edge AI System By Qualcomm IQ-9075| 1x Fanless Edge AI System based on EXMP-Q911 module <br/> 1x 60W power adapter <br/> 1x US power cord |
 
 This guide focuses on the EXEC-Q911 and APEX-A100 platforms, providing an overview of their hardware and helping you get the system up and running quickly.
 
-Each device ships with either Yocto Linux or Ubuntu pre-flashed on the UFS storage, allowing you to power on the system and log in immediately.If you need to re-flash or update the system image, please refer to the
+Each device ships with either Yocto Linux or Ubuntu pre-flashed on the UFS storage, allowing you to power on the system and log in immediately. If you need to re-flash or update the system image, please refer to the
 [Q911 Image Flashing Guide](../flash-image/README.md).
 
 
@@ -64,6 +64,7 @@ Before you get started, please make sure you have the following items:
 - DisplayPort (DP) monitor  
 - USB keyboard & mouse  
 - Ethernet cable 
+- USB Type-C cable
 - USB-to-TTL serial adapter  
 - 60W power adapter
 
@@ -74,11 +75,30 @@ Please follow the steps below to boot the system.
 1. Please ensure that the jumper on the bottom side of the board is set to `Normal mode`.
 `EDL mode` should be used when flashing the system image.
 
+  <div align="center">
+    <table>
+      <tr>
+        <td align="center" width="50%" valign="bottom">
+          <img src="./fig/jumper_mode_normal.png" style="max-height: 100%; max-width: 100%;">
+        </td>
+        <td align="center" width="50%" valign="bottom">
+          <img src="./fig/jumper_mode_edl.png" style="max-height: 100%; max-width: 100%;">
+        </td>
+      </tr>
+      <tr>
+        <td align="center">Normal mode</td>
+        <td align="center">EDL mode</td>
+      </tr>
+    </table>
+  </div>
+
+2. Please ensure that all boot mode DIP switches are set to `ON`, so the system boots from `UFS`.
+
    <p align="center">
-    <img src="./fig/jumper_mode.png" style="width:50%;">
+    <img src="./fig/boot_mode_ufs.png" style="width:50%;">
   </p>
 
-2. Connect the power supply and press the power button to boot the system.
+3. Connect the power supply and press the power button to boot the system.
 
 
   <div align="center">
@@ -107,6 +127,8 @@ After the system boots, you can access the platform using one of the following m
 - DisplayPort monitor
 
 - SSH over Ethernet
+
+- ADB over USB Type-C
 
 - UART Debug Console
 
@@ -157,7 +179,7 @@ If you are accessing the system using a DP display, please follow the steps belo
 
 ### Interact with the System Using SSH over Ethernet
 
-If you are accessing the system using SSH to intract with system, please follow the steps below to set it up. If the Ubuntu does not have network connectivity, refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) on configuring the network.
+If you are accessing the system using SSH to interact with the system, please follow the steps below to set it up. If Ubuntu does not have network connectivity, refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) on configuring the network.
 
 1. Please connect an Ethernet cable and ensure that the device is reachable over the network. Then, connect the power cable and press the power button to boot the system.
 
@@ -183,7 +205,7 @@ If you are accessing the system using SSH to intract with system, please follow 
   - Use the following command to connect the Yocto Linux
 
     ```bash
-    $ ssh root@<target device ip address>
+    ssh root@<target device ip address>
     ```
 
      <p align="center">
@@ -193,10 +215,51 @@ If you are accessing the system using SSH to intract with system, please follow 
   - Use the following command to connect the ubuntu
 
     ```bash
-    $ ssh ubuntu@<target device ip address>
+    ssh ubuntu@<target device ip address>
     ```
      <p align="center">
       <img src="./fig/ubuntu_teminal.png" style="width:50%;">
+    </p>
+
+### Interact with the System Using ADB over USB Type-C
+
+If you are accessing the system using `adb` to interact with the system, please follow the steps below to set it up. The USB Type-C port on both platforms supports `Flash / ADB`.
+
+1. Connect the USB Type-C cable between the host and the device. Then, connect the power cable and press the power button to boot the system.
+
+  <div align="center">
+  <table>
+    <tr>
+      <td align="center"  width="50%" valign="bottom">
+        <img src="./fig/connect_adb_boot_flash.png" style="max-height: 100%; max-width: 100%;">
+      </td>
+      <td align="center"  width="50%" valign="bottom">
+        <img src="./fig/connect_adb_boot_flash_a100.png" style="max-height: 100%; max-width: 100%;">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">EXEC-Q911</td>
+      <td align="center">APEX-A100</td>
+    </tr>
+  </table>
+  </div>
+
+2. After the device boots up, use the following commands on the host to verify the device connection and open an interactive shell.
+
+    ```bash
+    adb devices
+    adb shell
+    ```
+
+3. You can run Linux commands from the `adb` shell. The example below checks the BSP version.
+
+    ```bash
+    adb shell
+    sh-5.2# cat /etc/innodisk/BSP-version
+    ```
+
+    <p align="center">
+      <img src="./fig/adb_usage_example.png" style="width:50%;">
     </p>
 
 ### Interact with the System Using UART Debug Console
@@ -224,7 +287,7 @@ If you are accessing the system using UART debug console to interact with the sy
 
 Depending on your needs:
 
-- [iQ-Studio](../../../README.md#application): It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.
+- [iQ-Studio](../../../README.md#explore-documentation--resources): It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.
 
 - [Application](../../applications/) — Reference ready-to-run demos illustrating how to build applications on the platform.
 

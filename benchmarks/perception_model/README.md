@@ -1,4 +1,4 @@
-# Perception AI benchmark between QCS9075-EVK and nvidia AGX orin
+# Perception AI benchmark between QCS9075-EVK and NVIDIA AGX Orin
 
 We conducted a benchmark comparison between two AI computing platforms with similar specifications, evaluating an NPU-based system and a GPU-based system. This benchmark aims to provide a reference for users who prioritize power efficiency and inference performance.
 
@@ -21,7 +21,7 @@ We conducted a benchmark comparison between two AI computing platforms with simi
 
 NPUs specialize in converting neural networks into hardware pipelines, optimizing the entire inference process for low latency and power efficiency. GPUs, on the other hand, are built for massive parallelism, executing the same computations across large batches of data, making them ideal for training deep neural networks. In practical applications, NPUs can achieve similar or even better inference efficiency than GPUs while consuming significantly less power.
 
-## Testing Specifications and Benchmark Commands
+## How to Deploy and Use
 
 We executed benchmarks on the following AI models using both platforms. For each platform below, we describe **how to obtain the models** and the **benchmark procedure/commands**.
 
@@ -31,7 +31,7 @@ We executed benchmarks on the following AI models using both platforms. For each
    Then, you can extract the `tflite_model.tar` file using the following command to obtain the models:
 
     ```bash
-    $ tar -xvf tflite_model.tar
+    tar -xvf tflite_model.tar
     ```
 
     | Model Name | Input Size |
@@ -46,7 +46,7 @@ We executed benchmarks on the following AI models using both platforms. For each
 2. Run the benchmark using the following command to ensure full delegation to the HTP backend
 
     ```bash
-    $ benchmark_model --graph=<model_path> \
+    benchmark_model --graph=<model_path> \
       --external_delegate_path=/usr/lib/libQnnTFLiteDelegate.so \
       --external_delegate_options='backend_type:htp;library_path:/usr/lib/libQnnHtp.so;skel_library_dir:/usr/lib/rfsa/adsp;htp_performance_mode=2' \
       --enable_op_profiling=true \
@@ -73,14 +73,14 @@ We executed benchmarks on the following AI models using both platforms. For each
 
 2. Convert the ONNX model into a serialized TensorRT Engine. The --int8 flag is enabled to leverage the Orin Tensor Cores for maximum throughput.
 
-    Note: If the ONNX model is exported with separate weights and network structure files, it is highly recommended to merge them into a single serialized ONNX file.
+    > Note: If the ONNX model is exported with separate weights and network structure files, it is highly recommended to merge them into a single serialized ONNX file.
     
     ```bash
-    $ /usr/src/tensorrt/bin/trtexec --onnx=<onnx_model_path> --saveEngine=<trt_model_path> --int8
+    /usr/src/tensorrt/bin/trtexec --onnx=<onnx_model_path> --saveEngine=<trt_model_path> --int8
     ```
 3. Execute the performance test using the generated Engine.
     ```bash
-    $ /usr/src/tensorrt/bin/trtexec \
+    /usr/src/tensorrt/bin/trtexec \
       --loadEngine=<trt_model_path> \
       --useSpinWait \
       --warmUp=10 \

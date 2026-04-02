@@ -23,10 +23,10 @@ inference**.
          <div align="left"><img width="50%" height="50%" src="./fig/innoppe.png"></div>
          <br />   
 
-  - InnoPPE was configured to process 10 video streams simultaneous(1 live UVC
+  - InnoPPE was configured to process 10 video streams simultaneously (1 live UVC
   camera and 9 locally stored video files).
 
-  - Multiple AI inference were executed concurrently to perform simultaneous
+  - Multiple AI inferences were executed concurrently to perform simultaneous
   recognition tasks.
 
 ## Hardware
@@ -74,19 +74,19 @@ Under the 10 channel(single UVC Cam, 9 Videos), the **IQ-9075-EVK** achieves per
 
 # Appendix: How do I execute the benchmark?
 
-## What do you need?
+## How to Deploy
 
 1. Three python
    [scripts](./scripts): `system_monitor.py`, `draw_csv.py` and `print_mean.py`
 
 2. `requirements.txt` for creating python virtual environment.
 
-### Start the benchmark
+## How to Use
 
 1. Run `system_monitor.py` to start monitoring system metrics.
 
    ```bash
-   $ python3 system_monitor.py
+   python3 system_monitor.py
    ```
 
    The data will be continuously written to `test.csv`. Press **Ctrl + C** to stop monitoring.
@@ -94,7 +94,7 @@ Under the 10 channel(single UVC Cam, 9 Videos), the **IQ-9075-EVK** achieves per
 2. After obtaining `test.csv`, run `draw_csv.py` to generate charts.
 
    ```bash
-   $ python3 draw_csv.py
+   python3 draw_csv.py
    ```
 
    The resulting charts will be saved in the `report/` directory.
@@ -108,7 +108,7 @@ Under the 10 channel(single UVC Cam, 9 Videos), the **IQ-9075-EVK** achieves per
 3. To calculate the average values of the collected metrics, run `print_mean.py`.
 
    ```bash
-   $ python3 print_mean.py
+   python3 print_mean.py
    ```
 
    ```

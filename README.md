@@ -14,8 +14,45 @@
 
   <h3 align="center">It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.</h3>
 
+> [!NOTE]
+> iQ-Studio is suitable for a range of products developed based on the [Innodisk Qualcomm Dragonwing SoC](https://www.innodisk.com/en/news/innodisk-unveils-ai-on-dragonwing-computing-series).
 
-# How to Use iQ Studio?
+
+# Core Software Stack & Architecture
+
+iQ-Studio is built upon a robust edge AI software stack, bridging the gap between hardware and high-level applications:
+
+<br />
+<div align="center"><img width="80%" height="80%" src="./docs/fig/ai_on_dragonwing_sw_stack.png"></div>
+<br />
+
+- **Hardware & Firmware**: [Qualcomm Dragonwing QCS9075 SoC](https://www.innodisk.com/en/products/computing/qualcomm-solution/exmp-q911) and low-level firmware.
+- **Kernel Space**: Powered by [Qualcomm Linux](https://www.qualcomm.com/developer/software/qualcomm-linux), integrated with our custom Inno DTB/drivers and Yocto environments. 
+- **User Space**: Seamlessly supports 3rd-party LLM SDKs, device management ([iCAP](https://www.innodisk.com/en/products/software-icap)), and inno AVL. At the very top sits the **[iQS-App layer](./README.md#explore-documentation--resources)** (VLM, Streampipe, YOLO, OGenie).
+
+### Qualcomm Linux (QLI) Version Mapping
+
+Our architecture evolves alongside the [Qualcomm Linux Roadmap](https://www.qualcomm.com/developer/software/qualcomm-linux), ensuring alignment with the latest kernel and Yocto Project releases:
+
+| Linux Kernel | Yocto Project | Qualcomm Linux (QLI) Release |
+| :--- | :--- | :--- |
+| **6.6 LTS** | 4.0 Kirkstone | QLI 1.x |
+| **6.6 LTS** | 5.0 Scarthgap | QLI 1.x |
+| **6.18 LTS** | Wrynose (Master) | QLI 2.x |
+
+<br />
+<div align="center"><img width="80%" height="80%" src="./docs/fig/qcl_roadmap.png"></div>
+<br />
+
+We ensure a continuous and stable pipeline—from upstream Linux/Yocto projects down to the optimized downstream drivers—unlocking peak performance for edge AI workloads.
+
+<br />
+<div align="center"><img width="80%" height="80%" src="./docs/fig/sw_development_pipeline.png"></div>
+<br />  
+
+We also provide integrated and supplied [Ubuntu images](https://ubuntu.com/download/qualcomm-iot#evaluation-kit) for development.
+
+# How to Deploy
 
 Before getting started, please refer to the [Starting Guides](./tutorials/starting-guides/) to boot up your platform. As with the Q911 series, please refer to the [EXMP-Q911 Starting Guide](./tutorials/starting-guides/q911/README.md).
 
@@ -44,31 +81,31 @@ git clone https://github.com/InnoIPA/iQ-Studio.git
 cd iQ-Studio
 ./install.sh
 ```
->Note: If you are using Ubuntu, please log in again after installation.
+> Note: If you are using Ubuntu, please log in again after installation.
 
-### Run Application
+## How to Use
 
-For example, If you want to run the [iQ-VLM](./tutorials/applications/iqs-vlm/README.md). You just need two command run the interative real-time demo.
+For example, If you want to run the [iQ-VLM](./tutorials/applications/iqs-vlm/README.md). You only need two command run the interative real-time demo.
 
-Launch OGenie API server.
+Launch the OGenie API server:
 ```bash
-$ iqs-launcher --autotag iqs-ogenie
+iqs-launcher --autotag iqs-ogenie
 ```
 Real-Time Display of VLM Predictions on the Monitor.
 ```bash
-$ iqs-launcher --autotag iqs-vlm-demo
+iqs-launcher --autotag iqs-vlm-demo
 ```
-This is provides a real-time display of VLM predictions, allowing you to quickly verify inference results.
+This provides a real-time display of VLM predictions, allowing you to quickly verify the inference results.
 
 <br />
 <div align="center"><img width="100%" height="100%" src="./tutorials/applications/iqs-vlm/fig/vlm-demo.gif"></div>
 <br />
 
-For other applications, please refer to the [application section below](#application).
+For other applications, please refer to the [documentation section below](#explore-documentation--resources).
 
-## Application
+## Explore Documentation & Resources
 
-iQ Studio applications are grouped into categories based on functionality:
+iQ Studio resources are grouped into categories based on functionality:
 
 
 <table>
@@ -85,7 +122,7 @@ iQ Studio applications are grouped into categories based on functionality:
   <tbody>
     <tr>
       <td>Starting Guides</td>
-      <td>Quick-start guides for evertthing.</td>
+      <td>Quick-start guides for everything.</td>
       <td>
         <ul>
           <li><a href="./tutorials/starting-guides/q911/README.md">Q911 Quick Start Guide</a></li>
@@ -112,6 +149,15 @@ iQ Studio applications are grouped into categories based on functionality:
           <li><a href="./tutorials/applications/iqs-vlm/README.md">iQS-VLM</a></li>
           <li><a href="./tutorials/applications/iqs-streampipe/README.md">iQS-Streampipe</a></li>
           <li><a href="./tutorials/applications/iqs-yolov10n/README.md">YOLOv10n INT8 Inference on GPU and NPU</a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Model Deploy</td>
+      <td>End-to-end guides for turning trained AI models into target-ready artifacts, covering quantization, conversion, quality validation, and on-device inference.</td>
+      <td>
+        <ul>
+          <li><a href="./tutorials/model-deploy/cv/yolo26/README.md">Model Deploy: How to Convert, Optimize, and Perform Inference with YOLO26 Models</a></li>
         </ul>
       </td>
     </tr>

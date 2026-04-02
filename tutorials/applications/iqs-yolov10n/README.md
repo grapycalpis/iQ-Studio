@@ -10,29 +10,29 @@
 
 >Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
 
-Inference with the YOLOv10n model was conducted on both NVIDIA AGX ORIN and Qualcomm EXMP-Q911 platforms, utilizing their respective GPU and NPU. A confidence threshold of 0.5 was applied, and the visual outputs were found to be highly comparable.
+Inference with the YOLOv10n model was conducted on both NVIDIA AGX Orin and Qualcomm EXMP-Q911 platforms, utilizing their respective GPU and NPU. A confidence threshold of 0.5 was applied, and the visual outputs were found to be highly comparable.
 
-# Jetson AGX ORIN
+# Jetson AGX Orin
 
 ## Platform information
 
 - RAM: 32GB
 - TensorRT SDK Version: 8.5.2.2
 
-### How to demo the model?
+### How to Use
 
 We are using the [Ultralytics](https://docs.ultralytics.com/models/yolov10/) framework as a reference
 
 - Convert model:
     
     ```bash
-    $ yolo export model=yolov10n.pt format=engine int8=True simplify opset=13 workspace=16
+    yolo export model=yolov10n.pt format=engine int8=True simplify opset=13 workspace=16
     ```
     
 - Inference:
     
     ```bash
-    $ yolo predict model=yolov10n.engine source=<image or videos>
+    yolo predict model=yolov10n.engine source=<image or videos>
     ```
     
 
@@ -43,17 +43,17 @@ We are using the [Ultralytics](https://docs.ultralytics.com/models/yolov10/) fra
 - RAM: 36GB
 - Qnn SDK Version: 2.38
 
-### How to demo the model?
+### How to Use
 
 Use the iqs-launcher to start the application.
 
 ```bash
-$ iqs-launcher --autotag iqs-yolov10n
+iqs-launcher --autotag iqs-yolov10n
 ```
 If you want to change the video, please put your video in the current directory.
 
 ```bash
-$ iqs-launcher --autotag iqs-yolov10n --other "-v <video_path>"
+iqs-launcher --autotag iqs-yolov10n --other "-v <video_path>"
 ```
 **Output location**: The predicted video will be saved in the `output` folder.
 

@@ -19,12 +19,14 @@ The set IDs are ordered on the screen from left to right, then from top to botto
 <div align="center"><img width="80%" height="80%" src="./fig/gif0.gif"></div>
 <br />
 
-# What You Need?
+# How to Deploy
+
+## What You Need?
 
 1. At least 3 GB of free disk space
 2. A monitor
 
-# How to Start?
+## How to Start?
     
 ```bash
 git clone https://github.com/InnoIPA/iQ-Studio.git
@@ -33,14 +35,14 @@ cd iQ-Studio
 ```
 >Note: If you are using Ubuntu, please log in again after installation.
 
-# Run the Demo    
+# How to Use
 1. Use iqs-launcher and autotag tools to automatically pull or build a compatible docker image.
     
     ```bash
-    $ iqs-launcher --autotag iqs-streampipe
+    iqs-launcher --autotag iqs-streampipe
     ```
     
-2. You will see in the screen.
+2. You will see it on the screen.
     >Note: The demo GIF may take some time to load. If it does not appear immediately, please wait.
     
     ![Recording 2025-08-13 at 15.22.58.gif](./fig/gif1.gif)
@@ -50,4 +52,4 @@ cd iQ-Studio
 For advanced features and usage examples, visit this [page](../../sdks/iqs-streampipe/README.md) to learn more.
 
 # Known Issue
-The current Qualcomm codec driver may under certain conditions, cause the system to restart unexpectedly. If this occurs, re-run the process to continue.
+The current Qualcomm codec driver may, under certain conditions, cause the system to restart unexpectedly. If this occurs, re-run the process to continue.
