@@ -1,4 +1,4 @@
 iqs-venv/
 mod/__pycache__/
-
+.codex
 dev/

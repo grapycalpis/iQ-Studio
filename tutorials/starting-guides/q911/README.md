@@ -11,8 +11,34 @@ The Q911 family is built around the Qualcomm® IQ-9075 SoC. The product line cur
 
 This guide focuses on the EXEC-Q911 and APEX-A100 platforms, providing an overview of their hardware and helping you get the system up and running quickly.
 
-Each device ships with either Yocto Linux or Ubuntu pre-flashed on the UFS storage, allowing you to power on the system and log in immediately. If you need to re-flash or update the system image, please refer to the
-[Q911 Image Flashing Guide](../flash-image/README.md).
+Each device ships with Yocto Linux pre-flashed on the UFS storage, so you can power on the system and log in immediately. Ubuntu is not pre-flashed by default. If you need to re-flash or update the system image, please refer to the [Q911 Image Flashing Guide](../flash-image/README.md).
+
+> Note: For re-flashing, please use the image provided by us. If you need a new BSP or an Ubuntu image, please contact us first. Images that are not provided by us may not keep all IO functions working correctly.
+
+## BSP Version Rules
+
+The BSP version uses the `Major.Minor.Patch` format.
+
+### Major
+
+| Value | Description |
+| --- | --- |
+| 0 | EXMP-Q911 EVT released |
+| 2 | EXMP-Q911 DVT released |
+
+### Minor
+
+| Value | Description |
+| --- | --- |
+| 0 | QLI 1.5 |
+| 1 | QLI 1.6 |
+| 2 | QLI 1.7 |
+| 3 | QLI 1.8 |
+
+### How to Check the BSP Version
+
+- Yocto Linux: run `cat /etc/innodisk/BSP-version`.
+- Ubuntu: the BSP version may not be exposed through the same file because Ubuntu is ported separately.
 
 
 ## What’s in the Box
@@ -132,7 +158,34 @@ After the system boots, you can access the platform using one of the following m
 
 - UART Debug Console
 
-Please refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) for detailed instructions on flashing the image and the steps required to enable networking on Ubuntu.
+Please refer to the [Q911 Image Flashing Guide](../flash-image/README.md#step-6-boot-into-the-system) for detailed instructions on flashing the image and the steps required to enable networking on Ubuntu.
+
+| Usage Method | System | Login Required |
+| --- | --- | --- |
+| Desktop | Yocto Linux | No |
+| Desktop | Ubuntu | Yes |
+| SSH | Yocto Linux | Yes |
+| SSH | Ubuntu | Yes |
+| ADB | Yocto Linux | No |
+| ADB | Ubuntu | Not supported |
+| UART | Yocto Linux | No |
+| UART | Ubuntu | Yes |
+
+### Default Credentials
+
+- Ubuntu
+
+  ```bash
+  Username: ubuntu
+  Password: ubuntu
+  ```
+
+- Yocto Linux
+
+  ```bash
+  Username: root
+  Password: oelinux123
+  ```
 
 ### Interact with the System Using a DP Display
 
@@ -179,7 +232,7 @@ If you are accessing the system using a DP display, please follow the steps belo
 
 ### Interact with the System Using SSH over Ethernet
 
-If you are accessing the system using SSH to interact with the system, please follow the steps below to set it up. If Ubuntu does not have network connectivity, refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) on configuring the network.
+If you are accessing the system using SSH to interact with the system, please follow the steps below to set it up.
 
 1. Please connect an Ethernet cable and ensure that the device is reachable over the network. Then, connect the power cable and press the power button to boot the system.
 
