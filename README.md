@@ -52,6 +52,8 @@ We ensure a continuous and stable pipeline—from upstream Linux/Yocto projects 
 
 We also provide integrated and supplied [Ubuntu images](https://ubuntu.com/download/qualcomm-iot#evaluation-kit) for development.
 
+> Note: If you want to run Ubuntu and make sure all IO functions work correctly, please contact us to obtain a validated image. The official Ubuntu image from Qualcomm can boot on the platform, but it does not guarantee that all IO functions will work correctly on our platform.
+
 # How to Deploy
 
 Before getting started, please refer to the [Starting Guides](./tutorials/starting-guides/) to boot up your platform. As with the Q911 series, please refer to the [EXMP-Q911 Starting Guide](./tutorials/starting-guides/q911/README.md).

@@ -2,17 +2,38 @@
 
 This guide provides instructions for flashing or updating the system image on the Q911 platforms, including EXEC-Q911 and APEX-A100.
 
+If you need a new flash package, please contact us first. We mainly provide Yocto Linux images. If you want to run Ubuntu and make sure all IO functions work correctly, please contact us to obtain a validated image.
+
 The steps below ensure that your flashing process completes successfully, as the hardware must be switched to the correct mode before flashing.
 
 
-## Step 1: Prepare the Host Environment and Target Connection
+## Host and Target Setup
 
-When you need to update the BSP or recover a corrupted system, you can directly refer to [Qualcomm’s instructions for prerequisites](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#prerequisites) to verify the prerequisites. 
+When you need to update the BSP or recover a corrupted system, please first check the prerequisites in [Qualcomm’s instructions for flashing software](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#prerequisites). We usually use Ubuntu as the host system, so please make sure the host environment is ready before you start.
 
-For the initial setup, if you are using Ubuntu as the host system, you must configure the USB-to-Type-C connection on the host according to Qualcomm’s official guide.
-Please follow Steps 1–2 in [Flash Dragonwing IQ-9075 EVK Integrated Image on an Ubuntu Host](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#panel-0-0-0tab$flash-dragonwing-iq-9075-evk-integrated-image-on-ubuntu-host).
+For the initial setup on an Ubuntu host, please follow Steps 1-2 in [Flash Dragonwing IQ-9075 EVK Integrated Image on an Ubuntu Host](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#panel-0-0-0tab$flash-dragonwing-iq-9075-evk-integrated-image-on-ubuntu-host).
 
-Please connect the USB Type-C cable to the port labeled `Flash / ADB` on the target device.
+<div align="center">
+  <img src="./fig/host_target.png" style="width:75%;">
+</div>
+
+## Step 1: Prepare the Board for Flashing
+
+Set the jumper on the bottom side of the board to `EDL mode`.
+
+  <p align="center">
+    <img src="../q911/fig/jumper_mode_edl.png" style="width:50%;">
+  </p>
+
+Please also confirm that all boot mode DIP switches are set to `ON`, as shown below, so the system can boot from `UFS`.
+
+  <p align="center">
+    <img src="../q911/fig/boot_mode_ufs.png" style="width:50%;">
+  </p>
+
+## Step 2: Connect the Target
+
+Connect the USB Type-C cable to the port labeled `Flash / ADB` on the target device.
 
   <div align="center">
     <table>
@@ -31,18 +52,9 @@ Please connect the USB Type-C cable to the port labeled `Flash / ADB` on the tar
     </table>
   </div>
 
-## Step 2: Set the Board to EDL Mode
+## Step 3: Power On
 
-After completing the required preparations, please ensure that the jumper on the bottom side of the board is set to `EDL mode`.
-
-  <p align="center">
-    <img src="../q911/fig/jumper_mode_edl.png" style="width:50%;">
-  </p>
-
-
-## Step 3: Power on
-
-Connect the power supply and press the power button to power on. 
+After the board is set to `EDL mode` and all boot mode DIP switches are confirmed to be `ON`, connect the power supply and press the power button.
 
 
   <div align="center">
@@ -65,16 +77,16 @@ Connect the power supply and press the power button to power on.
 
 ## Step 4: Flash the Image
 
-1. After verifying all prerequisites, you can extract the package on the host and run the flashing command.
+1. After verifying all prerequisites, extract the image package provided by us on the host.
 
     ```bash
-        unzip image.zip
-        cd image
+    unzip image.zip
+    cd image
     ```
-    ```bash
 
-    # You will see a list of files similar to the ones shown below. 
-    # Only a portion is displayed here — your folder will contain more files.
+    You will see files similar to the list below. Only part of the tree is shown here.
+
+    ```text
     .
     ├── aop.mbn
     ├── cpucp.elf
@@ -83,11 +95,11 @@ Connect the power supply and press the power button to power on.
     ├── el2-dtb.bin
     ├── gpt_backup0.bin
     ├── gpt_backup1.bin
-        .
-        .
-        .
+    .
+    .
+    .
     ```
-2. Please refer to the official Qualcomm documentation for the exact command usage, and follow Step 3 in “Flash Dragonwing IQ-9075 EVK Integrated Image on an Ubuntu Host”: [Qualcomm Documentation](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#panel-0-0-0tab$flash-dragonwing-iq-9075-evk-integrated-image-on-ubuntu-host).
+2. Use the exact flashing command from the official Qualcomm documentation. Follow Step 3 in [Flash Dragonwing IQ-9075 EVK Integrated Image on an Ubuntu Host](https://docs.qualcomm.com/doc/80-90441-252/topic/Integrate-and-flash-software.html?product=1601111740076074&facet=Ubuntu%20quickstart#panel-0-0-0tab$flash-dragonwing-iq-9075-evk-integrated-image-on-ubuntu-host).
 
 If the flashing process completes successfully, you will see output similar to the following.
     <p align="center">
@@ -96,15 +108,15 @@ If the flashing process completes successfully, you will see output similar to t
 
 
 
-## Step 5: Power Off and Set the Board to Normal Mode
+## Step 5: Switch Back to Normal Boot Mode
 
-Please ensure that the jumper on the bottom side of the board is set to `Normal mode`.
+After the flashing process is complete, power off the device and set the jumper on the bottom side of the board to `Normal mode`.
 
   <p align="center">
     <img src="../q911/fig/jumper_mode_normal.png" style="width:50%;">
   </p>
 
-Please also ensure that all boot mode DIP switches are set to `ON`, so the system boots from `UFS`.
+Please also confirm that all boot mode DIP switches are set to `ON`, as shown below, so the system boots from `UFS`.
 
   <p align="center">
     <img src="../q911/fig/boot_mode_ufs.png" style="width:50%;">
@@ -112,23 +124,12 @@ Please also ensure that all boot mode DIP switches are set to `ON`, so the syste
 
 ## Step 6: Boot into the System
 
-Each operating system has different default login credentials:
+After the board is back in `Normal mode`, power on the device and boot into the system.
 
-- Yocto Linux
+After the system boots, please refer to the [Q911 Quick Start Guide: Interact with the System](../q911/README.md#step-3-interact-with-the-system) for the supported interaction methods, including DisplayPort, SSH, ADB, and UART.
 
-  ```bash
-    Username: root
-    Password: oelinux123
-  ```
-- Ubuntu (You will be asked to set a new password after logging in for the first time.)
-  ```bash
-    Username: ubuntu
-    Password: ubuntu
-  ```
-    - For Ubuntu, the network configuration will not be enabled until the iq-ubuntu.deb package is installed. Please follow the steps below to complete the installation: 
-    
-    1. Use a USB storage device to copy the `iq-ubuntu.deb` to the system. The `iq-ubuntu.deb` package is included in the BSP’s image folder.
-    2. Install the package using the command: `sudo apt install </path/to/iq-ubuntu.deb>`
-    3. Reboot the system. Network functionality will be available after the restart.
+If you log in to Ubuntu and find that the network is not available, you can install the `iq-ubuntu.deb` package provided by us by following the steps below:
 
-For additional usage instructions, please refer to the [Q911 Quick Start Guide](../q911/README.md).
+1. Use a USB storage device to copy the `iq-ubuntu.deb` file to the system. The package is included in the BSP image folder.
+2. Install the package using `sudo apt install </path/to/iq-ubuntu.deb>`.
+3. Reboot the system. Network functionality will be available after the restart.
