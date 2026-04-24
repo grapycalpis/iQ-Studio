@@ -27,7 +27,7 @@ iQ-Studio is built upon a robust edge AI software stack, bridging the gap betwee
 <br />
 
 - **Hardware & Firmware**: [Qualcomm Dragonwing QCS9075 SoC](https://www.innodisk.com/en/products/computing/qualcomm-solution/exmp-q911) and low-level firmware.
-- **Kernel Space**: Powered by [Qualcomm Linux](https://www.qualcomm.com/developer/software/qualcomm-linux), integrated with our custom Inno DTB/drivers and Yocto environments. 
+- **Kernel Space**: Powered by [Qualcomm Linux](https://www.qualcomm.com/developer/software/qualcomm-linux), integrated with our custom [Inno DTB/drivers and Yocto environments](https://github.com/InnoIPA/meta-iQ__manifest). 
 - **User Space**: Seamlessly supports 3rd-party LLM SDKs, device management ([iCAP](https://www.innodisk.com/en/products/software-icap)), and inno AVL. At the very top sits the **[iQS-App layer](./README.md#explore-documentation--resources)** (VLM, Streampipe, YOLO, OGenie).
 
 ### Qualcomm Linux (QLI) Version Mapping
@@ -45,6 +45,8 @@ Our architecture evolves alongside the [Qualcomm Linux Roadmap](https://www.qual
 <br />
 
 We ensure a continuous and stable pipeline—from upstream Linux/Yocto projects down to the optimized downstream drivers—unlocking peak performance for edge AI workloads.
+
+Our BSP foundation is published through [InnoIPA/meta-iQ__manifest](https://github.com/InnoIPA/meta-iQ__manifest), providing a reproducible Qualcomm Yocto-based system base for EXMP-Q911 and the QCS9075 iQ-9075 EVK. iQ-Studio builds on this foundation with application demos, AVL checks, benchmarks, and `iqs-launcher` compatibility handling, helping users evaluate and deploy edge AI workloads with greater confidence.
 
 <br />
 <div align="center"><img width="80%" height="80%" src="./docs/fig/sw_development_pipeline.png"></div>

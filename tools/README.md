@@ -6,7 +6,7 @@
 -->
 # iQ-Studio Contributor Tools
 
-This directory contains automation scripts designed to maintain the high quality and consistency of the iQ-Studio documentation. Contributors are encouraged to use these tools to ensure compliance with the [IQS_FORMATTING.md](../IQS_FORMATTING.md) standards before submitting a Pull Request.
+This directory contains automation scripts designed to maintain the high quality and consistency of the iQ-Studio documentation. Contributors are encouraged to use these tools to ensure compliance with the [iq-studio-formatting](../.agents/skills/iq-studio-formatting/SKILL.md) standards before submitting a Pull Request.
 
 ---
 
@@ -60,18 +60,8 @@ python tools/get_headings.py
 ### `fix_bash_tags.py`
 *   **Input**: Markdown files with untagged code blocks (e.g., ` ``` ` followed immediately by a command).
 *   **Output**: **In-place modification** of the files.
-    *   **Example Input**:
-        ```markdown
-        ```
-        git clone ...
-        ```
-        ```
-    *   **Example Output**:
-        ```markdown
-        ```bash
-        git clone ...
-        ```
-        ```
+    *   **Example Input**: An unlabeled command fence around `git clone ...`.
+    *   **Example Output**: The fence is rewritten with a `bash` language label.
 
 ### `get_headings.py`
 *   **Input**: All Markdown files in the repository.

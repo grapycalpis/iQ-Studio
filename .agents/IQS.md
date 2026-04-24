@@ -4,9 +4,20 @@
  This software is released under the MIT License.
  https://opensource.org/licenses/MIT
 -->
-# iQ-Studio Development & AI Agent Guidelines
+# iQ-Studio Agent Entry Guide
 
-This document serves as the supreme principle manual for iterating and developing iQ-Studio. It outlines the core philosophy, project structure, technical standards, and the required process for both human developers and AI agents (like Claude/Antigravity) working on this repository.
+This document is the durable entrypoint for AI agents and human developers working on iQ-Studio. It explains the project intent, routes work to the right repo skill, and defines verification expectations.
+
+## 0. Skill Routing
+
+Use the focused skills in `.agents/skills/` instead of duplicating rules here:
+
+- `iq-studio-agent`: general iQ-Studio repository work, launcher changes, tutorials, benchmarks, AVL docs, SDK docs, model-deploy docs, and task routing.
+- `iq-studio-literacy`: documentation language quality, official naming, capitalization, status wording, punctuation, and professional English.
+- `iq-studio-formatting`: Markdown structure, headings, image paths, notes, relative links, code blocks, and audit-tool compliance.
+- `iq-studio-commit-log`: commit message drafting, commit-log review, staging scope checks, and commit-splitting guidance.
+
+For Markdown work, use both `iq-studio-literacy` and `iq-studio-formatting`. For code-only launcher work, start with `iq-studio-agent` and load the documentation skills only when docs are touched.
 
 ## 1. Core Philosophy
 
@@ -46,17 +57,11 @@ When adding new features or applications, strictly adhere to the existing direct
 - **Virtual Environments**: Ensure Python scripts are executed within `iqs-venv` in a controlled manner.
 
 ### Markdown & Documentation
-The quality of iQ-Studio documentation directly impacts the user experience. 
+The quality of iQ-Studio documentation directly impacts the user experience.
 
-- **Formatting Standards**: Strictly follow [IQS_FORMATTING.md](./IQS_FORMATTING.md) for structural details (image paths, note syntax, code labels, and link relativity).
-- **Literacy Standards**: Strictly follow [IQS_LITERACY.md](./IQS_LITERACY.md) for linguistic quality, nomenclature consistency (e.g., NVIDIA/Qualcomm capitalization), and grammatical accuracy.
-- **Core README Structure**:
-    - Every core README must feature a **`Core Software Stack & Architecture`** section with layered diagrams.
-    - Installation and setup sections must be titled **`How to Deploy`** (strictly for root README and `tutorials/applications/`).
-    - **`Explore Documentation & Resources`** serves as the central hub for all categories.
-    - **`How to Use`** is reserved for high-level interaction and execution commands.
-- **Contextual Strategy**: For `benchmarks/`, `sdks/`, and `avl/`, use the **Contextual Wording Strategy** as detailed in [IQS_FORMATTING.md](./IQS_FORMATTING.md#2-heading-strategy-headings).
-- **Version Transparency**: For major platform updates, providing a mapping table (Linux Kernel vs Yocto vs QLI) is mandatory.
+- Use `iq-studio-literacy` for prose, naming, capitalization, grammar, and status wording.
+- Use `iq-studio-formatting` for headings, image paths, notes, links, code blocks, and audit-tool compliance.
+- For major platform updates, provide a mapping table such as Linux Kernel vs Yocto vs QLI when that context is relevant.
 
 ## 4. AI Agent Workflow
 
@@ -71,13 +76,13 @@ When processing a user request in this repository, follow these strict steps:
 1. Write/Modify the code or markdown incrementally. Ensure syntax correctness.
 2. If updating `mod/`, heavily consider how it might break `launcher.py` and existing applications.
 3. For documentation updates, painstakingly verify that relative paths to images and other markdowns are mathematically correct relative to the file location.
-4. **Apply Literacy & Formatting Standards**: Before committing, double-check for typos, capitalization, and grammar against the standards in [IQS_LITERACY.md](./IQS_LITERACY.md) and [IQS_FORMATTING.md](./IQS_FORMATTING.md).
+4. **Apply Documentation Skills**: When Markdown changes, use `iq-studio-literacy` and `iq-studio-formatting` before finishing.
 
 ### Phase 3: Verification & Polish
 1. Check that the main `README.md` requires an update (e.g., adding a new tutorial to the Categories table).
-2. Check if the `IQS.md` in the root directory should be explicitly updated to reflect the new feature.
+2. Check if this `.agents/IQS.md` entrypoint should be explicitly updated to reflect the new feature or workflow.
 3. **Reflect & Distill**: Before finishing, ask: "Did I learn a new pattern or encounter a friction point that should be documented in `IQS.md`?" If yes, update this document immediately.
-4. Review your changes against this `IQS.md`, `IQS_FORMATTING.md`, and `IQS_LITERACY.md` to ensure absolute compliance.
+4. Review your changes against this entry guide and any focused skills used for the task.
 
 ## 5. Continuous Evolution (Living Principles)
 
