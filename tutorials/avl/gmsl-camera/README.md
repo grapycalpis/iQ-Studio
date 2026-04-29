@@ -181,7 +181,15 @@ gst-launch-1.0 -e qtiqmmfsrc exposure-mode=off manual-exposure-time=10000000000 
 videoconvert ! v4l2h264enc ! h264parse ! mp4mux ! filesink location=test.mp4
 ```
 
-### 2. Multi-Channel (8-Channel) Stream
+### 2. Multi-Channel
+
+Switching between different cameras can be done by changing the index number after the `camera=` parameter.
+
+> 🔔 **Note:**
+> 1. `camera=1` must be enabled first before using `camera=0`.
+> 2. Please wait more than 5 seconds between each `gst-launch` command.
+
+### 3. 8 Channel Stream
 The following scripts demonstrate how to display eight-channel GMSL video streams.
 
 #### Yocto Linux
