@@ -122,7 +122,7 @@ To deploy the camera drivers and configuration, follow these steps:
 1. Copy the `.tar.gz` release package to the target platform:
     
     ```bash
-    scp release/<module_name>.tar.gz <target_ip>:/home/root/
+    $ scp release/<module_name>.tar.gz <target_ip>:/home/root/
     ```
     
 2. Install the package based on your operating system and reboot:
@@ -131,26 +131,35 @@ To deploy the camera drivers and configuration, follow these steps:
 1. Remount the filesystem as read-write and install the `.ipk` file:
     
     ```bash
-    mount -o rw,remount /usr
-    opkg --nodeps install ./ev2m_oom3.ipk --force-reinstall
-    reboot
+    $ mount -o rw,remount /usr
+    $ tar -xzvf ${name}.tar.gz -C /usr/lib/camera
+    $ reboot
     ```
     
 ### Ubuntu 24.04 (x07)
 1. Configure the package sources for version x07:
     ```bash
-    sudo sed -i 's|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa/ubuntu|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa-snapshot-x07/ubuntu|' /etc/apt/sources.list.d/ubuntu-qcom-iot-ubuntu-qcom-ppa-noble.sources
+    $ sudo sed -i 's|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa/ubuntu|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa-snapshot-x07/ubuntu|' /etc/apt/sources.list.d/ubuntu-qcom-iot-ubuntu-qcom-ppa-noble.sources
     ```
 2. Update the system and install the required samples:
     ```bash
-    sudo apt update -y && sudo apt upgrade -y
-    sudo apt install gstreamer1.0-qcom-sample-apps -y
+    $ sudo apt update -y && sudo apt upgrade -y
+    $ sudo apt install gstreamer1.0-qcom-sample-apps -y
     ```
 3. Extract the release package to the camera library directory:
     ```bash
-    sudo tar -xzvf release/${name}.tar.gz -C /usr/lib/camera
-    sudo reboot
+    $ sudo tar -xzvf ${name}.tar.gz -C /usr/lib/camera
+    $ sudo reboot
     ```
+
+## How to Switch Modules
+
+To switch to a different camera module, install the package for the module you want to replace, then reboot the system:
+
+```bash
+$ tar -xzvf <module_name>.tar.gz -C /usr/lib/camera
+$ reboot
+```
 
 ## How to Use
 
@@ -166,8 +175,8 @@ HMSMaxDelayedJobCount=8
 ### 1. Single Channel Stream
 To capture a single stream and encode it to MP4:
 ```bash
-pkill cam-server && sleep 5
-gst-launch-1.0 -e qtiqmmfsrc exposure-mode=off manual-exposure-time=10000000000 name=camsrc camera=0 ! \
+$ pkill cam-server && sleep 5
+$ gst-launch-1.0 -e qtiqmmfsrc exposure-mode=off manual-exposure-time=10000000000 name=camsrc camera=0 ! \
 'video/x-raw,width=1920,height=1080,framerate=30/1' ! \
 videoconvert ! v4l2h264enc ! h264parse ! mp4mux ! filesink location=test.mp4
 ```
@@ -180,8 +189,8 @@ The following scripts demonstrate how to display eight-channel GMSL video stream
 <summary>EV3F-ZSM1 (8-Channel Display)</summary>
 
 ```bash
-pkill cam-server && sleep 15 &&
-GST_GL_API=gles2 XDG_RUNTIME_DIR=/dev/socket/weston WAYLAND_DISPLAY=wayland-1 \
+$ pkill cam-server && sleep 15 &&
+$ GST_GL_API=gles2 XDG_RUNTIME_DIR=/dev/socket/weston WAYLAND_DISPLAY=wayland-1 \
 gst-camera-per-port-example --custom <<EOF
 1 0 2 3 5 4 6 7
 1
@@ -232,8 +241,8 @@ EOF
 <summary>EVDF-OOM1 (8-Channel Display)</summary>
 
 ```bash
-pkill cam-server && sleep 15 &&
-GST_GL_API=gles2 XDG_RUNTIME_DIR=/dev/socket/weston WAYLAND_DISPLAY=wayland-1 \
+$ pkill cam-server && sleep 15 &&
+$ GST_GL_API=gles2 XDG_RUNTIME_DIR=/dev/socket/weston WAYLAND_DISPLAY=wayland-1 \
 gst-camera-per-port-example --custom <<EOF
 1 0 2 3 5 4 6 7
 1
@@ -283,16 +292,16 @@ EOF
 #### Ubuntu 24.04
 > ⚠️ **Warning:** You must create the following link first to resolve a known issue in Ubuntu x07:
 ```bash
-sudo ln -s /usr/lib/aarch64-linux-gnu/libfastcvopt.so.1 /usr/lib/libfastcvopt.so.1
+$ sudo ln -s /usr/lib/aarch64-linux-gnu/libfastcvopt.so.1 /usr/lib/libfastcvopt.so.1
 ```
 
 <details>
 <summary>EV3F-ZSM1 (8-Channel Display)</summary>
 
 ```bash
-sudo pkill cam-server
-sleep 12
-gst-camera-per-port-example --custom <<EOF
+$ sudo pkill cam-server
+$ sleep 12
+$ gst-camera-per-port-example --custom <<EOF
 1 0 2 3 5 4 6 7
 1
 1920
@@ -342,9 +351,9 @@ EOF
 <summary>EVDF-OOM1 (8-Channel Display)</summary>
 
 ```bash
-sudo pkill cam-server
-sleep 12
-gst-camera-per-port-example --custom <<EOF
+$ sudo pkill cam-server
+$ sleep 12
+$ gst-camera-per-port-example --custom <<EOF
 1 0 2 3 5 4 6 7
 1
 1920

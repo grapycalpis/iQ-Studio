@@ -68,7 +68,7 @@ To deploy the camera drivers and configuration, follow these steps:
 
 1. Copy the `.tar.gz` release package to the target platform:
     ```bash
-    scp release/<module_name>.tar.gz <target_ip>:/home/root/
+    $ scp release/<module_name>.tar.gz <target_ip>:/home/root/
     ```
     
 2. Install the package based on your operating system and reboot:
@@ -76,26 +76,35 @@ To deploy the camera drivers and configuration, follow these steps:
 ### Yocto Linux 1.6
 1. Remount the filesystem as read-write and extract the package:
     ```bash
-    mount -o rw,remount /usr
-    tar -xzvf release/<module_name>.tar.gz -C /usr/lib/camera
-    reboot
+    $ mount -o rw,remount /usr
+    $ tar -xzvf <module_name>.tar.gz -C /usr/lib/camera
+    $ reboot
     ```
             
 ### Ubuntu 24.04 (x07)
 1. Configure the package sources for version x07:
     ```bash
-    sudo sed -i 's|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa/ubuntu|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa-snapshot-x07/ubuntu|' /etc/apt/sources.list.d/ubuntu-qcom-iot-ubuntu-qcom-ppa-noble.sources
+    $ sudo sed -i 's|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa/ubuntu|URIS: https://ppa.launchpadcontent.net/ubuntu-qcom-iot/qcom-ppa-snapshot-x07/ubuntu|' /etc/apt/sources.list.d/ubuntu-qcom-iot-ubuntu-qcom-ppa-noble.sources
     ```
 2. Update the system and install the required samples:
     ```bash
-    sudo apt update -y && sudo apt upgrade -y
-    sudo apt install gstreamer1.0-qcom-sample-apps -y
+    $ sudo apt update -y && sudo apt upgrade -y
+    $ sudo apt install gstreamer1.0-qcom-sample-apps -y
     ```
 3. Extract the release package to the camera library directory:
     ```bash
-    sudo tar -xzvf release/<module_name>.tar.gz -C /usr/lib/camera
-    sudo reboot
+    $ sudo tar -xzvf <module_name>.tar.gz -C /usr/lib/camera
+    $ sudo reboot
     ```
+
+## How to Switch Modules
+
+To switch to a different camera module, install the package for the module you want to replace, then reboot the system:
+
+```bash
+$ tar -xzvf <module_name>.tar.gz -C /usr/lib/camera
+$ reboot
+```
 
 ## How to Use
 
@@ -106,8 +115,8 @@ If the camera is properly connected and the required drivers are installed, you 
 To capture a single stream and encode it to MP4:
 
 ```bash
-pkill cam-server && sleep 5
-gst-launch-1.0 -e qtiqmmfsrc exposure-mode=off manual-exposure-time=10000000000 name=camsrc camera=0 ! \
+$ pkill cam-server && sleep 5
+$ gst-launch-1.0 -e qtiqmmfsrc exposure-mode=off manual-exposure-time=10000000000 name=camsrc camera=0 ! \
 'video/x-raw,width=1920,height=1080,framerate=30/1' ! \
 videoconvert ! v4l2h264enc ! h264parse ! mp4mux ! filesink location=test.mp4
 ```
