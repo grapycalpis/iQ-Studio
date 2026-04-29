@@ -77,7 +77,7 @@ To deploy the camera drivers and configuration, follow these steps:
 1. Remount the filesystem as read-write and extract the package:
     ```bash
     mount -o rw,remount /usr
-    tar -xzvf release/<module_name>.tar.gz -C /usr/lib/camera
+    tar -xzvf <module_name>.tar.gz -C /usr/lib/camera
     reboot
     ```
             
@@ -93,9 +93,18 @@ To deploy the camera drivers and configuration, follow these steps:
     ```
 3. Extract the release package to the camera library directory:
     ```bash
-    sudo tar -xzvf release/<module_name>.tar.gz -C /usr/lib/camera
+    sudo tar -xzvf <module_name>.tar.gz -C /usr/lib/camera
     sudo reboot
     ```
+
+## How to Switch Modules
+
+To switch to a different camera module, install the package for the module you want to replace, then reboot the system:
+
+```bash
+tar -xzvf <module_name>.tar.gz -C /usr/lib/camera
+reboot
+```
 
 ## How to Use
 
