@@ -17,6 +17,7 @@ This directory contains automation scripts designed to maintain the high quality
 | **`audit_content.py`** | Validates document compliance (images, quotes, links, tags). | **Analysis/Audit** |
 | **`fix_bash_tags.py`** | Automatically fixes missing language tags in code blocks. | **Modification** |
 | **`get_headings.py`** | Extracts and displays the heading hierarchy of all Markdown files. | **Overview/Navigation** |
+| **`compress_gifs.sh`** | Scans for GIFs >= 20 MB; with `--apply`, re-encodes via `gifski --quality 70`. | **Analysis/Audit + Modification** |
 
 ---
 
@@ -41,6 +42,16 @@ Use this to get a quick bird's-eye view of all document structures.
 ```bash
 python tools/get_headings.py
 ```
+
+### Audit GIF Sizes
+Use this to find demo GIFs that are too large and may need compression.
+```bash
+bash tools/compress_gifs.sh                  # report files >= 20 MB
+bash tools/compress_gifs.sh --apply          # also compress them (gifski --quality 70)
+bash tools/compress_gifs.sh --apply <path>   # limit scope to a path
+```
+
+> Note: `--apply` requires `ffmpeg` and `gifski` in PATH.
 
 ---
 
