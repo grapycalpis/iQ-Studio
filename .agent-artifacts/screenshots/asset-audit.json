@@ -1,0 +1,760 @@
+{
+  "/": {
+    "imgs": [
+      [
+        "docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "./tutorials/applications/iqs-vlm/fig/vlm-demo.gif",
+        200,
+        19297222
+      ],
+      [
+        "./docs/fig/ai_on_dragonwing_sw_stack.png",
+        200,
+        292503
+      ],
+      [
+        "./docs/fig/qcl_roadmap.png",
+        200,
+        102383
+      ],
+      [
+        "./docs/fig/sw_development_pipeline.png",
+        200,
+        219156
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "tutorials/starting-guides/",
+        200
+      ],
+      [
+        "tutorials/sdks/",
+        200
+      ],
+      [
+        "benchmarks/",
+        200
+      ],
+      [
+        "docs/changelog/",
+        200
+      ],
+      [
+        "tutorials/applications/",
+        200
+      ],
+      [
+        "tutorials/model-deploy/",
+        200
+      ],
+      [
+        "./README.md#explore-documentation--resources",
+        404
+      ],
+      [
+        "docs/how-to-use-iqs-launcher/",
+        200
+      ],
+      [
+        "tutorials/starting-guides/q911/",
+        200
+      ],
+      [
+        "./tutorials/starting-guides/README.md",
+        404
+      ],
+      [
+        "./tutorials/starting-guides/q911/README.md",
+        404
+      ],
+      [
+        "./tutorials/starting-guides/flash-image/README.md",
+        404
+      ],
+      [
+        "./tutorials/starting-guides/ota/README.md",
+        404
+      ],
+      [
+        "./tutorials/avl/README.md",
+        404
+      ],
+      [
+        "./tutorials/avl/gmsl-camera/README.md",
+        404
+      ],
+      [
+        "./tutorials/avl/mipi-camera/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/iqs-vlm/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/iqs-streampipe/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/iqs-yolov10n/README.md",
+        404
+      ],
+      [
+        "./tutorials/model-deploy/README.md",
+        404
+      ],
+      [
+        "./tutorials/model-deploy/cv/yolo26/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/iqs-vlm/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/iqs-streampipe/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/iqs-ogenie/README.md",
+        404
+      ],
+      [
+        "./benchmarks/README.md",
+        404
+      ],
+      [
+        "./benchmarks/innoppe/README.md",
+        404
+      ],
+      [
+        "./benchmarks/iqs-streampipe/README.md",
+        404
+      ],
+      [
+        "./benchmarks/perception_model/README.md",
+        404
+      ],
+      [
+        "./LICENSE",
+        404
+      ]
+    ],
+    "internal_link_404": [
+      [
+        "./README.md#explore-documentation--resources",
+        404
+      ],
+      [
+        "./tutorials/starting-guides/README.md",
+        404
+      ],
+      [
+        "./tutorials/starting-guides/q911/README.md",
+        404
+      ],
+      [
+        "./tutorials/starting-guides/flash-image/README.md",
+        404
+      ],
+      [
+        "./tutorials/starting-guides/ota/README.md",
+        404
+      ],
+      [
+        "./tutorials/avl/README.md",
+        404
+      ],
+      [
+        "./tutorials/avl/gmsl-camera/README.md",
+        404
+      ],
+      [
+        "./tutorials/avl/mipi-camera/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/iqs-vlm/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/iqs-streampipe/README.md",
+        404
+      ],
+      [
+        "./tutorials/applications/iqs-yolov10n/README.md",
+        404
+      ],
+      [
+        "./tutorials/model-deploy/README.md",
+        404
+      ],
+      [
+        "./tutorials/model-deploy/cv/yolo26/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/iqs-vlm/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/iqs-streampipe/README.md",
+        404
+      ],
+      [
+        "./tutorials/sdks/iqs-ogenie/README.md",
+        404
+      ],
+      [
+        "./benchmarks/README.md",
+        404
+      ],
+      [
+        "./benchmarks/innoppe/README.md",
+        404
+      ],
+      [
+        "./benchmarks/iqs-streampipe/README.md",
+        404
+      ],
+      [
+        "./benchmarks/perception_model/README.md",
+        404
+      ],
+      [
+        "./LICENSE",
+        404
+      ]
+    ],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": [
+      [
+        "./tutorials/applications/iqs-vlm/fig/vlm-demo.gif",
+        19297222,
+        "gif>10MB"
+      ]
+    ]
+  },
+  "/tutorials/starting-guides/": {
+    "imgs": [
+      [
+        "../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../applications/",
+        200
+      ],
+      [
+        "../avl/",
+        200
+      ],
+      [
+        "q911/",
+        200
+      ],
+      [
+        "q911/yocto/",
+        200
+      ],
+      [
+        "q911/ubuntu/",
+        200
+      ],
+      [
+        "flash-image/",
+        200
+      ],
+      [
+        "ota/",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": []
+  },
+  "/tutorials/starting-guides/q911/yocto/": {
+    "imgs": [
+      [
+        "../../../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "./fig/connect_dp_boot.png",
+        404,
+        0
+      ],
+      [
+        "./fig/connect_dp_boot_a100.png",
+        404,
+        0
+      ],
+      [
+        "./fig/ycoto_desktop_icon.png",
+        404,
+        0
+      ],
+      [
+        "./fig/yocto_desktop_teminal.png",
+        404,
+        0
+      ],
+      [
+        "./fig/connect_eth_boot.png",
+        404,
+        0
+      ],
+      [
+        "./fig/connect_eth_boot_a100.png",
+        404,
+        0
+      ],
+      [
+        "./fig/SSH_terminal.png",
+        404,
+        0
+      ],
+      [
+        "./fig/connect_adb_boot_flash.png",
+        404,
+        0
+      ],
+      [
+        "./fig/connect_adb_boot_flash_a100.png",
+        404,
+        0
+      ],
+      [
+        "./fig/adb_usage_example.png",
+        404,
+        0
+      ],
+      [
+        "./fig/debug_port_pin.png",
+        404,
+        0
+      ],
+      [
+        "./fig/debug_port_view.png",
+        404,
+        0
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../#step-1-prepare-required-items",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [
+      [
+        "./fig/connect_dp_boot.png",
+        404
+      ],
+      [
+        "./fig/connect_dp_boot_a100.png",
+        404
+      ],
+      [
+        "./fig/ycoto_desktop_icon.png",
+        404
+      ],
+      [
+        "./fig/yocto_desktop_teminal.png",
+        404
+      ],
+      [
+        "./fig/connect_eth_boot.png",
+        404
+      ],
+      [
+        "./fig/connect_eth_boot_a100.png",
+        404
+      ],
+      [
+        "./fig/SSH_terminal.png",
+        404
+      ],
+      [
+        "./fig/connect_adb_boot_flash.png",
+        404
+      ],
+      [
+        "./fig/connect_adb_boot_flash_a100.png",
+        404
+      ],
+      [
+        "./fig/adb_usage_example.png",
+        404
+      ],
+      [
+        "./fig/debug_port_pin.png",
+        404
+      ],
+      [
+        "./fig/debug_port_view.png",
+        404
+      ]
+    ],
+    "video_404": [],
+    "big_assets": []
+  },
+  "/tutorials/starting-guides/flash-image/": {
+    "imgs": [
+      [
+        "../../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "./fig/host_target.png",
+        200,
+        19509
+      ],
+      [
+        "../q911/fig/jumper_mode_edl.png",
+        200,
+        1278014
+      ],
+      [
+        "../q911/fig/boot_mode_ufs.png",
+        200,
+        1427945
+      ],
+      [
+        "./fig/connect_adb_boot_flash.png",
+        200,
+        1077864
+      ],
+      [
+        "./fig/connect_adb_boot_flash_a100.png",
+        200,
+        1036595
+      ],
+      [
+        "./fig/exec_q911_boot.png",
+        200,
+        1048049
+      ],
+      [
+        "./fig/a100_boot.png",
+        200,
+        1035806
+      ],
+      [
+        "./fig/flash-image.png",
+        200,
+        66951
+      ],
+      [
+        "../q911/fig/jumper_mode_normal.png",
+        200,
+        1276203
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../q911/#interact-with-the-system",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": []
+  },
+  "/tutorials/starting-guides/ota/": {
+    "imgs": [
+      [
+        "../../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "./fig/ai_on_dragonwing_sw_stack.png",
+        200,
+        384689
+      ],
+      [
+        "fig/fwver_bootlog.png",
+        200,
+        53413
+      ],
+      [
+        "fig/fw_version.png",
+        200,
+        9568
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../../../IQS.md",
+        404
+      ]
+    ],
+    "internal_link_404": [
+      [
+        "../../../IQS.md",
+        404
+      ]
+    ],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": []
+  },
+  "/tutorials/applications/iqs-vlm/": {
+    "imgs": [
+      [
+        "../../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "fig/vlm-demo.gif",
+        200,
+        19297222
+      ],
+      [
+        "fig/vlm-demo.png",
+        200,
+        1477823
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../../sdks/iqs-vlm/",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": [
+      [
+        "fig/vlm-demo.gif",
+        19297222,
+        "gif>10MB"
+      ]
+    ]
+  },
+  "/tutorials/sdks/iqs-streampipe/": {
+    "imgs": [
+      [
+        "../../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "./fig/image1.png",
+        200,
+        42405
+      ],
+      [
+        "./fig/image2.png",
+        200,
+        350680
+      ],
+      [
+        "./fig/image3.png",
+        200,
+        473196
+      ],
+      [
+        "./fig/gif2.gif",
+        200,
+        16967395
+      ],
+      [
+        "./fig/gif0.gif",
+        200,
+        18839324
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../../applications/iqs-streampipe/",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": [
+      [
+        "./fig/gif2.gif",
+        16967395,
+        "gif>10MB"
+      ],
+      [
+        "./fig/gif0.gif",
+        18839324,
+        "gif>10MB"
+      ]
+    ]
+  },
+  "/tutorials/model-deploy/cv/yolo26/": {
+    "imgs": [
+      [
+        "../../../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "fig/yolo-model-deploy-overview.png",
+        200,
+        532545
+      ],
+      [
+        "fig/iq9-usb-connection.png",
+        200,
+        1176604
+      ],
+      [
+        "fig/setup-script-output.png",
+        200,
+        22551
+      ],
+      [
+        "fig/qc-configure-output.png",
+        200,
+        57748
+      ],
+      [
+        "fig/qc-mode-output.png",
+        200,
+        37362
+      ],
+      [
+        "fig/map-mode-output.png",
+        200,
+        46265
+      ],
+      [
+        "fig/test-mode-output.png",
+        200,
+        33659
+      ],
+      [
+        "./fig/inference-output.png",
+        200,
+        668790
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../../../starting-guides/q911/#interact-with-the-system-using-adb-over-usb-type-c",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": []
+  },
+  "/tutorials/avl/mipi-camera/": {
+    "imgs": [
+      [
+        "../../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "../../applications/iqs-streampipe/",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": []
+  },
+  "/benchmarks/iqs-streampipe/": {
+    "imgs": [
+      [
+        "../../docs/fig/iq-studio-logo.png",
+        200,
+        1133196
+      ],
+      [
+        "./fig/fps_per_channel.png",
+        200,
+        35701
+      ],
+      [
+        "./fig/cpu_loading.png",
+        200,
+        31084
+      ],
+      [
+        "./fig/cpu_memory.png",
+        200,
+        32508
+      ],
+      [
+        "fig/output_qualcomm.png",
+        200,
+        35028
+      ],
+      [
+        "fig/output_nvidia.png",
+        200,
+        35486
+      ]
+    ],
+    "videos": [],
+    "links": [
+      [
+        "fig/nv_qc_live.mp4",
+        200
+      ],
+      [
+        "../../tutorials/applications/iqs-streampipe/",
+        200
+      ]
+    ],
+    "internal_link_404": [],
+    "img_404": [],
+    "video_404": [],
+    "big_assets": []
+  }
+}

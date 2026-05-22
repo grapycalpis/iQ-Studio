@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+
+{#
+  iQ Studio docs — Material theme override.
+
+  Two responsibilities:
+
+  1. SEO metadata (this is where the SEO checklist lives):
+     - <title> with brand suffix, homepage suffix-less.
+     - <meta name="description"> from page front-matter, OR auto-derived
+       from the first non-empty paragraph of the page (markdown stripped,
+       truncated at a word boundary near 155 chars).
+     - <link rel="canonical"> from `page.canonical_url`, which Material
+       resolves against `site_url` in mkdocs.yml. Change site_url once to
+       re-point every canonical to the custom domain.
+     - Open Graph + Twitter Card tags. Per-page front-matter `image:`
+       overrides the default `extra.og_image`.
+     - JSON-LD: `TechArticle` for every doc page, `WebSite` (with
+       SearchAction) for the homepage.
+
+  2. Landing-page persona cards (pre-existing; rendered ABOVE the README
+     markdown only on the homepage so README.md never has to change).
+#}
+
+{#
+  ----------------------------------------------------------------------
+  Helpers — pure Jinja. No Python imports needed.
+  ----------------------------------------------------------------------
+  `seo_description`:
+    1. front-matter `description:` wins,
+    2. else `extra.homepage_description` on the homepage,
+    3. else strip markdown/HTML from the first ~600 chars of page.content
+       (which Material has already rendered to HTML) and clip to ~155 chars
+       at a word boundary,
+    4. else `config.site_description`.
+#}
+{% set fm_desc = page.meta.description if page.meta and page.meta.description else "" %}
+{% set fm_title = page.meta.title if page.meta and page.meta.title else "" %}
+{% set fm_image = page.meta.image if page.meta and page.meta.image else "" %}
+
+{# Auto-extract description from page.content (rendered HTML).
+   Stock Jinja2 only — no regex_replace dependency.
+   `striptags` removes ALL tags including <pre>/<code>; the text inside
+   short inline `<code>` ends up in the description, which is acceptable
+   (it's readable prose by definition on doc pages). Long fenced code
+   blocks usually live below the first paragraph and never reach the
+   155-char window. #}
+{% set raw_html = page.content if page.content else "" %}
+{% set stripped = raw_html | striptags | trim %}
+{# Replace newlines/tabs with spaces. Repeated to collapse double spaces
+   without resorting to regex_replace. #}
+{% set stripped = stripped | replace('\r', ' ') | replace('\n', ' ') | replace('\t', ' ') %}
+{% set stripped = stripped | replace('   ', ' ') | replace('  ', ' ') | replace('  ', ' ') | replace('  ', ' ') | trim %}
+
+{# Word-boundary trim to ~155 chars. #}
+{% set MAX_DESC = 155 %}
+{% if stripped | length > MAX_DESC %}
+  {% set trimmed = stripped[:MAX_DESC] %}
+  {% set last_space = trimmed.rfind(' ') %}
+  {% if last_space > 80 %}
+    {% set auto_desc = trimmed[:last_space] ~ '…' %}
+  {% else %}
+    {% set auto_desc = trimmed ~ '…' %}
+  {% endif %}
+{% else %}
+  {% set auto_desc = stripped %}
+{% endif %}
+
+{# Final description with precedence. #}
+{% if fm_desc %}
+  {% set seo_description = fm_desc %}
+{% elif page and page.is_homepage and config.extra.homepage_description %}
+  {% set seo_description = config.extra.homepage_description | trim %}
+{% elif auto_desc %}
+  {% set seo_description = auto_desc %}
+{% else %}
+  {% set seo_description = config.site_description %}
+{% endif %}
+
+{#
+  Title precedence:
+    1. front-matter `title:`,
+    2. else `extra.homepage_title` on the homepage,
+    3. else `page.title — iQ Studio Docs`.
+#}
+{% if page and page.is_homepage %}
+  {% if config.extra.homepage_title %}
+    {% set seo_title = config.extra.homepage_title %}
+  {% else %}
+    {% set seo_title = "iQ Studio" %}
+  {% endif %}
+{% elif fm_title %}
+  {% set seo_title = fm_title ~ " — iQ Studio Docs" %}
+{% elif page and page.title %}
+  {% set seo_title = page.title ~ " — iQ Studio Docs" %}
+{% else %}
+  {% set seo_title = config.site_name %}
+{% endif %}
+
+{#
+  OG image precedence: front-matter `image:` -> extra.og_image -> logo.
+  Resolved against site_url so social crawlers get an absolute URL.
+#}
+{% if fm_image %}
+  {% set og_image_rel = fm_image %}
+{% elif config.extra.og_image %}
+  {% set og_image_rel = config.extra.og_image %}
+{% else %}
+  {% set og_image_rel = 'docs/fig/iq-studio-logo.png' %}
+{% endif %}
+{% set og_image_abs = (config.site_url | default('', true)) ~ og_image_rel %}
+
+{# OG type: website for the homepage, article elsewhere. #}
+{% if page and page.is_homepage %}
+  {% set og_type = 'website' %}
+{% else %}
+  {% set og_type = 'article' %}
+{% endif %}
+
+{#
+  ----------------------------------------------------------------------
+  site_meta block — Material's default emits <meta name="description">
+  and <link rel="canonical"> here, which would duplicate the richer
+  versions we emit in `extrahead`. Replace it with only the parts we
+  don't re-emit (charset, viewport, author, prev/next, generator,
+  favicon). Description + canonical come from extrahead.
+  ----------------------------------------------------------------------
+#}
+{% block site_meta %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% if page.meta and page.meta.author %}
+    <meta name="author" content="{{ page.meta.author }}">
+  {% elif config.site_author %}
+    <meta name="author" content="{{ config.site_author }}">
+  {% endif %}
+  {% if page.previous_page %}
+    <link rel="prev" href="{{ page.previous_page.url | url }}">
+  {% endif %}
+  {% if page.next_page %}
+    <link rel="next" href="{{ page.next_page.url | url }}">
+  {% endif %}
+  <link rel="icon" href="{{ config.theme.favicon | url }}">
+  <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-9.5.39">
+{% endblock %}
+
+{#
+  ----------------------------------------------------------------------
+  htmltitle block — override Material's default to honor our title rules.
+  ----------------------------------------------------------------------
+#}
+{% block htmltitle %}
+  <title>{{ seo_title }}</title>
+{% endblock %}
+
+{#
+  ----------------------------------------------------------------------
+  extrahead block — meta description, OG, Twitter, canonical, JSON-LD,
+  plus favicons retained from the original override.
+  ----------------------------------------------------------------------
+#}
+{% block extrahead %}
+  {{ super() }}
+
+  {# Pre-existing favicons + theme color (kept from prior override). #}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'docs/fig/favicon/favicon-32.png' | url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ 'docs/fig/favicon/favicon-16.png' | url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ 'docs/fig/favicon/apple-touch-icon.png' | url }}">
+  <meta name="theme-color" content="#ec1b23">
+
+  {# ----- Description ----- #}
+  <meta name="description" content="{{ seo_description | e }}">
+
+  {# ----- Canonical ----- #}
+  {% if page and page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url }}">
+  {% endif %}
+
+  {# ----- Open Graph ----- #}
+  <meta property="og:site_name" content="{{ config.extra.og_site_name | default('iQ Studio') }}">
+  <meta property="og:type" content="{{ og_type }}">
+  <meta property="og:title" content="{{ seo_title | e }}">
+  <meta property="og:description" content="{{ seo_description | e }}">
+  {% if page and page.canonical_url %}
+    <meta property="og:url" content="{{ page.canonical_url }}">
+  {% endif %}
+  <meta property="og:image" content="{{ og_image_abs }}">
+  {% if config.extra.og_image_width %}
+    <meta property="og:image:width" content="{{ config.extra.og_image_width }}">
+  {% endif %}
+  {% if config.extra.og_image_height %}
+    <meta property="og:image:height" content="{{ config.extra.og_image_height }}">
+  {% endif %}
+  <meta property="og:image:alt" content="iQ Studio — Innodisk Dragonwing AI documentation">
+  <meta property="og:locale" content="en_US">
+
+  {# ----- Twitter Card ----- #}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title | e }}">
+  <meta name="twitter:description" content="{{ seo_description | e }}">
+  <meta name="twitter:image" content="{{ og_image_abs }}">
+  {% if config.extra.twitter_site %}
+    <meta name="twitter:site" content="{{ config.extra.twitter_site }}">
+  {% endif %}
+
+  {# ----- JSON-LD structured data ----- #}
+  {% set org_name   = config.extra.organization.name | default('Innodisk') %}
+  {% set org_url    = config.extra.organization.url  | default('https://www.innodisk.com/') %}
+  {% set org_logo   = (config.site_url | default('', true)) ~ (config.extra.organization.logo | default('docs/fig/iq-studio-logo.png')) %}
+
+  {# `page.meta.git_revision_date_localized` is exposed by the
+     git-revision-date-localized plugin. Falls back to build_date or "". #}
+  {% set date_mod = page.meta.git_revision_date_localized if page.meta and page.meta.git_revision_date_localized else '' %}
+  {% set date_pub = page.meta.git_creation_date_localized if page.meta and page.meta.git_creation_date_localized else date_mod %}
+
+  {% if page and page.is_homepage %}
+    {# Homepage gets WebSite schema with SearchAction. #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ config.extra.og_site_name | default('iQ Studio') }}",
+      "url": "{{ config.site_url }}",
+      "description": "{{ seo_description | e }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ org_name }}",
+        "url": "{{ org_url }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ org_logo }}"
+        }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ config.site_url }}?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+  {% else %}
+    {# Doc pages get TechArticle. #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "{{ (page.title or config.site_name) | e }}",
+      "description": "{{ seo_description | e }}",
+      "image": "{{ og_image_abs }}",
+      {% if date_pub %}"datePublished": "{{ date_pub }}",{% endif %}
+      {% if date_mod %}"dateModified": "{{ date_mod }}",{% endif %}
+      "author": {
+        "@type": "Organization",
+        "name": "{{ org_name }}",
+        "url": "{{ org_url }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ org_name }}",
+        "url": "{{ org_url }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ org_logo }}"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.canonical_url }}"
+      },
+      "inLanguage": "en"
+    }
+    </script>
+  {% endif %}
+{% endblock %}
+
+{# Landing-page persona cards — component-spec.md §10, personas
+   derived from ia-design.md §1 (sitemap) + ux-research personas
+   Wei / Priya / Dan. Rendered ABOVE the page's existing markdown
+   content so the README.md is never touched. Only on the homepage. #}
+{% block content %}
+  {% if page and page.is_homepage %}
+    <nav class="ids-persona-grid" aria-label="Pick your path">
+      <a class="ids-persona-card" href="{{ 'tutorials/starting-guides/' | url }}"
+         aria-label="First-time user — install and flash">
+        <span class="ids-persona-card__icon" aria-hidden="true">🚀</span>
+        <h2 class="ids-persona-card__title">First-time user</h2>
+        <p class="ids-persona-card__desc">
+          Install iQ Studio Launcher on your host and run your first build.
+        </p>
+        <span class="ids-persona-card__cta">Start here</span>
+      </a>
+      <a class="ids-persona-card" href="{{ 'tutorials/sdks/' | url }}"
+         aria-label="Developer or integrator — SDKs and customization">
+        <span class="ids-persona-card__icon" aria-hidden="true">⌨︎</span>
+        <h2 class="ids-persona-card__title">Developer / integrator</h2>
+        <p class="ids-persona-card__desc">
+          Use the SDKs to swap models, customize pipelines, and ship your own demo.
+        </p>
+        <span class="ids-persona-card__cta">Read the SDK docs</span>
+      </a>
+      <a class="ids-persona-card" href="{{ 'benchmarks/' | url }}"
+         aria-label="ML engineer — model deploy and benchmarks">
+        <span class="ids-persona-card__icon" aria-hidden="true">📊</span>
+        <h2 class="ids-persona-card__title">ML engineer</h2>
+        <p class="ids-persona-card__desc">
+          Convert, optimize, deploy, and benchmark models on Dragonwing silicon.
+        </p>
+        <span class="ids-persona-card__cta">See benchmarks</span>
+      </a>
+      <a class="ids-persona-card" href="{{ 'docs/changelog/' | url }}"
+         aria-label="Returning user — what changed in the latest release">
+        <span class="ids-persona-card__icon" aria-hidden="true">✦</span>
+        <h2 class="ids-persona-card__title">What’s new</h2>
+        <p class="ids-persona-card__desc">
+          See what changed in the latest iQ Studio release.
+        </p>
+        <span class="ids-persona-card__cta">Changelog</span>
+      </a>
+    </nav>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
