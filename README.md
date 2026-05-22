@@ -4,7 +4,7 @@
  This software is released under the MIT License.
  https://opensource.org/licenses/MIT
 -->
-# iQ Studio
+# iQ Studio 
 
   <br />
   <div align="center"><img width="30%" height="30%" src="./docs/fig/iq-studio-logo.png"></div>
