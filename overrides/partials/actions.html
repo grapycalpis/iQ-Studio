@@ -1,0 +1,38 @@
+{#-
+  Override of material/templates/partials/actions.html
+  ──────────────────────────────────────────────────────────────────
+  Purpose: rewrite the "Edit on GitHub" URL so symlink-based
+  docs_dir doesn't leak the `src/` staging prefix into the URL.
+
+  MkDocs resolves the edit_url from `repo_url + edit_uri + page src
+  path`. When docs_dir is `src/` and `src/<group>` is a symlink to
+  `../<group>`, the src path *as seen by mkdocs* may still be
+  `src/<group>/...` in some configurations. Per ia-design.md §1 the
+  authoritative GitHub paths are the real-source paths (no `src/`).
+  This override strips a leading `/src/` segment from page.edit_url
+  if it ever appears. If MkDocs already resolved the symlink, the
+  replace is a no-op.
+
+  This file also implements component-spec.md §14 baseline: the
+  edit link is a real <a> with title text for screen readers.
+-#}
+{% if page.edit_url %}
+  {%- set _edit = page.edit_url | replace("/src/", "/") -%}
+  {% if "content.action.edit" in features %}
+    <a href="{{ _edit }}" title="{{ lang.t('action.edit') }}" class="md-content__button md-icon">
+      {% set icon = config.theme.icon.edit or "material/file-edit-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+  {% if "content.action.view" in features %}
+    {% if "/blob/" in _edit %}
+      {% set part = "blob" %}
+    {% else %}
+      {% set part = "edit" %}
+    {% endif %}
+    <a href="{{ _edit | replace(part, 'raw') }}" title="{{ lang.t('action.view') }}" class="md-content__button md-icon">
+      {% set icon = config.theme.icon.view or "material/file-eye-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+{% endif %}

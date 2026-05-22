@@ -1,4 +1,17 @@
 iqs-venv/
 mod/__pycache__/
-
+.codex
 dev/
+.site/
+site/
+
+# MkDocs build output (mkdocs.yml -> site_dir: site)
+/site/
+
+# MkDocs `src/` symlink staging directory -- CI / tools/setup_docs_dev.sh
+# recreates these on every build. See ./.agent-artifacts/tech-decision.md §6.
+/src/index.md
+/src/docs
+/src/tutorials
+/src/benchmarks
+/src/assets

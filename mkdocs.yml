@@ -1,0 +1,250 @@
+# MkDocs Material config for the iQ Studio documentation site.
+#
+# Source-of-truth artifacts:
+#   - ./.agent-artifacts/tech-decision.md §1, §5, §6 (MkDocs Material 9.x +
+#     `src/` symlink directory at the repo root).
+#   - ./.agent-artifacts/ia-design.md §1 (full nav).
+#   - ./.agent-artifacts/brand-guide.md §2-§9 (palette, type, logo).
+#   - ./.agent-artifacts/component-spec.md §0-§3 (tokens, sidebar, H1 rule).
+#
+# Sourcing strategy: MkDocs 1.6 forbids `docs_dir: .`, so we use the
+# project's documented symlink pattern. `src/` lives at the repo root and
+# contains symlinks pointing back at README.md, docs/, tutorials/, and
+# benchmarks/. Nothing in the repo is moved. Symlinks are gitignored;
+# `tools/setup_docs_dev.sh` (or CI) recreates them on every build.
+
+site_name: iQ Studio
+site_description: AI runtime launcher for Qualcomm Dragonwing edge devices
+# `site_url` is the canonical base for every page. To move to a custom
+# domain later, change this ONE line (e.g. `site_url: https://iq-studio.innodisk.com/`).
+# Every <link rel="canonical">, sitemap.xml entry, og:url and JSON-LD
+# mainEntityOfPage is derived from this value via `{{ page.canonical_url }}`.
+site_url: https://innoipc-innodisk.github.io/iQ-Studio/
+repo_url: https://github.com/InnoIPC-Innodisk/iQ-Studio
+repo_name: InnoIPC-Innodisk/iQ-Studio
+edit_uri: edit/main/
+
+docs_dir: src
+site_dir: site
+use_directory_urls: true
+
+# Even though docs_dir is `src/` and the symlinks below it stay narrow,
+# enforce explicit excludes so contributors don't accidentally surface
+# Python / shell / config files if they later widen the symlink scope.
+exclude_docs: |
+  # mod/ source modules and binary blobs that travel with the repo
+  **/mod/
+  **/binaries/
+  **/scripts/
+
+  # Source code that lives alongside the docs
+  *.py
+  *.sh
+
+  # Non-doc config / data files (kept as content only when explicitly
+  # listed in nav, e.g. tutorials/metadata.json is excluded by being
+  # outside any symlinked path).
+  *.json
+  *.toml
+  *.txt
+  LICENSE
+
+  # SEO: explicitly UN-exclude robots.txt (negation pattern). It lives
+  # at src/robots.txt and must be copied to site/robots.txt verbatim.
+  !robots.txt
+
+  # Build / dev metadata
+  .agent-artifacts/
+  .agents/
+  .codex/
+  .github/
+  iqs-venv/
+  dev/
+  tools/
+
+# Files that exist as .md but are intentionally not surfaced in the sidebar.
+not_in_nav: |
+  /CHANGELOG.md
+  /CONTRIBUTING.md
+
+theme:
+  name: material
+  language: en
+  logo: docs/fig/iq-studio-logo.png
+  favicon: docs/fig/favicon/favicon.ico
+  custom_dir: overrides
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes        # section README.md acts as the group landing page
+    - navigation.top
+    - navigation.sections
+    - navigation.expand         # multi-open accordion (ia-design.md §3)
+    - toc.follow                # right-rail active-section highlight (ia-design.md §3)
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit       # "Edit on GitHub" (ia-design.md §3)
+  palette:
+    # Light mode -- mirrors innodisk.com (brand-guide.md §2)
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode -- AA-lifted red on Innodisk dark ink (brand-guide.md §4.2)
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    # brand-guide.md §5 -- Avenir Next LT Pro is license-restricted, so we
+    # use Inter as the recommended free substitute (§5.1). Barlow Condensed
+    # is SIL-OFL and free; JetBrains Mono is Apache-2.0.
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+
+extra_css:
+  - assets/stylesheets/innodisk.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/InnoIPC-Innodisk/iQ-Studio
+  generator: false
+
+  # ----------------------------------------------------------------
+  # SEO knobs consumed by overrides/main.html (head block).
+  # ----------------------------------------------------------------
+  # Homepage <title>, meta description, OG title/description.
+  # Task spec: target the three primary keyphrases naturally on the
+  # homepage WITHOUT editing README.md. These overrides feed the meta
+  # partial when `page.is_homepage` is true.
+  homepage_title: "iQ Studio — IQ Studio Launcher for Innodisk Dragonwing AI"
+  homepage_description: >-
+    iQ Studio is the IQ Studio Launcher for Innodisk Dragonwing AI edge
+    devices. Install iqs-launcher, follow the Q911 user guide, and run
+    VLM, Streampipe, and YOLO demos on Qualcomm QCS9075 in minutes.
+
+  # Default OG/Twitter card image. Resolves under site_url at build.
+  # Per-page override: front-matter `image:` key on any page.
+  og_image: docs/fig/og-default.png
+  og_image_width: 1200
+  og_image_height: 630
+  og_site_name: iQ Studio
+  twitter_site: ""        # set to @InnodiskOfficial (or similar) when known
+
+  # Organization used in JSON-LD publisher / author.
+  organization:
+    name: Innodisk
+    url: https://www.innodisk.com/
+    logo: docs/fig/iq-studio-logo.png
+
+plugins:
+  - search
+  # Generates per-page lastmod for sitemap.xml + dateModified for
+  # JSON-LD. Falls back to file mtime if git history is unavailable.
+  - git-revision-date-localized:
+      enable_creation_date: true
+      fallback_to_build_date: true
+      type: iso_date
+  # No URL renames recorded in ia-design.md — `redirects` block left
+  # empty. To add a redirect later: `old/path.md: new/path.md`.
+  - redirects:
+      redirect_maps: {}
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html          # raw <video> tags inside markdown (ia-design.md §6)
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Anchor link to this section
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+      base_path:
+        - .
+        - src
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# IA mirror from ./.agent-artifacts/ia-design.md §1.
+# Paths are relative to docs_dir (= src/). They resolve through the
+# symlinks back to the original locations under the repo root, so no
+# existing .md file is moved or renamed.
+#
+#   src/index.md          -> ../README.md
+#   src/docs/             -> ../docs/
+#   src/tutorials/        -> ../tutorials/
+#   src/benchmarks/       -> ../benchmarks/
+nav:
+  - Home: index.md                                            # README.md
+  - Getting Started:
+      - tutorials/starting-guides/README.md
+      - Q911 Quick Start: tutorials/starting-guides/q911/README.md
+      - "Q911 — Yocto": tutorials/starting-guides/q911/yocto.md
+      - "Q911 — Ubuntu": tutorials/starting-guides/q911/ubuntu.md
+      - Image Flashing: tutorials/starting-guides/flash-image/README.md
+      - OTA Updates: tutorials/starting-guides/ota/README.md
+  - Applications:
+      - tutorials/applications/README.md
+      - iQS-VLM: tutorials/applications/iqs-vlm/README.md
+      - iQS-Streampipe: tutorials/applications/iqs-streampipe/README.md
+      - iQS-YOLOv10n: tutorials/applications/iqs-yolov10n/README.md
+  - SDKs:
+      - tutorials/sdks/README.md
+      - iQS-OGenie: tutorials/sdks/iqs-ogenie/README.md
+      - "iQS-VLM (Open WebUI)": tutorials/sdks/iqs-vlm/README.md
+      - "iQS-Streampipe (Customize)": tutorials/sdks/iqs-streampipe/README.md
+  - Model Deploy:
+      - tutorials/model-deploy/README.md
+      - YOLO26: tutorials/model-deploy/cv/yolo26/README.md
+  - AVL:
+      - tutorials/avl/README.md
+      - GMSL Camera: tutorials/avl/gmsl-camera/README.md
+      - MIPI Camera: tutorials/avl/mipi-camera/README.md
+  - Benchmarks:
+      - benchmarks/README.md
+      - InnoPPE: benchmarks/innoppe/README.md
+      - Streampipe Multi-stream: benchmarks/iqs-streampipe/README.md
+      - Perception Model: benchmarks/perception_model/README.md
+  - Reference:
+      - How to use iqs-launcher: docs/how-to-use-iqs-launcher.md
+  - Changelog: docs/changelog.md

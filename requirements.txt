@@ -1,0 +1,12 @@
+# Pinned per ./.agent-artifacts/tech-decision.md §6.
+mkdocs==1.6.1
+mkdocs-material==9.5.39
+pymdown-extensions==10.11
+
+# SEO additions (see ./.agent-artifacts/seo-checklist.md):
+#   git-revision-date-localized -> sitemap lastmod + JSON-LD dateModified
+#   mkdocs-redirects            -> URL renames (empty map for now, ready to use)
+#   Pillow                      -> docs/fig/og-default.png generator (tools/generate_og_image.py)
+mkdocs-git-revision-date-localized-plugin==1.2.6
+mkdocs-redirects==1.2.1
+Pillow==10.4.0

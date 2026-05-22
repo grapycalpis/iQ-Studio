@@ -1,0 +1,30 @@
+{#-
+  Custom 404 page — component-spec.md §12.
+  Microcopy follows brand-guide voice: short, declarative, no
+  "Oops!". Top bar + sidebar stay rendered (we only replace
+  `block content`), so the user has a navigable shell.
+-#}
+{% extends "main.html" %}
+
+{% block htmltitle %}
+  <title>Page not found — {{ config.site_name }}</title>
+{% endblock %}
+
+{% block content %}
+<main class="ids-404" aria-labelledby="ids-404-headline">
+  <p class="ids-404__number" aria-hidden="true">404</p>
+  <hr class="ids-404__rule" aria-hidden="true">
+  <h1 id="ids-404-headline" class="ids-404__headline">That page isn’t here.</h1>
+  <p class="ids-404__body">
+    It may have moved, been renamed, or never existed. Try one of these:
+  </p>
+  <ul class="ids-404__links">
+    <li><a href="{{ '' | url }}">Back to home</a></li>
+    <li><a href="{{ 'tutorials/starting-guides/' | url }}">Getting Started</a></li>
+    <li><a href="{{ 'tutorials/applications/' | url }}">Applications</a></li>
+    <li><a href="{{ 'tutorials/sdks/' | url }}">SDKs</a></li>
+    <li><a href="{{ 'benchmarks/' | url }}">Benchmarks</a></li>
+    <li><a href="{{ 'docs/how-to-use-iqs-launcher/' | url }}">Reference: iqs-launcher</a></li>
+  </ul>
+</main>
+{% endblock %}

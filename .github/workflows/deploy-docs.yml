@@ -1,0 +1,99 @@
+# Build and deploy the MkDocs Material site to GitHub Pages.
+#
+# Uses the modern GitHub Pages Actions deployment (upload-pages-artifact +
+# deploy-pages) rather than pushing to a gh-pages branch: atomic deploys,
+# no branch pollution, and native concurrency control via the `pages` group.
+
+name: Deploy Docs
+
+on:
+  push:
+    branches: [main]
+    # Only run when docs-affecting paths change. App-code paths
+    # (launcher.py, iqs-launcher.sh, install.sh, mod/**, binaries/**,
+    # src/*.py) are intentionally excluded.
+    paths:
+      - 'README.md'
+      - 'docs/**'
+      - 'tutorials/**'
+      - 'benchmarks/**'
+      - 'tools/README.md'
+      - 'mkdocs.yml'
+      - 'requirements.txt'
+      - 'overrides/**'
+      - '.github/workflows/deploy-docs.yml'
+  workflow_dispatch:
+
+# Required by actions/deploy-pages. Set at workflow level since both
+# pages:write and id-token:write are needed by the deploy job.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Serialize deploys to the `pages` environment. cancel-in-progress is
+# false so an in-flight upload to Pages is never aborted mid-deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # mkdocs-git-revision-date-localized-plugin needs full git
+          # history to compute lastmod / dateModified per page.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Recreate gitignored docs symlinks under src/
+        # src/ is a staging dir for mkdocs (docs_dir: src). The four
+        # entries below are gitignored (see .gitignore /src/... block)
+        # and must be recreated at build time. ln -sfn is idempotent.
+        # src/assets and src/robots.txt are real files committed to the
+        # repo and do not need recreation.
+        run: |
+          ln -sfn ../README.md   src/index.md
+          ln -sfn ../docs        src/docs
+          ln -sfn ../tutorials   src/tutorials
+          ln -sfn ../benchmarks  src/benchmarks
+
+      # Optional: the repo also ships tools/generate_og_image.py for
+      # producing the OG card. It is intentionally not invoked here to
+      # keep the build deterministic with just requirements.txt deps.
+      # If desired later, add a step before `mkdocs build` that runs
+      # `python tools/generate_og_image.py` and commit the output to
+      # docs/fig/og-default.png so the build stays reproducible.
+
+      - name: Build site (strict)
+        # --strict turns warnings (broken links, missing nav targets,
+        # unrecognized config) into errors so prod cannot regress.
+        run: mkdocs build --strict
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

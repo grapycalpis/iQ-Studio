@@ -11,8 +11,14 @@ The Q911 family is built around the Qualcomm® IQ-9075 SoC. The product line cur
 
 This guide focuses on the EXEC-Q911 and APEX-A100 platforms, providing an overview of their hardware and helping you get the system up and running quickly.
 
-Each device ships with either Yocto Linux or Ubuntu pre-flashed on the UFS storage, allowing you to power on the system and log in immediately. If you need to re-flash or update the system image, please refer to the
-[Q911 Image Flashing Guide](../flash-image/README.md).
+
+
+## BSP Version
+
+- **Yocto Linux**: released versions and the version rules are published in the [meta-iQ__manifest release table](https://github.com/InnoIPA/meta-iQ__manifest/releases).
+- **Ubuntu**: released versions and the version-numbering rules are published in the [iQ-ubuntu__manifest release table](https://github.com/InnoIPA/iQ-ubuntu__manifest/releases).
+
+> Note: Yocto Linux ships pre-flashed on UFS. Ubuntu is not pre-flashed by default and requires the Innodisk-ported image (flashed via the [Q911 Image Flashing Guide](../flash-image/README.md)) to keep all IO functions working correctly.
 
 
 ## What’s in the Box
@@ -120,179 +126,20 @@ Please follow the steps below to boot the system.
 
 
 
-## Step 3: Interact with the System
+## Interact with the System
 
-After the system boots, you can access the platform using one of the following methods:
+After the system boots, the supported access methods are DisplayPort monitor, SSH over Ethernet, ADB over USB Type-C, and UART Debug Console. The login table, default credentials, and per-method connection steps live in the OS-specific guides:
 
-- DisplayPort monitor
+- [**Yocto Linux**](./yocto.md#interact-with-the-system)
+- [**Ubuntu**](./ubuntu.md#interact-with-the-system)
 
-- SSH over Ethernet
-
-- ADB over USB Type-C
-
-- UART Debug Console
-
-Please refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) for detailed instructions on flashing the image and the steps required to enable networking on Ubuntu.
-
-### Interact with the System Using a DP Display
-
-If you are accessing the system using a DP display, please follow the steps below to set it up.
-
-1. Connect the DP display and USB keyboard/mouse. Then, connect the power cable and press the power button to boot the system.
-
-  <div align="center">
-  <table>
-    <tr>
-      <td align="center"  width="50%" valign="bottom">
-        <img src="./fig/connect_dp_boot.png" style="max-height: 100%; max-width: 100%;">
-      </td>
-      <td align="center"  width="50%" valign="bottom">
-        <img src="./fig/connect_dp_boot_a100.png" style="max-height: 100%; max-width: 100%;">
-      </td>
-    </tr>
-    <tr>
-      <td align="center">EXEC-Q911</td>
-      <td align="center">APEX-A100</td>
-    </tr>
-  </table>
-  </div>
-
-
-2. After the device boots up, you should see the output displayed on the DisplayPort (DP) monitor.
-  
-  - In Yocto Linux, you can click the icon in the upper-left corner to open the terminal. 
-
-     <p align="center">
-      <img src="./fig/ycoto_desktop_icon.png" style="width:50%;">
-    </p>
-
-     <p align="center">
-      <img src="./fig/yocto_desktop_teminal.png" style="width:50%;">
-    </p>
-
-  - In Ubuntu, you can interact with the system just as you would on a standard amd64 Ubuntu installation.
-    
-     <p align="center">
-      <img src="./fig/ubuntu.png" style="width:50%;">
-    </p>
-
-
-### Interact with the System Using SSH over Ethernet
-
-If you are accessing the system using SSH to interact with the system, please follow the steps below to set it up. If Ubuntu does not have network connectivity, refer to the [Q911 Image Flashing Guide: Boot into the System](../flash-image/README.md#step-6-boot-into-the-system) on configuring the network.
-
-1. Please connect an Ethernet cable and ensure that the device is reachable over the network. Then, connect the power cable and press the power button to boot the system.
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center"  width="50%" valign="bottom">
-        <img src="./fig/connect_eth_boot.png" style="max-height: 100%; max-width: 100%;">
-      </td>
-      <td align="center"  width="50%" valign="bottom">
-        <img src="./fig/connect_eth_boot_a100.png" style="max-height: 100%; max-width: 100%;">
-      </td>
-    </tr>
-    <tr>
-      <td align="center">EXEC-Q911</td>
-      <td align="center">APEX-A100</td>
-    </tr>
-  </table>
-</div>
-
-2. After the device boots up, You can access the device via SSH from any machine on the same network.
-  
-  - Use the following command to connect the Yocto Linux
-
-    ```bash
-    ssh root@<target device ip address>
-    ```
-
-     <p align="center">
-      <img src="./fig/SSH_terminal.png" style="width:50%;">
-    </p>
-
-  - Use the following command to connect the ubuntu
-
-    ```bash
-    ssh ubuntu@<target device ip address>
-    ```
-     <p align="center">
-      <img src="./fig/ubuntu_teminal.png" style="width:50%;">
-    </p>
-
-### Interact with the System Using ADB over USB Type-C
-
-If you are accessing the system using `adb` to interact with the system, please follow the steps below to set it up. The USB Type-C port on both platforms supports `Flash / ADB`.
-
-1. Connect the USB Type-C cable between the host and the device. Then, connect the power cable and press the power button to boot the system.
-
-  <div align="center">
-  <table>
-    <tr>
-      <td align="center"  width="50%" valign="bottom">
-        <img src="./fig/connect_adb_boot_flash.png" style="max-height: 100%; max-width: 100%;">
-      </td>
-      <td align="center"  width="50%" valign="bottom">
-        <img src="./fig/connect_adb_boot_flash_a100.png" style="max-height: 100%; max-width: 100%;">
-      </td>
-    </tr>
-    <tr>
-      <td align="center">EXEC-Q911</td>
-      <td align="center">APEX-A100</td>
-    </tr>
-  </table>
-  </div>
-
-2. After the device boots up, use the following commands on the host to verify the device connection and open an interactive shell.
-
-    ```bash
-    adb devices
-    adb shell
-    ```
-
-3. You can run Linux commands from the `adb` shell. The example below checks the BSP version.
-
-    ```bash
-    adb shell
-    sh-5.2# cat /etc/innodisk/BSP-version
-    ```
-
-    <p align="center">
-      <img src="./fig/adb_usage_example.png" style="width:50%;">
-    </p>
-
-### Interact with the System Using UART Debug Console
-
-If you are accessing the system using UART debug console to interact with the system, please follow the steps below to set it up.
-
-> 💡 **Tip:** You can refer to the [Qualcomm guide on setting up a debug UART](https://docs.qualcomm.com/doc/80-70014-253/topic/ubuntu_host.html#set-up-debug-uart) for detailed instructions on how to connect using minicom.
-
-1. Please connect the USB-to-TTL serial adapter to the UART pins on the bottom side of the board. Then, connect the power cable and press the power button to boot the system. 
-  
-
-  <p align="center">
-    <img src="./fig/debug_port_pin.png" style="width:50%;">
-  </p>
-
-  > 💡 **Tip:** Set your serial terminal to 115200 baud, 8 data bits, no parity, 1 stop bit, no flow control
-
-2. After the device boots up, you will see a screen similar to the one shown below.
-
-  <p align="center">
-    <img src="./fig/debug_port_view.png" style="width:50%;">
-  </p>
 
 ## Next Steps
 
-Depending on your needs:
+- [Application](../../applications/README.md) — Reference ready-to-run demos illustrating how to build applications on the platform.
 
-- [iQ-Studio](../../../README.md#explore-documentation--resources): It helps users quickly understand, explore, and prototype ideas by showcasing the platform’s performance and capabilities—inspiring innovation through hands-on experience.
+- [SDK](../../sdks/README.md)  — Learn how to develop and integrate your own solutions with the platform SDK.
 
-- [Application](../../applications/) — Reference ready-to-run demos illustrating how to build applications on the platform.
+- [AVL(Approved Vendor List)](../../avl/README.md) — Provides guidance on verifying that the driver starts correctly on the system and quickly demonstrating the validated results.
 
-- [SDK](../../sdks/)  — Learn how to develop and integrate your own solutions with the platform SDK.
-
-- [AVL(Approved Vendor List)](../../avl/) — Provides guidance on verifying that the driver starts correctly on the system and quickly demonstrating the validated results.
-
-- [Benchmark](../../../benchmarks/) — Review performance metrics for AI and system workloads.
+- [Benchmark](../../../benchmarks/README.md) — Review performance metrics for AI and system workloads.
