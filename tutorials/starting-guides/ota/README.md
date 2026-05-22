@@ -50,4 +50,3 @@ Step 6 of the [Linux OS update flow using OSTree](https://docs.qualcomm.com/doc/
 ## Explore Documentation & Resources
 
 - [OTA update for Qualcomm Linux](https://docs.qualcomm.com/doc/80-70020-27/topic/ota_update_for_qualcomm_linux.html)
-- [IQS Development Guidelines](../../../IQS.md)

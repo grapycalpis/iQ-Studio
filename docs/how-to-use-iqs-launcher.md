@@ -9,7 +9,7 @@
 
 `iqs-launcher` is the execution entry point for every application shipped with iQ-Studio. It checks the platform BSP version, locates the matching Docker image or IPK package, and runs the application. It supports both online mode (pull from Docker Hub) and offline mode (load pre-staged files).
 
-This page covers both modes side by side. For a single end-to-end demo command, see the [Quick Start](../README.md#quick-start) in the entry page.
+This page covers both modes side by side. For a single end-to-end demo command, see the [Quick Start](../index.md#quick-start) in the entry page.
 
 ## Introduction
 

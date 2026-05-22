@@ -66,7 +66,7 @@ iQ-Studio is built upon a robust edge AI software stack, bridging the gap betwee
 
 - **Hardware & Firmware**: [Qualcomm Dragonwing QCS9075 SoC](https://www.innodisk.com/en/products/computing/qualcomm-solution/exmp-q911) and low-level firmware.
 - **Kernel Space**: Powered by [Qualcomm Linux](https://www.qualcomm.com/developer/software/qualcomm-linux), integrated with our custom [Inno DTB/drivers and Yocto environments](https://github.com/InnoIPA/meta-iQ__manifest).
-- **User Space**: Seamlessly supports 3rd-party LLM SDKs, device management ([iCAP](https://www.innodisk.com/en/products/software-icap)), and inno AVL. At the very top sits the **[iQS-App layer](./README.md#explore-documentation--resources)** (VLM, Streampipe, YOLO, OGenie).
+- **User Space**: Seamlessly supports 3rd-party LLM SDKs, device management ([iCAP](https://www.innodisk.com/en/products/software-icap)), and inno AVL. At the very top sits the **[iQS-App layer](#explore-documentation-resources)** (VLM, Streampipe, YOLO, OGenie).
 
 ### Qualcomm Linux (QLI) Version Mapping
 

@@ -2,6 +2,12 @@
 mkdocs==1.6.1
 mkdocs-material==9.5.39
 pymdown-extensions==10.11
+# Pygments 2.19 changed HtmlFormatter to call html.escape() unconditionally
+# on the `filename` option, which crashes when pymdown-extensions 10.11
+# passes filename=None. Pin to the last compatible release until either
+# pymdown-extensions is upgraded (>=10.12 fixes this) or Pygments restores
+# the previous coercion behavior.
+Pygments==2.18.0
 
 # SEO additions (see ./.agent-artifacts/seo-checklist.md):
 #   git-revision-date-localized -> sitemap lastmod + JSON-LD dateModified
